@@ -99,15 +99,17 @@ Kullanıcıya geri bildirim veren katmanlar.
 
 ---
 
-## Faz 6 — Showcase Sistemi `[ ]`
+## Faz 6 — Showcase Sistemi `[TAMAMLANDI ✓]`
 
 Kütüphaneyi gezinebilir ve kopyalanabilir hale getiren arayüz.
 
-- [ ] Showcase ana layout (sidebar navigasyon + içerik alanı)
-- [ ] Her bileşen için showcase sayfası
-- [ ] "Kodu Kopyala" butonu (clipboard API)
-- [ ] Variant seçici (props'ları canlı değiştirme)
-- [ ] Dark/Light mode toggle showcase içinde
+- [x] Showcase ana layout — client sidebar, aktif link vurgulama, sticky header
+- [x] Her bileşen için showcase sayfası
+- [x] **CodeBlock** — "Kopyala" butonu (clipboard API) · satır numaraları · macOS pencere dekorasyonu
+- [x] **ShowcaseSection** — preview + "Kodu Gör" toggle, her bileşen sayfasında kullanılabilir
+- [x] **ThemeToggle** — icon variant (cycle) + segmented variant · sidebar'a entegre
+- [x] Bileşen arama — sidebar içi live filter
+- [x] Mobil responsive — slide-in drawer menü
 
 ---
 
@@ -153,9 +155,9 @@ components/
 | 3 | Auth | Başlanmadı |
 | 4 | Feedback & Overlay | ✓ Tamamlandı |
 | 5 | Data Display | ✓ Tamamlandı |
-| 6 | Showcase | Başlanmadı |
+| 6 | Showcase Sistemi | ✓ Tamamlandı |
 | 7 | Sayfa Şablonları | Başlanmadı |
 
 ---
 
-*Son güncelleme: 2026-05-28 (Faz 5)*
+*Son güncelleme: 2026-05-28 (Faz 6)*
