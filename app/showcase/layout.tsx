@@ -92,17 +92,58 @@ export default function ShowcaseLayout({
                 Checkbox
               </a>
             </li>
+            <li>
+              <a
+                href="/showcase/radio"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Radio
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/toggle"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Toggle
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/avatar"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Avatar
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/spinner"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Spinner
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/tooltip"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Tooltip
+              </a>
+            </li>
           </ul>
 
           <p className="px-2 mt-6 mb-2 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
             Yakında
           </p>
           {[
-            "Radio",
-            "Toggle",
-            "Avatar",
-            "Spinner",
-            "Tooltip",
+            "Divider",
           ].map((item) => (
             <li
               key={item}

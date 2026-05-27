@@ -27,13 +27,13 @@ Her şeyin üzerine inşa edildiği atomlar.
 - [x] **Textarea** — auto-grow (maxRows ile sınırlı) · karakter sayacı · error / success / helper text · disabled / readOnly
 - [x] **Select** — custom dropdown · arama (searchable) · gruplu seçenekler · icon · error / success state · 3 size · controlled/uncontrolled
 - [x] **Checkbox** — 3 size · indeterminate · description · error state · CheckboxGroup (dikey/yatay)
-- [ ] **Radio** — Radio Group
-- [ ] **Toggle / Switch**
+- [x] **Radio** — 3 size · description · error state · yatay · kart görünümü (card) · RadioGroup controlled/uncontrolled
+- [x] **Toggle / Switch** — 3 size · 4 renk (primary/success/danger/warning) · labelPosition · description · controlled/uncontrolled · form uyumlu
 - [x] **Badge** — 8 variant · 3 size · dot (status, animate-pulse) · leftIcon / rightIcon
-- [ ] **Avatar** — image + fallback initials
-- [ ] **Spinner / Loader** — birkaç farklı animasyon
+- [x] **Avatar** — 6 size · görsel / initials (deterministik renk) / fallback ikon · status dot · AvatarGroup (+N taşma)
+- [x] **Spinner / Loader** — 5 variant (circle/ring/dots/bars/pulse) · 5 size · 7 renk · a11y (role=status, sr-only)
 - [ ] **Divider / Separator**
-- [ ] **Tooltip**
+- [x] **Tooltip** — 4 yön (top/bottom/left/right) · 5 variant · delay · ok işareti · a11y (role=tooltip, aria-describedby)
 
 ---
 
@@ -148,7 +148,7 @@ components/
 | Faz | Konu | Durum |
 |-----|------|-------|
 | 0 | Altyapı | ✓ Tamamlandı |
-| 1 | Primitive Bileşenler | Başlanmadı |
+| 1 | Primitive Bileşenler | ✓ Tamamlandı |
 | 2 | Layout | Başlanmadı |
 | 3 | Auth | Başlanmadı |
 | 4 | Feedback & Overlay | Başlanmadı |
