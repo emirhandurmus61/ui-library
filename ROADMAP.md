@@ -48,12 +48,12 @@ Sayfanın iskeletini oluşturan yapılar.
 - [x] **Sidebar** — 2 tasarım · bölümlü nav · badge · user footer
   - [x] SidebarFull — bölümlü, özelleştirilebilir genişlik, footer slot
   - [x] SidebarCollapsible — ok butonuyla icon moduna geçer, hover tooltip
-- [ ] **Footer** — en az 2 farklı tasarım
-  - [ ] Minimal (copyright + linkler)
-  - [ ] Multi-column (sitemap tarzı)
-- [ ] **Container** — max-width wrapper, padding yönetimi
-- [ ] **Grid** — responsive grid sistemi
-- [ ] **Stack** — vertical/horizontal flex helper
+- [x] **Footer** — 2 tasarım · sosyal ikonlar · badge · alt bant (muted/surface) · tam responsive
+  - [x] FooterMinimal — tek satır, copyright + linkler + sosyal ikonlar
+  - [x] FooterMultiColumn — sitemap tarzı, marka kolonu + link kolonları + alt bant
+- [x] **Container** — 7 size (xs→prose) · 4 padding varyantı · mx-auto
+- [x] **Grid** — 2-6 + 12 kolon · responsive kırılma · gap varyantları · Col span
+- [x] **Stack** — direction (col/row/reverse) · gap · align · justify · wrap · divider
 
 ---
 
@@ -149,7 +149,7 @@ components/
 |-----|------|-------|
 | 0 | Altyapı | ✓ Tamamlandı |
 | 1 | Primitive Bileşenler | ✓ Tamamlandı |
-| 2 | Layout | Başlanmadı |
+| 2 | Layout | ✓ Tamamlandı |
 | 3 | Auth | Başlanmadı |
 | 4 | Feedback & Overlay | Başlanmadı |
 | 5 | Data Display | Başlanmadı |
