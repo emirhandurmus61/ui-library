@@ -41,13 +41,13 @@ Her şeyin üzerine inşa edildiği atomlar.
 
 Sayfanın iskeletini oluşturan yapılar.
 
-- [ ] **Navbar** — en az 3 farklı tasarım
-  - [ ] Minimal (logo + linkler)
-  - [ ] Full (logo + nav + CTA + avatar dropdown)
-  - [ ] Sticky + blur backdrop
-- [ ] **Sidebar** — en az 2 farklı tasarım
-  - [ ] Collapsible icon sidebar
-  - [ ] Full-width sidebar with sections
+- [x] **Navbar** — 3 tasarım · tam responsive · mobil hamburger
+  - [x] Minimal (logo + linkler + rightSlot)
+  - [x] Full (logo + nav + CTA + avatar dropdown + kullanıcı menüsü)
+  - [x] Sticky + blur backdrop (scroll'da tetiklenir)
+- [x] **Sidebar** — 2 tasarım · bölümlü nav · badge · user footer
+  - [x] SidebarFull — bölümlü, özelleştirilebilir genişlik, footer slot
+  - [x] SidebarCollapsible — ok butonuyla icon moduna geçer, hover tooltip
 - [ ] **Footer** — en az 2 farklı tasarım
   - [ ] Minimal (copyright + linkler)
   - [ ] Multi-column (sitemap tarzı)
