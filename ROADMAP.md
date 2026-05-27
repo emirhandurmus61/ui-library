@@ -83,19 +83,19 @@ Kullanıcıya geri bildirim veren katmanlar.
 
 ---
 
-## Faz 5 — Data Display Bileşenleri `[ ]`
+## Faz 5 — Data Display Bileşenleri `[TAMAMLANDI ✓]`
 
 İçerik göstermeye yönelik yapılar.
 
-- [ ] **Card** — birkaç varyant (basic, bordered, elevated, interactive)
-- [ ] **Table** — sortable headers, responsive (yatay scroll)
-- [ ] **Stat Card** — dashboard istatistik kartı
-- [ ] **List / List Item**
-- [ ] **Accordion / Collapse**
-- [ ] **Tabs**
-- [ ] **Breadcrumb**
-- [ ] **Pagination**
-- [ ] **Progress Bar**
+- [x] **Card** — basic · bordered · elevated · interactive · ghost · CardHeader · CardFooter · padding varyantları
+- [x] **Table** — sortable headers · striped · hoverable · bordered · compact · row click · responsive · boş durum
+- [x] **Stat Card** — trend (up/down/neutral) · 5 ikon rengi · description slot
+- [x] **List / List Item** — default · bordered · flush · ghost · leading/trailing · interactive · selected · 3 boyut
+- [x] **Accordion / Collapse** — tekli/çoklu açılma · bordered · flush · disabled · a11y
+- [x] **Tabs** — line · pill · boxed · ikon · badge · disabled · a11y (role=tab, aria-selected)
+- [x] **Breadcrumb** — chevron · slash · özel separator · icon · maxItems collapse · a11y
+- [x] **Pagination** — ellipsis · first/last · siblings · sm/md · a11y
+- [x] **Progress Bar** — 5 renk · 4 boyut · label · değer · striped · animated
 
 ---
 
@@ -152,10 +152,10 @@ components/
 | 2 | Layout | ✓ Tamamlandı |
 | 3 | Auth | Başlanmadı |
 | 4 | Feedback & Overlay | ✓ Tamamlandı |
-| 5 | Data Display | Başlanmadı |
+| 5 | Data Display | ✓ Tamamlandı |
 | 6 | Showcase | Başlanmadı |
 | 7 | Sayfa Şablonları | Başlanmadı |
 
 ---
 
-*Son güncelleme: 2026-05-28*
+*Son güncelleme: 2026-05-28 (Faz 5)*

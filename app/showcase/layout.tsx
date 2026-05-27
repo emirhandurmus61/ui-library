@@ -282,6 +282,57 @@ export default function ShowcaseLayout({
               </a>
             </li>
           </ul>
+
+          <p className="px-2 mt-6 mb-2 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
+            Faz 5 — Data Display
+          </p>
+          <ul className="space-y-0.5 text-sm">
+            <li>
+              <a href="/showcase/card" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Card
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/table" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Table
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/stat-card" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Stat Card
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/list" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />List
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/accordion" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Accordion
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/tabs" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Tabs
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/breadcrumb" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Breadcrumb
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/pagination" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Pagination
+              </a>
+            </li>
+            <li>
+              <a href="/showcase/progress" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors">
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />Progress Bar
+              </a>
+            </li>
+          </ul>
         </nav>
       </aside>
 
