@@ -61,12 +61,12 @@ Sayfanın iskeletini oluşturan yapılar.
 
 Projelerde en çok tekrarlanan ekranlar.
 
-- [ ] **Login Form** — en az 2 tasarım
-  - [ ] Card ortada
-  - [ ] Split screen (görsel + form)
-- [ ] **Register Form**
-- [ ] **Forgot Password Form**
-- [ ] **OTP / Verification Input**
+- [x] **Login Form** — 2 tasarım · sosyal giriş (Google/GitHub) · validation · loading · beni hatırla
+  - [x] LoginCard — ortalanmış kart, showSocials toggle
+  - [x] LoginSplit — sol panel (testimonial + özellikler) + sağ form
+- [x] **Register Form**
+- [x] **Forgot Password Form**
+- [x] **OTP / Verification Input**
 
 ---
 

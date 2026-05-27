@@ -182,19 +182,46 @@ export default function ShowcaseLayout({
           </ul>
 
           <p className="px-2 mt-6 mb-2 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
-            Yakında
+            Faz 3 — Auth
           </p>
-          {[
-            "Login Form",
-          ].map((item) => (
-            <li
-              key={item}
-              className="flex items-center gap-2 px-2 py-1.5 rounded-md text-sm text-foreground-subtle cursor-not-allowed list-none"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-border" />
-              {item}
+          <ul className="space-y-0.5 text-sm">
+            <li>
+              <a
+                href="/showcase/login"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Login Form
+              </a>
             </li>
-          ))}
+            <li>
+              <a
+                href="/showcase/register"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Register Form
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/forgot-password"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Forgot Password
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/otp"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                OTP Input
+              </a>
+            </li>
+          </ul>
         </nav>
       </aside>
 
