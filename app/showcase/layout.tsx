@@ -47,19 +47,59 @@ export default function ShowcaseLayout({
                 Button
               </a>
             </li>
+            <li>
+              <a
+                href="/showcase/input"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Input
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/textarea"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Textarea
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/badge"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Badge
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/select"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Select
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/checkbox"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Checkbox
+              </a>
+            </li>
           </ul>
 
           <p className="px-2 mt-6 mb-2 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
             Yakında
           </p>
           {[
-            "Input",
-            "Textarea",
-            "Select",
-            "Checkbox",
             "Radio",
             "Toggle",
-            "Badge",
             "Avatar",
             "Spinner",
             "Tooltip",

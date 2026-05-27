@@ -23,13 +23,13 @@ Temel kurulum ve klasör yapısı. Hiçbir bileşen yazılmadan önce bu adım t
 Her şeyin üzerine inşa edildiği atomlar.
 
 - [x] **Button** — variant: primary / secondary / outline / ghost / danger / danger-outline / link · size: xs→xl + icon · loading state · leftIcon / rightIcon
-- [ ] **Input** — text, email, password, number · label · error state · helper text
-- [ ] **Textarea** — resizable, auto-grow seçeneği
-- [ ] **Select** — custom dropdown, native fallback
-- [ ] **Checkbox** — indeterminate state dahil
+- [x] **Input** — text / email / password / number / date / tel / url · label · error / success / helper text · leftIcon / rightIcon · size: sm/md/lg · PasswordInput (göster/gizle)
+- [x] **Textarea** — auto-grow (maxRows ile sınırlı) · karakter sayacı · error / success / helper text · disabled / readOnly
+- [x] **Select** — custom dropdown · arama (searchable) · gruplu seçenekler · icon · error / success state · 3 size · controlled/uncontrolled
+- [x] **Checkbox** — 3 size · indeterminate · description · error state · CheckboxGroup (dikey/yatay)
 - [ ] **Radio** — Radio Group
 - [ ] **Toggle / Switch**
-- [ ] **Badge** — variant ve size
+- [x] **Badge** — 8 variant · 3 size · dot (status, animate-pulse) · leftIcon / rightIcon
 - [ ] **Avatar** — image + fallback initials
 - [ ] **Spinner / Loader** — birkaç farklı animasyon
 - [ ] **Divider / Separator**
