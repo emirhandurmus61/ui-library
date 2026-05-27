@@ -222,6 +222,66 @@ export default function ShowcaseLayout({
               </a>
             </li>
           </ul>
+
+          <p className="px-2 mt-6 mb-2 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
+            Faz 4 — Feedback
+          </p>
+          <ul className="space-y-0.5 text-sm">
+            <li>
+              <a
+                href="/showcase/modal"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Modal
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/drawer"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Drawer
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/toast"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Toast
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/alert"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Alert
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/skeleton"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Skeleton
+              </a>
+            </li>
+            <li>
+              <a
+                href="/showcase/empty-state"
+                className="flex items-center gap-2 px-2 py-1.5 rounded-md text-foreground-muted hover:bg-background-muted hover:text-foreground transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-success" />
+                Empty State
+              </a>
+            </li>
+          </ul>
         </nav>
       </aside>
 

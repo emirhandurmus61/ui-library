@@ -70,16 +70,16 @@ Projelerde en çok tekrarlanan ekranlar.
 
 ---
 
-## Faz 4 — Feedback & Overlay Bileşenleri `[ ]`
+## Faz 4 — Feedback & Overlay Bileşenleri `[TAMAMLANDI ✓]`
 
 Kullanıcıya geri bildirim veren katmanlar.
 
-- [ ] **Modal / Dialog** — backdrop, escape ile kapanma, animasyon
-- [ ] **Drawer / Sheet** — left/right/bottom slide
-- [ ] **Toast / Notification** — success, error, warning, info
-- [ ] **Alert** — inline uyarı kutusu
-- [ ] **Skeleton** — loading placeholder
-- [ ] **Empty State** — icon + başlık + CTA
+- [x] **Modal / Dialog** — backdrop, escape ile kapanma, animasyon · 5 boyut · footer slot · scroll kilit · a11y
+- [x] **Drawer / Sheet** — left/right/bottom/top slide · handle (bottom/top) · footer slot · a11y
+- [x] **Toast / Notification** — success/error/warning/info/default · action butonu · otomatik kapanma · stack · ToastProvider + useToast hook
+- [x] **Alert** — inline uyarı · 5 variant · dismissible · action slot · description prop · a11y (role=alert)
+- [x] **Skeleton** — 5 variant · SkeletonText · SkeletonCard · a11y (aria-hidden)
+- [x] **Empty State** — özel ikon · başlık + açıklama · CTA slot · 3 boyut
 
 ---
 
@@ -151,11 +151,11 @@ components/
 | 1 | Primitive Bileşenler | ✓ Tamamlandı |
 | 2 | Layout | ✓ Tamamlandı |
 | 3 | Auth | Başlanmadı |
-| 4 | Feedback & Overlay | Başlanmadı |
+| 4 | Feedback & Overlay | ✓ Tamamlandı |
 | 5 | Data Display | Başlanmadı |
 | 6 | Showcase | Başlanmadı |
 | 7 | Sayfa Şablonları | Başlanmadı |
 
 ---
 
-*Son güncelleme: 2026-05-27*
+*Son güncelleme: 2026-05-28*
