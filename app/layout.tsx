@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
@@ -29,15 +30,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Inline script: tema flash'ını önlemek için React render'ından önce çalışır */}
-        <script
+      <body suppressHydrationWarning>
+        {/* Tema flash'ını önlemek için body başında çalışır */}
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=document.documentElement;var r=t==='dark'||(!t||t==='system')&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.classList.add(r);d.style.colorScheme=r;}catch(e){}})()`,
           }}
         />
-      </head>
-      <body suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>

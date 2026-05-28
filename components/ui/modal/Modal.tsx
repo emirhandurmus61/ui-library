@@ -150,12 +150,12 @@ export function Modal({
       >
         {/* Header */}
         {(title || !hideCloseButton) && (
-          <div className="flex items-start justify-between gap-4 px-6 pt-6 pb-4 shrink-0">
+          <div className="flex items-start justify-between gap-4 px-4 sm:px-6 pt-4 sm:pt-6 pb-4 shrink-0">
             <div className="flex-1 min-w-0">
               {title && (
                 <h2
                   id="modal-title"
-                  className="text-lg font-semibold text-foreground leading-tight"
+                  className="text-base sm:text-lg font-semibold text-foreground leading-tight"
                 >
                   {title}
                 </h2>
@@ -173,7 +173,8 @@ export function Modal({
               <button
                 onClick={handleClose}
                 className={cn(
-                  "shrink-0 rounded-[var(--radius-md)] p-1.5 -mt-0.5 -mr-1.5",
+                  /* p-2 + size-4 icon = ~40px effective target, acceptable on mobile */
+                  "shrink-0 rounded-[var(--radius-md)] p-2",
                   "text-foreground-muted hover:text-foreground hover:bg-background-muted",
                   "transition-colors duration-150",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -188,14 +189,14 @@ export function Modal({
 
         {/* Body */}
         {children && (
-          <div className="flex-1 overflow-y-auto px-6 py-2 min-h-0">
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-2 min-h-0">
             {children}
           </div>
         )}
 
         {/* Footer */}
         {footer && (
-          <div className="px-6 py-4 pt-4 border-t border-border shrink-0 flex items-center justify-end gap-3">
+          <div className="px-4 sm:px-6 py-4 pt-4 border-t border-border shrink-0 flex items-center justify-end gap-3 flex-wrap">
             {footer}
           </div>
         )}

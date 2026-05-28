@@ -449,6 +449,81 @@ const ENTRIES: ShowcaseEntry[] = [
     keywords: ["analitik", "grafik dashboard", "metrik", "veri görselleştirme"],
     href: "/showcase/templates/analytics" },
 
+  /* ── Navigation (Faz 21.1) ── */
+  { id: "stepper",      label: "Stepper",         group: "Layout",
+    keywords: ["adım göstergesi", "wizard", "çok adımlı form", "step indicator", "progress steps"],
+    href: "/showcase/stepper",
+    importLine: 'import { Stepper } from "@/components/ui/stepper";',
+    minimalCode: '<Stepper steps={[{ label: "Adım 1" }, { label: "Adım 2" }]} currentStep={0} />' },
+
+  { id: "back-to-top",  label: "Back to Top",     group: "Layout",
+    keywords: ["yukarı çık", "scroll top", "back to top", "sayfa başı butonu"],
+    href: "/showcase/back-to-top",
+    importLine: 'import { BackToTop } from "@/components/ui/back-to-top";',
+    minimalCode: '<BackToTop threshold={300} />' },
+
+  { id: "bottom-nav",   label: "Bottom Navigation", group: "Layout",
+    keywords: ["alt navigasyon", "mobil tab bar", "bottom tab", "app nav"],
+    href: "/showcase/bottom-nav",
+    importLine: 'import { BottomNav } from "@/components/ui/bottom-nav";',
+    minimalCode: '<BottomNav items={[{ label: "Ana", icon: <HomeIcon />, active: true }]} />' },
+
+  /* ── Content (Faz 21.2) ── */
+  { id: "timeline",      label: "Timeline",         group: "Data Display",
+    keywords: ["zaman çizelgesi", "kronoloji", "olaylar", "tarihçe", "adımlar"],
+    href: "/showcase/timeline",
+    importLine: 'import { Timeline } from "@/components/ui/timeline";',
+    minimalCode: '<Timeline items={[{ title: "Başladı", date: "2024", variant: "success" }]} />' },
+
+  { id: "pricing-table", label: "Pricing Table",    group: "Data Display",
+    keywords: ["fiyat tablosu", "plan karşılaştırma", "özellik tablosu", "saas fiyatlandırma"],
+    href: "/showcase/pricing-table",
+    importLine: 'import { PricingTable } from "@/components/ui/pricing-table";',
+    minimalCode: '<PricingTable plans={plans} features={features} />' },
+
+  { id: "faq-list",      label: "FAQ List",         group: "Data Display",
+    keywords: ["sss", "sıkça sorulan sorular", "accordion faq", "arama sss", "kategori filtre"],
+    href: "/showcase/faq-list",
+    importLine: 'import { FAQList } from "@/components/ui/faq-list";',
+    minimalCode: '<FAQList items={faqItems} searchable filterable />' },
+
+  { id: "feature-grid",  label: "Feature Grid",     group: "Data Display",
+    keywords: ["özellik listesi", "feature section", "landing page özellikler", "icon grid"],
+    href: "/showcase/feature-grid",
+    importLine: 'import { FeatureGrid } from "@/components/ui/feature-grid";',
+    minimalCode: '<FeatureGrid features={features} columns={3} variant="card" />' },
+
+  { id: "logo-wall",     label: "Logo Wall",        group: "Data Display",
+    keywords: ["logo duvarı", "marka listesi", "partner logoları", "müşteri logoları", "marquee logo"],
+    href: "/showcase/logo-wall",
+    importLine: 'import { LogoWall } from "@/components/ui/logo-wall";',
+    minimalCode: '<LogoWall logos={logos} marquee grayscale title="Güvenilen Markalar" />' },
+
+  /* ── Form (Faz 21.3) ── */
+  { id: "multi-step-form", label: "Multi-step Form",  group: "Interactive",
+    keywords: ["çok adımlı form", "wizard form", "step form", "kayıt adımları", "onboarding"],
+    href: "/showcase/multi-step-form",
+    importLine: 'import { MultiStepForm } from "@/components/ui/multi-step-form";',
+    minimalCode: '<MultiStepForm steps={steps} onComplete={handleComplete} />' },
+
+  { id: "rating-input",   label: "Rating Input",     group: "Interactive",
+    keywords: ["yıldız puan", "derecelendirme", "star rating", "yarım yıldız", "review"],
+    href: "/showcase/rating-input",
+    importLine: 'import { RatingInput } from "@/components/ui/rating-input";',
+    minimalCode: '<RatingInput value={rating} onChange={setRating} allowHalf />' },
+
+  { id: "phone-input",    label: "Phone Input",      group: "Interactive",
+    keywords: ["telefon girişi", "ülke kodu", "uluslararası telefon", "flag select"],
+    href: "/showcase/phone-input",
+    importLine: 'import { PhoneInput } from "@/components/ui/phone-input";',
+    minimalCode: '<PhoneInput label="Telefon" defaultCountry="TR" onChange={setPhone} />' },
+
+  { id: "color-picker",   label: "Color Picker",     group: "Interactive",
+    keywords: ["renk seçici", "hex renk", "renk paleti", "color swatch", "opacity"],
+    href: "/showcase/color-picker",
+    importLine: 'import { ColorPicker } from "@/components/ui/color-picker";',
+    minimalCode: '<ColorPicker value={color} onChange={setColor} showOpacity />' },
+
   /* ── System ── */
   { id: "theme-switcher",label: "Theme Switcher",group: "Sistem",
     keywords: ["tema değiştir", "renk şeması", "dark mode", "font", "radius"],

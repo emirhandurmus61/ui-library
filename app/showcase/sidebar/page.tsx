@@ -115,6 +115,34 @@ export default function SidebarShowcase() {
         </div>
       </section>
 
+      {/* 3 — Responsive with mobile drawer */}
+      <section className="flex flex-col gap-3">
+        <div>
+          <h2 className="text-base font-semibold text-foreground">3. Mobil Responsive — Drawer</h2>
+          <p className="text-sm text-foreground-muted">
+            <code className="text-xs bg-background-muted px-1 py-0.5 rounded">mobileDrawer</code> prop'u ile masaüstünde sidebar görünür,
+            mobilde gizlenir ve sol altta hamburger butonu ile açılır slide-over drawer haline gelir.
+          </p>
+        </div>
+        <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden relative h-[360px]">
+          <div className="flex h-full">
+            <SidebarFull
+              logoText="MyApp"
+              sections={SECTIONS.slice(0, 2)}
+              user={USER}
+              mobileDrawer
+            />
+            <div className="flex-1 bg-background-subtle flex flex-col items-center justify-center gap-2 p-6 text-center">
+              <p className="text-sm font-medium text-foreground">Sayfa içeriği</p>
+              <p className="text-xs text-foreground-muted">
+                Masaüstünde: sidebar her zaman görünür.<br />
+                Mobilde: sol alt köşedeki ☰ butonu ile drawer açılır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Kullanım */}
       <section>
         <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
@@ -152,6 +180,14 @@ const sections = [
   sections={sections}
   user={{ name: "Ali Veli" }}
   defaultCollapsed={false}
+/>
+
+// Responsive — masaüstünde sidebar, mobilde drawer
+<SidebarFull
+  logoText="MyApp"
+  sections={sections}
+  user={{ name: "Ali Veli" }}
+  mobileDrawer
 />`}
         </pre>
       </section>

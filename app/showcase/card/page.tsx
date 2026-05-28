@@ -118,7 +118,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 1 — E-TİCARET KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="E-Ticaret"
           title="Ürün Kartları"
@@ -297,7 +297,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 2 — BLOG & İÇERİK KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Blog / Medya"
           title="İçerik Kartları"
@@ -454,7 +454,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 3 — KULLANICI & PROFİL KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Kullanıcı / Profil"
           title="Kişi & Ekip Kartları"
@@ -597,7 +597,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 4 — PROJe & PORTFÖLYo KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Portfolyo"
           title="Proje & Portfolyo Kartları"
@@ -716,7 +716,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 5 — SaaS & YÖNETİM PANELİ KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="SaaS / Yönetim"
           title="SaaS & Dashboard Kartları"
@@ -862,7 +862,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 6 — METRİK KARTLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Dashboard"
           title="Metrik & İstatistik Kartları"
@@ -968,7 +968,7 @@ export default function CardShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 7 — STİL PRESTLERİ (Temel)
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Stil Presetleri"
           title="Görsel Katman Varyantları"

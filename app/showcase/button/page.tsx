@@ -168,7 +168,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 1 — FORM AKSİYONLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Form Aksiyonları"
           title="Form & Dialog Butonları"
@@ -249,7 +249,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 2 — CTA BUTONLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="CTA"
           title="Call-to-Action Butonları"
@@ -327,7 +327,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 3 — SOSYAL GİRİŞ BUTONLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Auth"
           title="Sosyal Giriş Butonları"
@@ -377,7 +377,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 4 — İKON BUTONLARI & TOOLBAR
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="İkon"
           title="İkon Butonları & Toolbar"
@@ -484,7 +484,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 5 — FAB & SPLIT BUTTON
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Özel Desenler"
           title="FAB & Split Button"
@@ -587,7 +587,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 6 — BOYUT & RESPONSIVE
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Boyut & Responsive"
           title="Boyut Skalası & Tam Genişlik"
@@ -669,7 +669,7 @@ export default function ButtonShowcase() {
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 7 — DURUM KOMBİNASYONLARI
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Durum Matrisi"
           title="Tüm Durumlar"
@@ -769,7 +769,7 @@ const [copied, setCopied] = useState(false);
       {/* ════════════════════════════════════════════════════════
           BÖLÜM 8 — STİL PRESTLERİ
       ════════════════════════════════════════════════════════ */}
-      <section>
+      <section className="space-y-8">
         <SectionTitle
           tag="Stil Presetleri"
           title="Görsel Katman Varyantları"

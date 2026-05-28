@@ -265,6 +265,33 @@ export default function DataTableShowcase() {
         />
       </ShowcaseSection>
 
+      {/* Mobile cards */}
+      <ShowcaseSection
+        title="Mobil Kart Modu"
+        description="mobileCards prop'u ile < sm kırılma noktasında tablo satırları kart görünümüne dönüşür. Masaüstünde yine tablo gösterilir."
+        viewportToggle
+        code={`<DataTable
+  columns={columns}
+  data={employees}
+  keyExtractor={(r) => r.id}
+  mobileCards
+  toolbar={false}
+/>`}
+      >
+        <DataTable
+          columns={columns.map((c) => ({
+            ...c,
+            // email ve salary kolonları mobil kart görünümünde gizlenebilir
+            mobileHidden: c.key === "joined" || c.key === "salary",
+          }))}
+          data={employees.slice(0, 4)}
+          keyExtractor={(r) => r.id}
+          mobileCards
+          toolbar={false}
+          striped
+        />
+      </ShowcaseSection>
+
       {/* Empty state */}
       <ShowcaseSection
         title="Boş Tablo"

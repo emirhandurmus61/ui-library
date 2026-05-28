@@ -142,7 +142,7 @@ function MenuPanel({
 
 export function ContextMenu({ items, children, className, disabled = false }: ContextMenuProps) {
   const [open, setOpen] = useState(false);
-  const [pos,  setPos]  = useState({ x: 0, y: 0 });
+  const [pos,  setPos]  = useState({ x: 0, y: 0, clampedX: 0, clampedY: 0 });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -152,8 +152,10 @@ export function ContextMenu({ items, children, className, disabled = false }: Co
   const handleContextMenu = (e: React.MouseEvent) => {
     if (disabled) return;
     e.preventDefault();
-    // Viewport clamp will be done after render; set raw coords first
-    setPos({ x: e.clientX, y: e.clientY });
+    const menuW = 200, menuH = items.length * 34 + 8;
+    const clampedX = Math.min(e.clientX, window.innerWidth  - menuW - 8);
+    const clampedY = Math.min(e.clientY, window.innerHeight - menuH - 8);
+    setPos({ x: e.clientX, y: e.clientY, clampedX, clampedY });
     setOpen(true);
   };
 
@@ -173,11 +175,6 @@ export function ContextMenu({ items, children, className, disabled = false }: Co
     };
   }, [open, close]);
 
-  /* Clamp to viewport */
-  const menuW = 200, menuH = items.length * 34 + 8;
-  const clampedX = Math.min(pos.x, window.innerWidth  - menuW - 8);
-  const clampedY = Math.min(pos.y, window.innerHeight - menuH - 8);
-
   return (
     <MenuCtx.Provider value={{ close }}>
       <div onContextMenu={handleContextMenu} className={cn("select-none", className)}>
@@ -185,7 +182,7 @@ export function ContextMenu({ items, children, className, disabled = false }: Co
       </div>
 
       {mounted && open && createPortal(
-        <div style={{ position: "fixed", left: clampedX, top: clampedY, zIndex: 9999 }}>
+        <div style={{ position: "fixed", left: pos.clampedX, top: pos.clampedY, zIndex: 9999 }}>
           <MenuPanel items={items} onClose={close} />
         </div>,
         document.body

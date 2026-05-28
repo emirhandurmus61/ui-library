@@ -69,7 +69,7 @@ export function NavbarSticky({
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 rounded-[var(--radius-full)] text-sm font-medium transition-colors",
+                  "px-3 py-2 rounded-[var(--radius-full)] text-sm font-medium transition-colors",
                   link.active
                     ? "text-foreground"
                     : "text-foreground-muted hover:text-foreground"
@@ -96,9 +96,9 @@ export function NavbarSticky({
             </a>
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger — WCAG 2.5.5: min 44×44px touch target */}
           <button
-            className="md:hidden flex items-center justify-center size-8 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
+            className="md:hidden flex items-center justify-center size-11 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Menüyü aç/kapat"
             aria-expanded={mobileOpen}
@@ -110,13 +110,13 @@ export function NavbarSticky({
 
       {/* Mobil menü */}
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border px-4 py-4 flex flex-col gap-2">
+        <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border px-4 py-4 flex flex-col gap-1">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
               className={cn(
-                "px-3 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
+                "px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors min-h-[44px] flex items-center",
                 link.active
                   ? "bg-background-muted text-foreground"
                   : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
@@ -126,10 +126,10 @@ export function NavbarSticky({
             </a>
           ))}
           <div className="flex flex-col gap-2 pt-2 border-t border-border mt-1">
-            <a href={secondaryHref} className="px-3 py-2 text-sm font-medium text-foreground-muted">
+            <a href={secondaryHref} className="px-3 py-2.5 text-sm font-medium text-foreground-muted flex items-center min-h-[44px]">
               {secondaryLabel}
             </a>
-            <a href={ctaHref} className="inline-flex items-center justify-center h-9 px-4 rounded-[var(--radius-full)] bg-primary text-primary-foreground text-sm font-medium">
+            <a href={ctaHref} className="inline-flex items-center justify-center h-11 px-4 rounded-[var(--radius-full)] bg-primary text-primary-foreground text-sm font-medium">
               {ctaLabel}
             </a>
           </div>

@@ -53,7 +53,6 @@ export function NavbarFull({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Dışarı tıklayınca dropdown kapat
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -93,7 +92,7 @@ export function NavbarFull({
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
+                  "px-3 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
                   link.active
                     ? "bg-background-muted text-foreground"
                     : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
@@ -120,7 +119,7 @@ export function NavbarFull({
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setDropdownOpen((o) => !o)}
-                  className="flex items-center gap-2 rounded-[var(--radius-md)] px-2 py-1.5 hover:bg-background-muted transition-colors"
+                  className="flex items-center gap-2 rounded-[var(--radius-md)] px-2 py-2 hover:bg-background-muted transition-colors min-h-[44px]"
                   aria-expanded={dropdownOpen}
                 >
                   <Avatar src={user.avatarSrc} name={user.name} size="sm" />
@@ -131,7 +130,6 @@ export function NavbarFull({
                 {/* Dropdown */}
                 {dropdownOpen && (
                   <div className="absolute right-0 mt-1 w-52 bg-surface-overlay border border-border rounded-[var(--radius-md)] shadow-lg overflow-hidden z-50 animate-in fade-in-0 zoom-in-95 duration-100">
-                    {/* Kullanıcı bilgisi */}
                     <div className="px-3 py-2.5 border-b border-border">
                       <p className="text-sm font-medium text-foreground truncate">{user.name}</p>
                       {user.email && <p className="text-xs text-foreground-muted truncate">{user.email}</p>}
@@ -144,7 +142,7 @@ export function NavbarFull({
                             <a
                               href={item.href}
                               className={cn(
-                                "flex w-full items-center px-3 py-1.5 text-sm rounded-[var(--radius-sm)] transition-colors",
+                                "flex w-full items-center px-3 py-2 text-sm rounded-[var(--radius-sm)] transition-colors",
                                 item.danger
                                   ? "text-danger hover:bg-danger-subtle"
                                   : "text-foreground hover:bg-background-muted"
@@ -156,7 +154,7 @@ export function NavbarFull({
                             <button
                               onClick={item.onClick}
                               className={cn(
-                                "flex w-full items-center px-3 py-1.5 text-sm rounded-[var(--radius-sm)] transition-colors",
+                                "flex w-full items-center px-3 py-2 text-sm rounded-[var(--radius-sm)] transition-colors",
                                 item.danger
                                   ? "text-danger hover:bg-danger-subtle"
                                   : "text-foreground hover:bg-background-muted"
@@ -174,9 +172,9 @@ export function NavbarFull({
             )}
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger — WCAG 2.5.5: min 44×44px touch target */}
           <button
-            className="md:hidden flex items-center justify-center size-8 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
+            className="md:hidden flex items-center justify-center size-11 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Menüyü aç/kapat"
             aria-expanded={mobileOpen}
@@ -194,7 +192,7 @@ export function NavbarFull({
               key={link.label}
               href={link.href}
               className={cn(
-                "px-3 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
+                "px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors min-h-[44px] flex items-center",
                 link.active
                   ? "bg-background-muted text-foreground"
                   : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
@@ -203,10 +201,10 @@ export function NavbarFull({
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-border mt-1 flex flex-col gap-2">
+          <div className="pt-2 border-t border-border mt-1 flex flex-col gap-1">
             {user ? (
               <>
-                <div className="flex items-center gap-2 px-1 py-1">
+                <div className="flex items-center gap-2 px-1 py-2">
                   <Avatar src={user.avatarSrc} name={user.name} size="sm" />
                   <div>
                     <p className="text-sm font-medium text-foreground">{user.name}</p>
@@ -215,18 +213,24 @@ export function NavbarFull({
                 </div>
                 {menuItems.map((item, i) => (
                   item.href ? (
-                    <a key={i} href={item.href} className={cn("px-3 py-2 text-sm rounded-[var(--radius-md)]", item.danger ? "text-danger" : "text-foreground-muted")}>
+                    <a key={i} href={item.href} className={cn(
+                      "px-3 py-2.5 text-sm rounded-[var(--radius-md)] flex items-center min-h-[44px]",
+                      item.danger ? "text-danger" : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
+                    )}>
                       {item.label}
                     </a>
                   ) : (
-                    <button key={i} onClick={item.onClick} className={cn("px-3 py-2 text-sm text-left rounded-[var(--radius-md)]", item.danger ? "text-danger" : "text-foreground-muted")}>
+                    <button key={i} onClick={item.onClick} className={cn(
+                      "px-3 py-2.5 text-sm text-left rounded-[var(--radius-md)] flex items-center w-full min-h-[44px]",
+                      item.danger ? "text-danger" : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
+                    )}>
                       {item.label}
                     </button>
                   )
                 ))}
               </>
             ) : (
-              <a href={ctaHref} className="inline-flex items-center justify-center h-9 px-4 rounded-[var(--radius-md)] bg-primary text-primary-foreground text-sm font-medium">
+              <a href={ctaHref} className="inline-flex items-center justify-center h-11 px-4 rounded-[var(--radius-md)] bg-primary text-primary-foreground text-sm font-medium">
                 {ctaLabel}
               </a>
             )}

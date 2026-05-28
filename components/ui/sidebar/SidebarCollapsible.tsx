@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -32,6 +32,11 @@ export interface SidebarCollapsibleProps {
   logo?: React.ReactNode;
   user?: { name: string; email?: string; avatarSrc?: string };
   defaultCollapsed?: boolean;
+  /**
+   * Automatically collapse on small screens (< md).
+   * Default: true
+   */
+  collapseOnMobile?: boolean;
   className?: string;
 }
 
@@ -41,6 +46,7 @@ function NavItem({ item, collapsed }: { item: SidebarItem; collapsed: boolean })
   const base = cn(
     "group relative flex items-center gap-3 rounded-[var(--radius-md)]",
     "text-sm font-medium transition-all duration-150 cursor-pointer w-full text-left",
+    "min-h-[44px]", /* WCAG 2.5.5 touch target */
     collapsed ? "justify-center px-2 py-2" : "px-3 py-2",
     item.active
       ? "bg-primary-subtle text-primary"
@@ -107,9 +113,24 @@ export function SidebarCollapsible({
   logo,
   user,
   defaultCollapsed = false,
+  collapseOnMobile = true,
   className,
 }: SidebarCollapsibleProps) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
+
+  /* Auto-collapse on small screens */
+  useEffect(() => {
+    if (!collapseOnMobile) return;
+
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) setCollapsed(true);
+    };
+
+    handler(mq); // run on mount
+    mq.addEventListener("change", handler as (e: MediaQueryListEvent) => void);
+    return () => mq.removeEventListener("change", handler as (e: MediaQueryListEvent) => void);
+  }, [collapseOnMobile]);
 
   return (
     <aside className={cn(
@@ -133,13 +154,13 @@ export function SidebarCollapsible({
         )}
       </div>
 
-      {/* Toggle butonu */}
+      {/* Toggle butonu — WCAG 2.5.5: size-8 ≥ 32px, but we add -right-4 so it's fully outside */}
       <button
         onClick={() => setCollapsed((c) => !c)}
         aria-label={collapsed ? "Sidebar'ı genişlet" : "Sidebar'ı daralt"}
         className={cn(
-          "absolute -right-3 top-16 z-10",
-          "flex size-6 items-center justify-center",
+          "absolute -right-4 top-16 z-10",
+          "flex size-8 items-center justify-center",
           "rounded-full bg-surface border border-border",
           "text-foreground-muted hover:text-foreground hover:bg-background-muted",
           "transition-colors shadow-sm"

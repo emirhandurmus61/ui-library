@@ -215,7 +215,7 @@ Her bileşen sayfası aynı yapıyı takip eder:
 
 ---
 
-## Faz 20 — Responsive Kalite Güvencesi `[ ]`
+## Faz 20 — Responsive Kalite Güvencesi `[TAMAMLANDI ✓]`
 
 > Mevcut bileşenler responsive olmaya çalışıyor ama sistematik test edilmedi.  
 > Hedef: Her bileşen 3 kırılma noktasında garanti edilmiş davranış.
@@ -247,7 +247,7 @@ Tüm bileşenler için geçerli kurallar:
 
 ---
 
-## Faz 21 — Ek Bileşen Kategorileri `[ ]`
+## Faz 21 — Ek Bileşen Kategorileri `[TAMAMLANDI ✓]`
 
 > V1+V2 sonrası hâlâ eksik olan yüksek kullanım frekanslı bileşenler.
 
@@ -301,8 +301,8 @@ Faz 19.1 → Faz 16 → Faz 17 → Faz 18 → Faz 19.2-5 → Faz 20 → Faz 21
 | 17 | Button İçerik Zenginleştirmesi | ✓ Tamamlandı |
 | 18 | Landing Page Şablonları (Kategorik) | ✓ Tamamlandı |
 | 19 | Showcase Navigasyon & UX | ✓ Tamamlandı |
-| 20 | Responsive Kalite Güvencesi | Başlanmadı |
-| 21 | Ek Bileşen Kategorileri | Başlanmadı |
+| 20 | Responsive Kalite Güvencesi | ✓ Tamamlandı |
+| 21 | Ek Bileşen Kategorileri | ✓ Tamamlandı |
 
 ---
 

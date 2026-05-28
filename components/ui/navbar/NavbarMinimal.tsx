@@ -53,7 +53,7 @@ export function NavbarMinimal({
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
+                  "px-3 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
                   link.active
                     ? "bg-background-muted text-foreground"
                     : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
@@ -67,8 +67,9 @@ export function NavbarMinimal({
           {/* Sağ slot + hamburger */}
           <div className="flex items-center gap-2">
             {rightSlot && <div className="hidden md:flex items-center gap-2">{rightSlot}</div>}
+            {/* WCAG 2.5.5: min 44×44px touch target */}
             <button
-              className="md:hidden flex items-center justify-center size-8 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
+              className="md:hidden flex items-center justify-center size-11 rounded-[var(--radius-md)] text-foreground-muted hover:bg-background-muted transition-colors"
               onClick={() => setOpen((o) => !o)}
               aria-label="Menüyü aç/kapat"
               aria-expanded={open}
@@ -87,7 +88,7 @@ export function NavbarMinimal({
               key={link.label}
               href={link.href}
               className={cn(
-                "px-3 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors",
+                "px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors min-h-[44px] flex items-center",
                 link.active
                   ? "bg-background-muted text-foreground"
                   : "text-foreground-muted hover:text-foreground hover:bg-background-muted"

@@ -31,7 +31,7 @@ function SortNoneIcon() {
 
 function ChevronRightIcon({ open }: { open: boolean }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("size-3.5 text-foreground-muted transition-transform duration-150", open && "rotate-90")} aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("size-4 text-foreground-muted transition-transform duration-150", open && "rotate-90")} aria-hidden="true">
       <path d="m9 18 6-6-6-6" />
     </svg>
   );
@@ -47,7 +47,7 @@ function CheckIcon() {
 
 function FilterIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true">
       <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
     </svg>
   );
@@ -55,7 +55,7 @@ function FilterIcon() {
 
 function ColumnsIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true">
       <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M12 3v18M3 9h18M3 15h18" />
     </svg>
   );
@@ -63,7 +63,7 @@ function ColumnsIcon() {
 
 function DownloadIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="3" y2="15" />
     </svg>
   );
@@ -71,7 +71,7 @@ function DownloadIcon() {
 
 function PencilIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
       <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
     </svg>
   );
@@ -79,7 +79,7 @@ function PencilIcon() {
 
 function XSmallIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
       <path d="M18 6 6 18M6 6l12 12" />
     </svg>
   );
@@ -104,6 +104,8 @@ export interface DataTableColumn<T> {
   /** Raw value type for inline editing */
   editAccessor?: (row: T) => string;
   onEdit?: (row: T, newValue: string) => void;
+  /** Hide this column on mobile card view */
+  mobileHidden?: boolean;
 }
 
 export interface DataTableProps<T> {
@@ -126,6 +128,11 @@ export interface DataTableProps<T> {
   exportFilename?: string;
   className?: string;
   onRowClick?: (row: T) => void;
+  /**
+   * On small screens, collapse to card layout instead of horizontal scroll.
+   * Default: false (horizontal scroll)
+   */
+  mobileCards?: boolean;
 }
 
 /* ─── Toolbar Button ─────────────────────────────────────────── */
@@ -142,7 +149,9 @@ function ToolbarButton({ children, active, onClick, title }: {
       onClick={onClick}
       title={title}
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-[var(--radius-md)] text-xs font-medium transition-colors",
+        /* min-h-[44px] ensures WCAG 2.5.5 touch target on mobile */
+        "inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] sm:min-h-0 sm:py-1.5",
+        "rounded-[var(--radius-md)] text-sm sm:text-xs font-medium transition-colors",
         active
           ? "bg-primary text-primary-foreground"
           : "bg-background-muted text-foreground-muted border border-border hover:bg-background-subtle hover:text-foreground"
@@ -150,6 +159,100 @@ function ToolbarButton({ children, active, onClick, title }: {
     >
       {children}
     </button>
+  );
+}
+
+/* ─── Mobile Card Row ────────────────────────────────────────── */
+
+function MobileCardRow<T>({
+  row,
+  columns,
+  isSelected,
+  isExpanded,
+  selectable,
+  expandedRow,
+  onRowClick,
+  onToggleSelect,
+  onToggleExpand,
+  striped,
+  i,
+}: {
+  row: T;
+  columns: DataTableColumn<T>[];
+  isSelected: boolean;
+  isExpanded: boolean;
+  selectable: boolean;
+  expandedRow?: (row: T) => React.ReactNode;
+  onRowClick?: (row: T) => void;
+  onToggleSelect: () => void;
+  onToggleExpand: (e: React.MouseEvent) => void;
+  striped: boolean;
+  i: number;
+}) {
+  const visibleCols = columns.filter((c) => !c.mobileHidden);
+  const [first, ...rest] = visibleCols;
+
+  return (
+    <div
+      className={cn(
+        "rounded-[var(--radius-lg)] border border-border p-4 space-y-2",
+        striped && i % 2 === 1 ? "bg-background-subtle" : "bg-background",
+        isSelected && "border-primary/40 bg-primary-subtle",
+        onRowClick && "cursor-pointer active:opacity-80"
+      )}
+      onClick={onRowClick ? () => onRowClick(row) : undefined}
+    >
+      {/* Card header: checkbox + primary field + expand */}
+      <div className="flex items-start gap-3">
+        {selectable && (
+          <input
+            type="checkbox"
+            checked={isSelected}
+            onChange={onToggleSelect}
+            onClick={(e) => e.stopPropagation()}
+            className="size-5 accent-primary cursor-pointer mt-0.5 shrink-0"
+            aria-label="Satırı seç"
+          />
+        )}
+        <div className="flex-1 min-w-0">
+          {first && (
+            <div className="text-sm font-semibold text-foreground truncate">
+              {first.accessor(row)}
+            </div>
+          )}
+        </div>
+        {expandedRow && (
+          <button
+            type="button"
+            onClick={onToggleExpand}
+            className="flex items-center justify-center size-8 rounded-[var(--radius-md)] hover:bg-background-muted transition-colors shrink-0"
+            aria-expanded={isExpanded}
+            aria-label="Satırı genişlet"
+          >
+            <ChevronRightIcon open={isExpanded} />
+          </button>
+        )}
+      </div>
+
+      {/* Rest of fields as key-value pairs */}
+      {rest.length > 0 && (
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+          {rest.map((col) => (
+            <div key={col.key}>
+              <dt className="text-xs text-foreground-subtle">{col.header}</dt>
+              <dd className="text-sm text-foreground mt-0.5">{col.accessor(row)}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {/* Expanded content */}
+      {isExpanded && expandedRow && (
+        <div className="pt-2 border-t border-border">
+          {expandedRow(row)}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -172,6 +275,7 @@ export function DataTable<T>({
   exportFilename = "export",
   className,
   onRowClick,
+  mobileCards = false,
 }: DataTableProps<T>) {
   const id = useId();
 
@@ -319,7 +423,7 @@ export function DataTable<T>({
       {/* ── Toolbar ── */}
       {toolbar && (
         <div className="flex items-center justify-between gap-2 flex-wrap">
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             {/* Filter toggle */}
             <ToolbarButton
               active={showFilters}
@@ -356,7 +460,7 @@ export function DataTable<T>({
                       <button
                         key={col.key}
                         type="button"
-                        className="w-full flex items-center gap-2 px-3 py-1.5 text-sm text-foreground hover:bg-background-muted transition-colors"
+                        className="w-full flex items-center gap-2 px-3 py-2.5 text-sm text-foreground hover:bg-background-muted transition-colors min-h-[44px]"
                         onClick={() => {
                           setHiddenCols((prev) => {
                             const next = new Set(prev);
@@ -365,7 +469,7 @@ export function DataTable<T>({
                           });
                         }}
                       >
-                        <span className={cn("size-4 rounded border border-border flex items-center justify-center shrink-0", !hidden && "bg-primary border-primary")}>
+                        <span className={cn("size-5 rounded border border-border flex items-center justify-center shrink-0", !hidden && "bg-primary border-primary")}>
                           {!hidden && <CheckIcon />}
                         </span>
                         {col.header}
@@ -385,7 +489,7 @@ export function DataTable<T>({
                   <button
                     type="button"
                     onClick={() => setFilters((f) => { const n = { ...f }; delete n[key]; return n; })}
-                    className="ml-0.5 hover:text-danger transition-colors"
+                    className="ml-0.5 hover:text-danger transition-colors p-0.5"
                   >
                     <XSmallIcon />
                   </button>
@@ -395,7 +499,7 @@ export function DataTable<T>({
           </div>
 
           {/* Export */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
             <ToolbarButton onClick={() => exportData("csv")} title="CSV olarak indir">
               <DownloadIcon /> CSV
             </ToolbarButton>
@@ -420,8 +524,40 @@ export function DataTable<T>({
         </div>
       )}
 
-      {/* ── Table ── */}
-      <div className="w-full overflow-x-auto rounded-[var(--radius-lg)] border border-border">
+      {/* ── Mobile: Card layout ── */}
+      {mobileCards && (
+        <div className="sm:hidden space-y-2">
+          {sortedData.length === 0 ? (
+            <div className="py-10 text-center text-foreground-muted text-sm">{emptyText}</div>
+          ) : (
+            sortedData.map((row, i) => {
+              const rowKey = keyExtractor(row);
+              return (
+                <MobileCardRow
+                  key={rowKey}
+                  row={row}
+                  columns={visibleColumns}
+                  isSelected={selectedKeys.has(rowKey)}
+                  isExpanded={expandedKeys.has(rowKey)}
+                  selectable={selectable}
+                  expandedRow={expandedRow}
+                  onRowClick={onRowClick}
+                  onToggleSelect={() => toggleRow(rowKey)}
+                  onToggleExpand={(e) => toggleExpand(rowKey, e)}
+                  striped={striped}
+                  i={i}
+                />
+              );
+            })
+          )}
+        </div>
+      )}
+
+      {/* ── Table (desktop always, mobile when mobileCards=false) ── */}
+      <div className={cn(
+        "w-full overflow-x-auto rounded-[var(--radius-lg)] border border-border",
+        mobileCards && "hidden sm:block"
+      )}>
         <table className="w-full text-sm border-collapse">
           <thead>
             {/* Filter row */}
@@ -438,7 +574,7 @@ export function DataTable<T>({
                         value={filters[col.key] ?? ""}
                         onChange={(e) => setFilters((f) => ({ ...f, [col.key]: e.target.value }))}
                         className={cn(
-                          "w-full h-7 px-2 text-xs rounded-[var(--radius-sm)]",
+                          "w-full h-8 px-2 text-xs rounded-[var(--radius-sm)]",
                           "bg-background border border-border",
                           "text-foreground placeholder:text-foreground-subtle",
                           "focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary",
@@ -462,13 +598,13 @@ export function DataTable<T>({
                     checked={allSelected}
                     ref={(el) => { if (el) el.indeterminate = someSelected; }}
                     onChange={toggleAll}
-                    className="size-4 accent-primary cursor-pointer"
+                    className="size-5 accent-primary cursor-pointer"
                     aria-label="Tümünü seç"
                   />
                 </th>
               )}
               {/* Expand spacer */}
-              {expandedRow && <th className="w-8 px-2 py-3" scope="col" />}
+              {expandedRow && <th className="w-10 px-2 py-3" scope="col" />}
               {/* Columns */}
               {visibleColumns.map((col) => (
                 <th
@@ -532,26 +668,26 @@ export function DataTable<T>({
                     )}
                     onClick={onRowClick ? () => onRowClick(row) : undefined}
                   >
-                    {/* Checkbox */}
+                    {/* Checkbox — larger touch target */}
                     {selectable && (
                       <td className="w-10 px-3" onClick={(e) => e.stopPropagation()}>
                         <input
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => toggleRow(rowKey)}
-                          className="size-4 accent-primary cursor-pointer"
-                          aria-label={`Satırı seç`}
+                          className="size-5 accent-primary cursor-pointer"
+                          aria-label="Satırı seç"
                         />
                       </td>
                     )}
 
-                    {/* Expand toggle */}
+                    {/* Expand toggle — larger touch target */}
                     {expandedRow && (
-                      <td className="w-8 px-2">
+                      <td className="w-10 px-2">
                         <button
                           type="button"
                           onClick={(e) => toggleExpand(rowKey, e)}
-                          className="flex items-center justify-center size-5 rounded hover:bg-background-subtle transition-colors"
+                          className="flex items-center justify-center size-8 rounded-[var(--radius-md)] hover:bg-background-subtle transition-colors"
                           aria-expanded={isExpanded}
                           aria-label="Satırı genişlet"
                         >
@@ -595,7 +731,7 @@ export function DataTable<T>({
                                 <button
                                   type="button"
                                   onClick={(e) => startEdit(rowKey, col, row, e)}
-                                  className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded hover:bg-background-muted text-foreground-subtle hover:text-foreground"
+                                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-background-muted text-foreground-subtle hover:text-foreground"
                                   aria-label="Düzenle"
                                 >
                                   <PencilIcon />
