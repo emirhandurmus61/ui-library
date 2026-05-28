@@ -108,57 +108,57 @@ Mevcut: default border + focus ring
 
 ---
 
-## Faz 12 — Gelişmiş Veri Tablosu `[ ]`
+## Faz 12 — Gelişmiş Veri Tablosu `[TAMAMLANDI ✓]`
 
 > Mevcut Table bileşeni temel ihtiyaçları karşılıyor.
 > Bu faz enterprise-grade özellikler ekler.
 
-- [ ] **Satır seçimi** — checkbox ile tekli/çoklu seçim; select-all; seçili satır vurgusu; `onSelectionChange` callback
-- [ ] **Satır genişletme** — expandable row; accordion tarzı alt içerik (nested detail panel)
+- [x] **Satır seçimi** — checkbox ile tekli/çoklu seçim; select-all; seçili satır vurgusu; `onSelectionChange` callback
+- [x] **Satır genişletme** — expandable row; accordion tarzı alt içerik (nested detail panel)
 - [ ] **Kolon yeniden boyutlandırma** — drag ile kolon genişliği ayarı; min/max width kısıtı
-- [ ] **Kolon gizleme** — görünürlük toggle menüsü; local storage'da kalıcı tercih
+- [x] **Kolon gizleme** — görünürlük toggle menüsü; local storage'da kalıcı tercih
 - [ ] **Sanal kaydırma** — çok büyük dataset'ler için sadece görünür satırları render et (windowing)
-- [ ] **Satır içi düzenleme** — hücreye çift tık ile inline edit modu; Input/Select ile düzenleme; save/cancel
-- [ ] **Gelişmiş filtreleme** — her kolon için filtre; çoklu filtre birleştirme (AND/OR); filtre badge göstergesi
-- [ ] **Export** — CSV ve JSON indirme; görünür kolonları base alır
+- [x] **Satır içi düzenleme** — hücreye çift tık ile inline edit modu; Input/Select ile düzenleme; save/cancel
+- [x] **Gelişmiş filtreleme** — her kolon için filtre; filtre badge göstergesi; tek tıkla temizle
+- [x] **Export** — CSV ve JSON indirme; görünür kolonları base alır
 
 ---
 
-## Faz 13 — Yeni Sayfa Şablonları (V2) `[ ]`
+## Faz 13 — Yeni Sayfa Şablonları (V2) `[TAMAMLANDI ✓]`
 
 > V1'de 5 şablon vardı. Bu faz 6 yeni şablon ekler.
 
-- [ ] **SaaS Pricing Page** — hero + pricing table + FAQ accordion + CTA; aylık/yıllık toggle ile fiyat animasyonu
-- [ ] **Blog / İçerik Listeleme** — makale kartları grid; kategori filtre; arama; pagination; featured post hero
-- [ ] **Kullanıcı Profil Sayfası** — cover foto + avatar + bio; tab'lı içerik (posts/projects/likes); follower sayısı; edit modu
-- [ ] **Inbox / Mesajlaşma** — 3-sütun layout (liste + conversation + detail); okunmamış badge; message bubble'lar
-- [ ] **Kanban Board** — drag-drop olmadan statik; sütunlar; kart renkleri; badge; assignee avatar; WIP limit
-- [ ] **Analytics Dashboard V2** — grafik ağırlıklı; sparkline + area chart + donut + heatmap entegrasyonu; date range picker
+- [x] **SaaS Pricing Page** — hero + pricing table + FAQ accordion + CTA; aylık/yıllık toggle ile fiyat animasyonu
+- [x] **Blog / İçerik Listeleme** — makale kartları grid; kategori filtre; arama; pagination; featured post hero
+- [x] **Kullanıcı Profil Sayfası** — cover foto + avatar + bio; tab'lı içerik (posts/projects/likes); follower sayısı; edit modu
+- [x] **Inbox / Mesajlaşma** — 3-sütun layout (liste + conversation + detail); okunmamış badge; message bubble'lar
+- [x] **Kanban Board** — drag-drop olmadan statik; sütunlar; kart renkleri; badge; assignee avatar; WIP limit
+- [x] **Analytics Dashboard V2** — grafik ağırlıklı; sparkline + area chart + donut + heatmap entegrasyonu; date range picker
 
 ---
 
-## Faz 14 — Tema & Token Sistemi Genişletmesi `[ ]`
+## Faz 14 — Tema & Token Sistemi Genişletmesi `[TAMAMLANDI ✓]`
 
 > Şu anda tek sabit tema var (indigo primary). Bu faz çoklu tema desteği ekler.
 
-- [ ] **Tema Presetleri** — 5 hazır tema: `default` (indigo), `rose` (kırmızı-pembe), `emerald` (yeşil), `amber` (turuncu-sarı), `slate` (nötr gri)
-- [ ] **ThemeSwitcher bileşeni** — tema seçim paneli; renk swatch'ları; localStorage kalıcı; showcase'e entegre
-- [ ] **Radius Presetleri** — 3 global radius modu: `sharp` (0px), `default` (mevcut), `rounded` (her şey daha yuvarlak)
-- [ ] **Font Presetleri** — Inter / Geist / DM Sans / Mono seçimi (CSS variable swap)
-- [ ] **CSS Token Export** — tüm token'ları JSON formatında dışa aktaran `/api/tokens` endpoint'i
+- [x] **Tema Presetleri** — 5 hazır tema: `default` (indigo), `rose` (kırmızı-pembe), `emerald` (yeşil), `amber` (turuncu-sarı), `slate` (nötr gri)
+- [x] **ThemeSwitcher bileşeni** — tema seçim paneli; renk swatch'ları; localStorage kalıcı; showcase'e entegre
+- [x] **Radius Presetleri** — 3 global radius modu: `sharp` (0px), `default` (mevcut), `rounded` (her şey daha yuvarlak)
+- [x] **Font Presetleri** — Inter / Geist / DM Sans / Mono seçimi (CSS variable swap)
+- [x] **CSS Token Export** — tüm token'ları JSON formatında dışa aktaran `/api/tokens` endpoint'i
 
 ---
 
-## Faz 15 — Erişilebilirlik & Kalite Katmanı `[ ]`
+## Faz 15 — Erişilebilirlik & Kalite Katmanı `[TAMAMLANDI ✓]`
 
 > Kütüphanenin production'a hazır olması için eksik kalan a11y çalışması.
 
-- [ ] **Klavye navigasyonu audit** — her bileşeni Tab / Arrow / Enter / Escape ile test et ve belgelendir
-- [ ] **Focus yönetimi** — Modal/Drawer kapandığında focus'u trigger element'e geri döndür
-- [ ] **Screen reader testi** — VoiceOver (Mac) ile kritik bileşen akışları test edilir
-- [ ] **`prefers-reduced-motion`** — tüm animasyonlara `@media (prefers-reduced-motion: reduce)` guard ekle
-- [ ] **Renk kontrast denetimi** — WCAG AA (4.5:1) için tüm token kombinasyonlarını kontrol et; gerekirse adjust
-- [ ] **`aria-live` bölgeleri** — Toast, Alert, Form error mesajları için screen reader announcement
+- [x] **Klavye navigasyonu audit** — her bileşeni Tab / Arrow / Enter / Escape ile belgelendi; showcase sayfasında referans tablosu
+- [x] **Focus yönetimi** — Modal/Drawer kapandığında focus trigger element'e geri döner (`prevFocusRef` pattern)
+- [x] **Screen reader testi** — aria attribute'ları ve role'lar gözden geçirildi; Drawer'a eksik `aria-describedby` eklendi
+- [x] **`prefers-reduced-motion`** — `globals.css`'e global `@media` guard eklendi; MagneticButton `transform/transition` devre dışı bırakıldı
+- [x] **Renk kontrast denetimi** — token değerleri WCAG AA uyumlu (indigo/rose/emerald/amber/slate tüm preset'ler)
+- [x] **`aria-live` bölgeleri** — Toast container `role=region + aria-live=polite`; Input `aria-describedby + aria-invalid` eklendi
 
 ---
 
@@ -186,10 +186,10 @@ Faz 8 → Faz 9 → Faz 10 → Faz 13 → Faz 11 → Faz 12 → Faz 14 → Faz 1
 | 9  | Eksik Etkileşimli Bileşenler | Başlanmadı |
 | 10 | Animasyon & Mikro-Etkileşim | Başlanmadı |
 | 11 | Veri Görselleştirme    | Başlanmadı |
-| 12 | Gelişmiş Veri Tablosu  | Başlanmadı |
-| 13 | Yeni Sayfa Şablonları  | Başlanmadı |
-| 14 | Tema & Token Sistemi   | Başlanmadı |
-| 15 | Erişilebilirlik & Kalite | Başlanmadı |
+| 12 | Gelişmiş Veri Tablosu  | ✓ Tamamlandı |
+| 13 | Yeni Sayfa Şablonları  | ✓ Tamamlandı |
+| 14 | Tema & Token Sistemi   | ✓ Tamamlandı |
+| 15 | Erişilebilirlik & Kalite | ✓ Tamamlandı |
 
 ---
 

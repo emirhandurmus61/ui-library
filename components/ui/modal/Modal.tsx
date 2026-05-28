@@ -80,7 +80,8 @@ export function Modal({
   className,
   children,
 }: ModalProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogRef   = useRef<HTMLDivElement>(null);
+  const prevFocusRef = useRef<HTMLElement | null>(null);
 
   const handleClose = useCallback(() => {
     onClose();
@@ -108,10 +109,14 @@ export function Modal({
     };
   }, [open]);
 
-  // Focus trap — açıldığında dialog'a focus ver
+  // Focus yönetimi: açılırken trigger'ı sakla, kapanırken geri ver
   useEffect(() => {
-    if (open && dialogRef.current) {
-      dialogRef.current.focus();
+    if (open) {
+      prevFocusRef.current = document.activeElement as HTMLElement;
+      dialogRef.current?.focus();
+    } else {
+      prevFocusRef.current?.focus();
+      prevFocusRef.current = null;
     }
   }, [open]);
 

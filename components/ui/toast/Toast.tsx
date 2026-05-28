@@ -240,7 +240,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       {children}
       {/* Toast container */}
       <div
+        role="region"
         aria-label="Bildirimler"
+        aria-live="polite"
+        aria-atomic="false"
         className="fixed bottom-5 right-5 z-[100] flex flex-col gap-2 pointer-events-none"
       >
         {toasts.map((item) => (

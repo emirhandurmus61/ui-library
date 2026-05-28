@@ -94,11 +94,10 @@ export function DonutChart({
                 strokeWidth={isHovered ? thickness + 6 : thickness}
                 strokeLinecap="round"
                 style={{ transition: "stroke-width 150ms, r 150ms", cursor: "pointer" }}
+                aria-label={`${seg.label}: ${formatValue(seg.value, total)}`}
                 onMouseEnter={() => setHoverIdx(i)}
                 onMouseLeave={() => setHoverIdx(null)}
-              >
-                <title>{seg.label}: {formatValue(seg.value, total)}</title>
-              </path>
+              />
             );
           })}
         </svg>

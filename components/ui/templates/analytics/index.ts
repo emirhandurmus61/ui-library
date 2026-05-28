@@ -1,0 +1,1 @@
+export { AnalyticsTemplate } from "./AnalyticsTemplate";

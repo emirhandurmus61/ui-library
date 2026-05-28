@@ -63,8 +63,8 @@ export function MagneticButton({
         className
       )}
       style={{
-        transform: `translate(${translate.x}px, ${translate.y}px)`,
-        transition: translate.x === 0 && translate.y === 0
+        transform: reduced ? undefined : `translate(${translate.x}px, ${translate.y}px)`,
+        transition: reduced ? undefined : translate.x === 0 && translate.y === 0
           ? `transform ${ease}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`
           : "transform 80ms linear",
       }}

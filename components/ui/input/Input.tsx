@@ -139,6 +139,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const autoId      = useId();
     const id          = idProp ?? autoId;
+    const feedbackId  = `${id}-feedback`;
     const resolvedState = errorText ? "error" : successText ? "success" : (state ?? "default");
 
     const hasLeft  = !!leftIcon;
@@ -179,6 +180,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={id}
             type={type}
+            aria-describedby={feedbackText ? feedbackId : undefined}
+            aria-invalid={resolvedState === "error" ? true : undefined}
             className={cn(
               INPUT_BASE,
               presetClass,
@@ -203,7 +206,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {feedbackText && (
-          <p className={cn("text-xs leading-none", feedbackColor)}>{feedbackText}</p>
+          <p id={feedbackId} className={cn("text-xs leading-none", feedbackColor)}>{feedbackText}</p>
         )}
       </div>
     );

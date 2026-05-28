@@ -85,7 +85,8 @@ export function Drawer({
   className,
   children,
 }: DrawerProps) {
-  const drawerRef = useRef<HTMLDivElement>(null);
+  const drawerRef    = useRef<HTMLDivElement>(null);
+  const prevFocusRef = useRef<HTMLElement | null>(null);
 
   const handleClose = useCallback(() => onClose(), [onClose]);
 
@@ -107,8 +108,15 @@ export function Drawer({
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Focus yönetimi: açılırken trigger'ı sakla, kapanırken geri ver
   useEffect(() => {
-    if (open && drawerRef.current) drawerRef.current.focus();
+    if (open) {
+      prevFocusRef.current = document.activeElement as HTMLElement;
+      drawerRef.current?.focus();
+    } else {
+      prevFocusRef.current?.focus();
+      prevFocusRef.current = null;
+    }
   }, [open]);
 
   const resolvedSide = side ?? "right";
@@ -123,6 +131,7 @@ export function Drawer({
       role="dialog"
       aria-modal="true"
       aria-labelledby={title ? "drawer-title" : undefined}
+      aria-describedby={description ? "drawer-description" : undefined}
     >
       {/* Backdrop */}
       <div
@@ -165,7 +174,7 @@ export function Drawer({
                 </h2>
               )}
               {description && (
-                <p className="mt-1 text-sm text-foreground-muted">{description}</p>
+                <p id="drawer-description" className="mt-1 text-sm text-foreground-muted">{description}</p>
               )}
             </div>
             {!hideCloseButton && (

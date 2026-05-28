@@ -74,6 +74,101 @@
   --font-mono: var(--font-geist-mono), "Fira Code", monospace;
 }
 
+/* ─── Color Presets (light) ──────────────────────────────────── */
+
+/* default = indigo — already in :root */
+
+.preset-rose {
+  --primary:           #f43f5e;
+  --primary-hover:     #e11d48;
+  --primary-active:    #be123c;
+  --primary-subtle:    #fff1f2;
+  --primary-foreground:#ffffff;
+}
+
+.preset-emerald {
+  --primary:           #10b981;
+  --primary-hover:     #059669;
+  --primary-active:    #047857;
+  --primary-subtle:    #ecfdf5;
+  --primary-foreground:#ffffff;
+}
+
+.preset-amber {
+  --primary:           #f59e0b;
+  --primary-hover:     #d97706;
+  --primary-active:    #b45309;
+  --primary-subtle:    #fffbeb;
+  --primary-foreground:#ffffff;
+}
+
+.preset-slate {
+  --primary:           #64748b;
+  --primary-hover:     #475569;
+  --primary-active:    #334155;
+  --primary-subtle:    #f1f5f9;
+  --primary-foreground:#ffffff;
+}
+
+/* ─── Color Presets (dark overrides) ─────────────────────────── */
+
+.dark.preset-rose {
+  --primary:           #fb7185;
+  --primary-hover:     #f43f5e;
+  --primary-active:    #e11d48;
+  --primary-subtle:    #2d0a10;
+}
+
+.dark.preset-emerald {
+  --primary:           #34d399;
+  --primary-hover:     #10b981;
+  --primary-active:    #059669;
+  --primary-subtle:    #052e16;
+}
+
+.dark.preset-amber {
+  --primary:           #fbbf24;
+  --primary-hover:     #f59e0b;
+  --primary-active:    #d97706;
+  --primary-subtle:    #1c1408;
+}
+
+.dark.preset-slate {
+  --primary:           #94a3b8;
+  --primary-hover:     #64748b;
+  --primary-active:    #475569;
+  --primary-subtle:    #0f172a;
+}
+
+/* ─── Radius Presets ─────────────────────────────────────────── */
+
+.radius-sharp {
+  --radius-sm:  0px;
+  --radius-md:  0px;
+  --radius-lg:  2px;
+  --radius-xl:  4px;
+  --radius-2xl: 6px;
+  --radius-full: 0px;
+}
+
+/* default radius already in :root */
+
+.radius-rounded {
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+}
+
+/* ─── Font Presets ───────────────────────────────────────────── */
+
+.font-inter    { --font-sans: "Inter",    system-ui, -apple-system, sans-serif; }
+.font-geist    { --font-sans: var(--font-geist-sans), system-ui, sans-serif; }
+.font-dm-sans  { --font-sans: "DM Sans", system-ui, sans-serif; }
+.font-mono-all { --font-sans: var(--font-geist-mono), "Fira Code", monospace; }
+
 /* ─── Dark Mode Tokens ───────────────────────────────────────── */
 
 .dark {
@@ -206,6 +301,19 @@ body {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Focus visible ring */

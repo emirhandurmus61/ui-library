@@ -1,0 +1,1 @@
+export { InboxTemplate } from "./InboxTemplate";

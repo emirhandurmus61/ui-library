@@ -81,6 +81,12 @@ const NAV = [
       { href: "/showcase/templates/auth",      label: "Auth Sayfaları" },
       { href: "/showcase/templates/settings",  label: "Settings" },
       { href: "/showcase/templates/error",     label: "404 / Error" },
+      { href: "/showcase/templates/pricing",   label: "Pricing Page" },
+      { href: "/showcase/templates/blog",      label: "Blog" },
+      { href: "/showcase/templates/profile",   label: "Kullanıcı Profili" },
+      { href: "/showcase/templates/inbox",     label: "Inbox / Mesajlaşma" },
+      { href: "/showcase/templates/kanban",    label: "Kanban Board" },
+      { href: "/showcase/templates/analytics", label: "Analytics V2" },
     ],
   },
   {
@@ -118,6 +124,24 @@ const NAV = [
       { href: "/showcase/heat-map",        label: "Heat Map" },
       { href: "/showcase/area-chart",      label: "Area Chart" },
       { href: "/showcase/gauge-chart",     label: "Gauge Chart" },
+    ],
+  },
+  {
+    label: "Faz 12 — Gelişmiş Tablo",
+    items: [
+      { href: "/showcase/data-table", label: "Data Table" },
+    ],
+  },
+  {
+    label: "Faz 14 — Tema & Tokenlar",
+    items: [
+      { href: "/showcase/theme-switcher", label: "Theme Switcher" },
+    ],
+  },
+  {
+    label: "Faz 15 — Erişilebilirlik",
+    items: [
+      { href: "/showcase/accessibility", label: "A11Y Audit" },
     ],
   },
 ] as const;
