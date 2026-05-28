@@ -83,6 +83,19 @@ const NAV = [
       { href: "/showcase/templates/error",     label: "404 / Error" },
     ],
   },
+  {
+    label: "Faz 9 — Etkileşimli",
+    items: [
+      { href: "/showcase/combobox",       label: "Combobox" },
+      { href: "/showcase/date-picker",    label: "Date Picker" },
+      { href: "/showcase/slider",         label: "Slider" },
+      { href: "/showcase/file-upload",    label: "File Upload" },
+      { href: "/showcase/tag-input",      label: "Tag Input" },
+      { href: "/showcase/popover",        label: "Popover" },
+      { href: "/showcase/context-menu",   label: "Context Menu" },
+      { href: "/showcase/command-palette", label: "Command Palette" },
+    ],
+  },
 ] as const;
 
 /* ─── Search ─────────────────────────────────────────────────── */
