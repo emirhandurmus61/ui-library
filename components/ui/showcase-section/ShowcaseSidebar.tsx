@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ShowcaseSearch } from "./ShowcaseSearch";
 
 /* ─── Nav data ───────────────────────────────────────────────── */
 
@@ -205,17 +206,25 @@ const NAV: NavCategory[] = [
     ),
     color: "text-rose-500",
     items: [
-      { href: "/showcase/templates/dashboard", label: "Dashboard" },
-      { href: "/showcase/templates/landing",   label: "Landing Page" },
-      { href: "/showcase/templates/auth",      label: "Auth Sayfaları" },
-      { href: "/showcase/templates/settings",  label: "Settings" },
-      { href: "/showcase/templates/error",     label: "404 / Error" },
-      { href: "/showcase/templates/pricing",   label: "Pricing Page" },
-      { href: "/showcase/templates/blog",      label: "Blog" },
-      { href: "/showcase/templates/profile",   label: "Kullanıcı Profili" },
-      { href: "/showcase/templates/inbox",     label: "Inbox / Mesajlaşma" },
-      { href: "/showcase/templates/kanban",    label: "Kanban Board" },
-      { href: "/showcase/templates/analytics", label: "Analytics V2" },
+      { href: "/showcase/templates/dashboard",         label: "Dashboard" },
+      { href: "/showcase/templates/auth",             label: "Auth Sayfaları" },
+      { href: "/showcase/templates/settings",         label: "Settings" },
+      { href: "/showcase/templates/error",            label: "404 / Error" },
+      { href: "/showcase/templates/pricing",          label: "Pricing Page" },
+      { href: "/showcase/templates/blog",             label: "Blog" },
+      { href: "/showcase/templates/profile",          label: "Kullanıcı Profili" },
+      { href: "/showcase/templates/inbox",            label: "Inbox / Mesajlaşma" },
+      { href: "/showcase/templates/kanban",           label: "Kanban Board" },
+      { href: "/showcase/templates/analytics",        label: "Analytics V2" },
+      { href: "/showcase/templates/landing",          label: "Landing — Genel" },
+      { href: "/showcase/templates/landing-saas",     label: "Landing — SaaS" },
+      { href: "/showcase/templates/landing-startup",  label: "Landing — Startup" },
+      { href: "/showcase/templates/landing-portfolio",label: "Landing — Portfolyo" },
+      { href: "/showcase/templates/landing-ecommerce",label: "Landing — E-Ticaret" },
+      { href: "/showcase/templates/landing-agency",   label: "Landing — Ajans" },
+      { href: "/showcase/templates/landing-blog",     label: "Landing — Blog/Medya" },
+      { href: "/showcase/templates/landing-app",      label: "Landing — Mobil App" },
+      { href: "/showcase/templates/landing-event",    label: "Landing — Etkinlik" },
     ],
   },
   {
@@ -236,11 +245,31 @@ const NAV: NavCategory[] = [
 
 /* ─── Icons ──────────────────────────────────────────────────── */
 
-function SearchIcon() {
+function ShowcaseSearchTrigger() {
+  const open = () => {
+    document.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true })
+    );
+  };
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-foreground-subtle" aria-hidden="true">
-      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-    </svg>
+    <button
+      onClick={open}
+      className={cn(
+        "w-full flex items-center gap-2 h-8 px-2.5 rounded-[var(--radius-md)]",
+        "bg-background-muted border border-border",
+        "text-foreground-subtle hover:text-foreground hover:border-border-strong",
+        "transition-colors duration-150"
+      )}
+      aria-label="Bileşen ara (Ctrl+K)"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 shrink-0" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <span className="flex-1 text-left text-xs">Bileşen ara...</span>
+      <kbd className="hidden sm:flex items-center text-[10px] font-mono bg-background border border-border px-1 py-0.5 rounded">
+        ⌘K
+      </kbd>
+    </button>
   );
 }
 
@@ -356,15 +385,7 @@ function CategoryGroup({
 
 /* ─── Sidebar content ────────────────────────────────────────── */
 
-function SidebarContent({
-  pathname,
-  query,
-  onQueryChange,
-}: {
-  pathname: string;
-  query: string;
-  onQueryChange: (v: string) => void;
-}) {
+function SidebarContent({ pathname }: { pathname: string }) {
   // Determine which categories are open by default:
   // - the category containing the active route is always open
   // - otherwise start collapsed
@@ -403,79 +424,16 @@ function SidebarContent({
     });
   };
 
-  // When searching: flatten all matching items into a simple list
-  const isSearching = query.trim().length > 0;
-  const filteredGroups = isSearching
-    ? NAV.map((cat) => ({
-        ...cat,
-        items: cat.items.filter((item) =>
-          item.label.toLowerCase().includes(query.toLowerCase())
-        ),
-      })).filter((g) => g.items.length > 0)
-    : null;
-
   return (
     <>
-      {/* Search */}
+      {/* ⌘K Search trigger */}
       <div className="px-3 pt-3 pb-2 shrink-0">
-        <div className="relative">
-          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
-            <SearchIcon />
-          </span>
-          <input
-            type="search"
-            placeholder="Bileşen ara..."
-            value={query}
-            onChange={(e) => onQueryChange(e.target.value)}
-            className={cn(
-              "w-full h-8 pl-8 pr-3 text-sm rounded-[var(--radius-md)]",
-              "bg-background-muted border border-border",
-              "text-foreground placeholder:text-foreground-subtle",
-              "focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary",
-              "transition-colors duration-150"
-            )}
-          />
-        </div>
+        <ShowcaseSearchTrigger />
       </div>
 
       <nav className="flex-1 overflow-y-auto py-1 px-3" aria-label="Bileşen navigasyonu">
-        {isSearching ? (
-          /* ── Search results: flat list grouped by category ── */
-          filteredGroups!.length > 0 ? (
-            filteredGroups!.map((group) => (
-              <div key={group.id} className="mb-3">
-                <p className={cn("px-2 mb-1 text-xs font-semibold uppercase tracking-wider", group.color)}>
-                  {group.label}
-                </p>
-                <ul className="space-y-0.5">
-                  {group.items.map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        className={cn(
-                          "flex items-center gap-2 px-2 py-1.5 rounded-[var(--radius-md)] text-sm transition-colors duration-100",
-                          pathname === item.href
-                            ? "bg-primary-subtle text-primary font-medium"
-                            : "text-foreground-muted hover:bg-background-muted hover:text-foreground"
-                        )}
-                        aria-current={pathname === item.href ? "page" : undefined}
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          ) : (
-            <p className="px-2 py-6 text-xs text-foreground-subtle text-center">
-              Sonuç bulunamadı.
-            </p>
-          )
-        ) : (
-          /* ── Normal: collapsible categories ── */
-          <>
-            {/* "Genel Bakış" — no toggle, always visible */}
+        <>
+          {/* "Genel Bakış" — no toggle, always visible */}
             <a
               href="/showcase"
               className={cn(
@@ -505,7 +463,6 @@ function SidebarContent({
               />
             ))}
           </>
-        )}
       </nav>
     </>
   );
@@ -515,11 +472,13 @@ function SidebarContent({
 
 export function ShowcaseSidebar() {
   const pathname = usePathname();
-  const [query, setQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
+      {/* Global ⌘K command palette (mounted once here) */}
+      <ShowcaseSearch />
+
       {/* Desktop sidebar */}
       <aside className="w-64 shrink-0 border-r border-border bg-surface hidden lg:flex flex-col h-full overflow-hidden">
         {/* Logo */}
@@ -530,7 +489,7 @@ export function ShowcaseSidebar() {
           </a>
           <ThemeToggle />
         </div>
-        <SidebarContent pathname={pathname} query={query} onQueryChange={setQuery} />
+        <SidebarContent pathname={pathname} />
       </aside>
 
       {/* Mobile top bar */}
@@ -571,7 +530,7 @@ export function ShowcaseSidebar() {
         )}
         aria-hidden={!mobileOpen}
       >
-        <SidebarContent pathname={pathname} query={query} onQueryChange={setQuery} />
+        <SidebarContent pathname={pathname} />
       </aside>
     </>
   );

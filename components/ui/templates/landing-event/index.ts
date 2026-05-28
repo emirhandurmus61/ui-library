@@ -1,0 +1,1 @@
+export { EventLandingTemplate } from "./EventLandingTemplate";

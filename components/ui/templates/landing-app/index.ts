@@ -1,0 +1,1 @@
+export { AppLandingTemplate } from "./AppLandingTemplate";

@@ -21,7 +21,7 @@ Bunun için her bileşen sayfası:
 
 ---
 
-## Faz 16 — Kart (Card) İçerik Zenginleştirmesi `[ ]`
+## Faz 16 — Kart (Card) İçerik Zenginleştirmesi `[TAMAMLANDI ✓]`
 
 > Mevcut: basic / bordered / elevated / interactive / ghost + brutal/glass/gradient-border/noise/spotlight/flat presetleri.  
 > Sorun: Tek bir "card" sayfası var, hangi tasarım hangi projeye uyuyor belli değil.  
@@ -72,7 +72,7 @@ Her kategori altında grid preview → kodu gör → "Ne zaman kullan?" açıkla
 
 ---
 
-## Faz 17 — Buton (Button) İçerik Zenginleştirmesi `[ ]`
+## Faz 17 — Buton (Button) İçerik Zenginleştirmesi `[TAMAMLANDI ✓]`
 
 > Mevcut: 6 variant + 6 stil preset (brutal/neon/glass/gradient/soft/retro).  
 > Sorun: Varyantlar tek sayfada liste halinde, proje bağlamı yok.  
@@ -100,7 +100,7 @@ Her kategori altında grid preview → kodu gör → "Ne zaman kullan?" açıkla
 
 ---
 
-## Faz 18 — Landing Page Şablonları (Kategorik) `[ ]`
+## Faz 18 — Landing Page Şablonları (Kategorik) `[TAMAMLANDI ✓]`
 
 > Mevcut: 1 genel landing page şablonu.  
 > Hedef: Proje türüne göre ayrı, farklı görsel dile sahip 8 landing page.  
@@ -154,7 +154,7 @@ Her kategori altında grid preview → kodu gör → "Ne zaman kullan?" açıkla
 
 ---
 
-## Faz 19 — Showcase Navigasyon & UX İyileştirmesi `[ ]`
+## Faz 19 — Showcase Navigasyon & UX İyileştirmesi `[TAMAMLANDI ✓]`
 
 > İçerik arttıkça navigasyon zorluklaşıyor.  
 > Hedef: Siteyi %100 kullanışlı yapmak — ne nerede, hızla bulunabilmeli.
@@ -299,8 +299,8 @@ Faz 19.1 → Faz 16 → Faz 17 → Faz 18 → Faz 19.2-5 → Faz 20 → Faz 21
 |-----|------|-------|
 | 16 | Card İçerik Zenginleştirmesi | ✓ Tamamlandı |
 | 17 | Button İçerik Zenginleştirmesi | ✓ Tamamlandı |
-| 18 | Landing Page Şablonları (Kategorik) | Başlanmadı |
-| 19 | Showcase Navigasyon & UX | 19.1 ✓ Tamamlandı |
+| 18 | Landing Page Şablonları (Kategorik) | ✓ Tamamlandı |
+| 19 | Showcase Navigasyon & UX | ✓ Tamamlandı |
 | 20 | Responsive Kalite Güvencesi | Başlanmadı |
 | 21 | Ek Bileşen Kategorileri | Başlanmadı |
 

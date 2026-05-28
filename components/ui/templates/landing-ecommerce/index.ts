@@ -1,0 +1,1 @@
+export { EcommerceLandingTemplate } from "./EcommerceLandingTemplate";

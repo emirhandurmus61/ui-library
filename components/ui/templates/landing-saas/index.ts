@@ -1,0 +1,1 @@
+export { SaaSLandingTemplate } from "./SaaSLandingTemplate";
