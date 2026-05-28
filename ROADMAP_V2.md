@@ -79,32 +79,32 @@ Mevcut: default border + focus ring
 
 ---
 
-## Faz 10 — Animasyon & Mikro-Etkileşim Katmanı `[ ]`
+## Faz 10 — Animasyon & Mikro-Etkileşim Katmanı `[TAMAMLANDI ✓]`
 
 > Kütüphanenin "canlı" hissini veren katman.
 > Tüm animasyonlar `prefers-reduced-motion` ile kapatılabilir.
 
-- [ ] **AnimatedCounter** — sayısal değer değiştiğinde yukarı/aşağı kayarak sayar; `from` / `to` / `duration` prop; easing seçeneği
-- [ ] **NumberFlow** — rakamlar değişirken her hane bağımsız scroll animasyonu (rolling digit effect)
-- [ ] **Reveal / FadeIn** — IntersectionObserver tabanlı; scroll'a girerken fade+slide; `delay` / `duration` / `direction` (up, down, left, right)
-- [ ] **Marquee** — yatay sonsuz kayan bant; speed; pauseOnHover; reverse; logo wall / testimonial şerit için kullanılır
-- [ ] **Magnetic Button** — hover'da cursor yakınlığına göre manyetik çekim efekti (JS mousemove + CSS translate)
-- [ ] **Shimmer Text** — gradient renk geçişi soldan sağa sweep animasyonu; başlıklar için
-- [ ] **TypeWriter** — metni karakter karakter yazar; cursor; loop; deleteSpeed / typeSpeed
-- [ ] **ConfettiButton** — tıklamada canvas confetti patlaması; özelleştirilebilir renk/parçacık sayısı
+- [x] **AnimatedCounter** — sayısal değer değiştiğinde yukarı/aşağı kayarak sayar; `from` / `to` / `duration` prop; easing seçeneği
+- [x] **NumberFlow** — rakamlar değişirken her hane bağımsız scroll animasyonu (rolling digit effect)
+- [x] **Reveal / FadeIn** — IntersectionObserver tabanlı; scroll'a girerken fade+slide; `delay` / `duration` / `direction` (up, down, left, right)
+- [x] **Marquee** — yatay sonsuz kayan bant; speed; pauseOnHover; reverse; logo wall / testimonial şerit için kullanılır
+- [x] **Magnetic Button** — hover'da cursor yakınlığına göre manyetik çekim efekti (JS mousemove + CSS translate)
+- [x] **Shimmer Text** — gradient renk geçişi soldan sağa sweep animasyonu; başlıklar için
+- [x] **TypeWriter** — metni karakter karakter yazar; cursor; loop; deleteSpeed / typeSpeed
+- [x] **ConfettiButton** — tıklamada canvas confetti patlaması; özelleştirilebilir renk/parçacık sayısı
 
 ---
 
-## Faz 11 — Veri Görselleştirme Bileşenleri `[ ]`
+## Faz 11 — Veri Görselleştirme Bileşenleri `[TAMAMLANDI ✓]`
 
 > Grafik kütüphanesi yok — sadece CSS + SVG ile hafif, bağımlılıksız.
 
-- [ ] **Sparkline** — tek satır trend çizgisi (SVG polyline); positive/negative renk; hover tooltip
-- [ ] **MiniBarChart** — küçük sütun grafiği; tooltip; renk; height; StatCard içinde kullanılabilir
-- [ ] **DonutChart** — SVG doughnut; segment renkleri; merkez slot (değer/label); legend
-- [ ] **HeatMap** — takvim heat map (GitHub contribution tarzı); renk yoğunluğu; tooltip; yıl bazlı
-- [ ] **AreaChart** — SVG path tabanlı alan grafiği; gradient fill; dot hover; grid lines; 2 dataset overlay
-- [ ] **GaugeChart** — yarım daire gauge; min/max/value; renk zonları (kırmızı/sarı/yeşil); animasyonlu ibre
+- [x] **Sparkline** — tek satır trend çizgisi (SVG polyline); positive/negative renk; hover tooltip
+- [x] **MiniBarChart** — küçük sütun grafiği; tooltip; renk; height; StatCard içinde kullanılabilir
+- [x] **DonutChart** — SVG doughnut; segment renkleri; merkez slot (değer/label); legend
+- [x] **HeatMap** — takvim heat map (GitHub contribution tarzı); renk yoğunluğu; tooltip; yıl bazlı
+- [x] **AreaChart** — SVG path tabanlı alan grafiği; gradient fill; dot hover; grid lines; 2 dataset overlay
+- [x] **GaugeChart** — yarım daire gauge; min/max/value; renk zonları (kırmızı/sarı/yeşil); animasyonlu ibre
 
 ---
 
