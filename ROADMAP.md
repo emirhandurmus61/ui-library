@@ -152,7 +152,7 @@ components/
 | 0 | Altyapı | ✓ Tamamlandı |
 | 1 | Primitive Bileşenler | ✓ Tamamlandı |
 | 2 | Layout | ✓ Tamamlandı |
-| 3 | Auth | Başlanmadı |
+| 3 | Auth | ✓ Tamamlandı |
 | 4 | Feedback & Overlay | ✓ Tamamlandı |
 | 5 | Data Display | ✓ Tamamlandı |
 | 6 | Showcase Sistemi | ✓ Tamamlandı |

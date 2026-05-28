@@ -183,9 +183,9 @@ Faz 8 → Faz 9 → Faz 10 → Faz 13 → Faz 11 → Faz 12 → Faz 14 → Faz 1
 | Faz | Konu | Durum |
 |-----|------|-------|
 | 8  | Stil Varyant Sistemi   | ✓ Tamamlandı |
-| 9  | Eksik Etkileşimli Bileşenler | Başlanmadı |
-| 10 | Animasyon & Mikro-Etkileşim | Başlanmadı |
-| 11 | Veri Görselleştirme    | Başlanmadı |
+| 9  | Eksik Etkileşimli Bileşenler | ✓ Tamamlandı |
+| 10 | Animasyon & Mikro-Etkileşim | ✓ Tamamlandı |
+| 11 | Veri Görselleştirme    | ✓ Tamamlandı |
 | 12 | Gelişmiş Veri Tablosu  | ✓ Tamamlandı |
 | 13 | Yeni Sayfa Şablonları  | ✓ Tamamlandı |
 | 14 | Tema & Token Sistemi   | ✓ Tamamlandı |

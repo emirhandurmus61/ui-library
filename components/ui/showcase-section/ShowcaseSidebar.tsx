@@ -1,21 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 /* ─── Nav data ───────────────────────────────────────────────── */
 
-const NAV = [
+type NavItem = { href: string; label: string };
+type NavCategory = {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  color: string; // tailwind text color class
+  items: NavItem[];
+};
+
+const NAV: NavCategory[] = [
   {
+    id: "general",
     label: "Genel",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+    ),
+    color: "text-foreground-muted",
     items: [
       { href: "/showcase", label: "Genel Bakış" },
     ],
   },
   {
-    label: "Faz 1 — Primitive",
+    id: "primitives",
+    label: "Primitives",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    ),
+    color: "text-violet-500",
     items: [
       { href: "/showcase/button",   label: "Button" },
       { href: "/showcase/input",    label: "Input" },
@@ -31,7 +54,14 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 2 — Layout",
+    id: "layout",
+    label: "Layout",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+      </svg>
+    ),
+    color: "text-blue-500",
     items: [
       { href: "/showcase/navbar",     label: "Navbar" },
       { href: "/showcase/sidebar",    label: "Sidebar" },
@@ -40,7 +70,14 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 3 — Auth",
+    id: "auth",
+    label: "Auth",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    ),
+    color: "text-emerald-500",
     items: [
       { href: "/showcase/login",           label: "Login Form" },
       { href: "/showcase/register",        label: "Register Form" },
@@ -49,7 +86,14 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 4 — Feedback",
+    id: "feedback",
+    label: "Feedback",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    ),
+    color: "text-amber-500",
     items: [
       { href: "/showcase/modal",       label: "Modal" },
       { href: "/showcase/drawer",      label: "Drawer" },
@@ -60,7 +104,14 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 5 — Data Display",
+    id: "data-display",
+    label: "Data Display",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18"/>
+      </svg>
+    ),
+    color: "text-cyan-500",
     items: [
       { href: "/showcase/card",       label: "Card" },
       { href: "/showcase/table",      label: "Table" },
@@ -74,7 +125,85 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 7 — Şablonlar",
+    id: "interactive",
+    label: "Interactive",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+    ),
+    color: "text-pink-500",
+    items: [
+      { href: "/showcase/combobox",        label: "Combobox" },
+      { href: "/showcase/date-picker",     label: "Date Picker" },
+      { href: "/showcase/slider",          label: "Slider" },
+      { href: "/showcase/file-upload",     label: "File Upload" },
+      { href: "/showcase/tag-input",       label: "Tag Input" },
+      { href: "/showcase/popover",         label: "Popover" },
+      { href: "/showcase/context-menu",    label: "Context Menu" },
+      { href: "/showcase/command-palette", label: "Command Palette" },
+    ],
+  },
+  {
+    id: "animation",
+    label: "Animation",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M5 3l14 9-14 9V3z"/>
+      </svg>
+    ),
+    color: "text-orange-500",
+    items: [
+      { href: "/showcase/animated-counter", label: "Animated Counter" },
+      { href: "/showcase/number-flow",      label: "Number Flow" },
+      { href: "/showcase/reveal",           label: "Reveal / FadeIn" },
+      { href: "/showcase/marquee",          label: "Marquee" },
+      { href: "/showcase/magnetic-button",  label: "Magnetic Button" },
+      { href: "/showcase/shimmer-text",     label: "Shimmer Text" },
+      { href: "/showcase/typewriter",       label: "Typewriter" },
+      { href: "/showcase/confetti-button",  label: "Confetti Button" },
+    ],
+  },
+  {
+    id: "charts",
+    label: "Charts",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>
+      </svg>
+    ),
+    color: "text-teal-500",
+    items: [
+      { href: "/showcase/sparkline",       label: "Sparkline" },
+      { href: "/showcase/mini-bar-chart",  label: "Mini Bar Chart" },
+      { href: "/showcase/donut-chart",     label: "Donut Chart" },
+      { href: "/showcase/heat-map",        label: "Heat Map" },
+      { href: "/showcase/area-chart",      label: "Area Chart" },
+      { href: "/showcase/gauge-chart",     label: "Gauge Chart" },
+    ],
+  },
+  {
+    id: "data-table",
+    label: "Data Table",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+      </svg>
+    ),
+    color: "text-indigo-500",
+    items: [
+      { href: "/showcase/data-table", label: "Data Table" },
+    ],
+  },
+  {
+    id: "templates",
+    label: "Templates",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+      </svg>
+    ),
+    color: "text-rose-500",
     items: [
       { href: "/showcase/templates/dashboard", label: "Dashboard" },
       { href: "/showcase/templates/landing",   label: "Landing Page" },
@@ -90,63 +219,22 @@ const NAV = [
     ],
   },
   {
-    label: "Faz 9 — Etkileşimli",
-    items: [
-      { href: "/showcase/combobox",        label: "Combobox" },
-      { href: "/showcase/date-picker",     label: "Date Picker" },
-      { href: "/showcase/slider",          label: "Slider" },
-      { href: "/showcase/file-upload",     label: "File Upload" },
-      { href: "/showcase/tag-input",       label: "Tag Input" },
-      { href: "/showcase/popover",         label: "Popover" },
-      { href: "/showcase/context-menu",    label: "Context Menu" },
-      { href: "/showcase/command-palette", label: "Command Palette" },
-    ],
-  },
-  {
-    label: "Faz 10 — Animasyon",
-    items: [
-      { href: "/showcase/animated-counter", label: "Animated Counter" },
-      { href: "/showcase/number-flow",      label: "Number Flow" },
-      { href: "/showcase/reveal",           label: "Reveal / FadeIn" },
-      { href: "/showcase/marquee",          label: "Marquee" },
-      { href: "/showcase/magnetic-button",  label: "Magnetic Button" },
-      { href: "/showcase/shimmer-text",     label: "Shimmer Text" },
-      { href: "/showcase/typewriter",       label: "Typewriter" },
-      { href: "/showcase/confetti-button",  label: "Confetti Button" },
-    ],
-  },
-  {
-    label: "Faz 11 — Veri Görselleştirme",
-    items: [
-      { href: "/showcase/sparkline",       label: "Sparkline" },
-      { href: "/showcase/mini-bar-chart",  label: "Mini Bar Chart" },
-      { href: "/showcase/donut-chart",     label: "Donut Chart" },
-      { href: "/showcase/heat-map",        label: "Heat Map" },
-      { href: "/showcase/area-chart",      label: "Area Chart" },
-      { href: "/showcase/gauge-chart",     label: "Gauge Chart" },
-    ],
-  },
-  {
-    label: "Faz 12 — Gelişmiş Tablo",
-    items: [
-      { href: "/showcase/data-table", label: "Data Table" },
-    ],
-  },
-  {
-    label: "Faz 14 — Tema & Tokenlar",
+    id: "system",
+    label: "Sistem",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.41 13.82M4.93 4.93A10 10 0 0 0 3.52 18.75M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+      </svg>
+    ),
+    color: "text-slate-500",
     items: [
       { href: "/showcase/theme-switcher", label: "Theme Switcher" },
+      { href: "/showcase/accessibility",  label: "A11Y Audit" },
     ],
   },
-  {
-    label: "Faz 15 — Erişilebilirlik",
-    items: [
-      { href: "/showcase/accessibility", label: "A11Y Audit" },
-    ],
-  },
-] as const;
+];
 
-/* ─── Search ─────────────────────────────────────────────────── */
+/* ─── Icons ──────────────────────────────────────────────────── */
 
 function SearchIcon() {
   return (
@@ -156,7 +244,13 @@ function SearchIcon() {
   );
 }
 
-/* ─── Mobile menu icon ───────────────────────────────────────── */
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={cn("size-3 transition-transform duration-200 shrink-0", open ? "rotate-90" : "rotate-0")} aria-hidden="true">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  );
+}
 
 function MenuIcon() {
   return (
@@ -182,45 +276,148 @@ function NavItem({ href, label, active }: { href: string; label: string; active:
       <a
         href={href}
         className={cn(
-          "flex items-center gap-2 px-2 py-1.5 rounded-[var(--radius-md)] text-sm transition-colors duration-100",
+          "flex items-center gap-2 pl-7 pr-2 py-1.5 rounded-[var(--radius-md)] text-sm transition-colors duration-100",
           active
             ? "bg-primary-subtle text-primary font-medium"
             : "text-foreground-muted hover:bg-background-muted hover:text-foreground"
         )}
         aria-current={active ? "page" : undefined}
       >
-        <span
-          className={cn(
-            "w-1.5 h-1.5 rounded-full shrink-0",
-            active ? "bg-primary" : "bg-success"
-          )}
-        />
+        {active && (
+          <span className="absolute left-[calc(0.75rem+0.875rem)] w-1 h-4 rounded-full bg-primary" aria-hidden="true" />
+        )}
         {label}
       </a>
     </li>
   );
 }
 
+/* ─── CategoryGroup ──────────────────────────────────────────── */
+
+function CategoryGroup({
+  category,
+  pathname,
+  isOpen,
+  onToggle,
+}: {
+  category: NavCategory;
+  pathname: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const hasActive = category.items.some((item) => item.href === pathname);
+
+  return (
+    <div className="mb-0.5">
+      <button
+        onClick={onToggle}
+        className={cn(
+          "w-full flex items-center gap-2 px-2 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors duration-100",
+          "hover:bg-background-muted",
+          hasActive && !isOpen
+            ? "text-foreground"
+            : isOpen
+            ? "text-foreground"
+            : "text-foreground-muted"
+        )}
+        aria-expanded={isOpen}
+      >
+        <span className={cn("shrink-0", category.color)}>{category.icon}</span>
+        <span className="flex-1 text-left text-xs font-semibold uppercase tracking-wider">{category.label}</span>
+        {hasActive && !isOpen && (
+          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" aria-hidden="true" />
+        )}
+        <ChevronIcon open={isOpen} />
+      </button>
+
+      {/* Items — animate height with max-height trick */}
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-200",
+          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <ul className="py-1 space-y-0.5 relative">
+          {/* Left indent line */}
+          <span className="absolute left-[calc(0.5rem+0.4375rem)] top-0 bottom-0 w-px bg-border" aria-hidden="true" />
+          {category.items.map((item) => (
+            <NavItem
+              key={item.href}
+              href={item.href}
+              label={item.label}
+              active={pathname === item.href}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Sidebar content ────────────────────────────────────────── */
 
-function SidebarContent({ pathname, query, onQueryChange }: {
+function SidebarContent({
+  pathname,
+  query,
+  onQueryChange,
+}: {
   pathname: string;
   query: string;
   onQueryChange: (v: string) => void;
 }) {
-  const filtered = query.trim()
-    ? NAV.map((group) => ({
-        ...group,
-        items: group.items.filter((item) =>
+  // Determine which categories are open by default:
+  // - the category containing the active route is always open
+  // - otherwise start collapsed
+  const getDefaultOpen = () => {
+    const openSet = new Set<string>();
+    NAV.forEach((cat) => {
+      if (cat.id === "general") return; // general has no toggle
+      if (cat.items.some((item) => item.href === pathname)) {
+        openSet.add(cat.id);
+      }
+    });
+    return openSet;
+  };
+
+  const [openCategories, setOpenCategories] = useState<Set<string>>(getDefaultOpen);
+
+  // Re-sync when pathname changes (e.g. navigation)
+  useEffect(() => {
+    setOpenCategories((prev) => {
+      const next = new Set(prev);
+      NAV.forEach((cat) => {
+        if (cat.items.some((item) => item.href === pathname)) {
+          next.add(cat.id);
+        }
+      });
+      return next;
+    });
+  }, [pathname]);
+
+  const toggle = (id: string) => {
+    setOpenCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  // When searching: flatten all matching items into a simple list
+  const isSearching = query.trim().length > 0;
+  const filteredGroups = isSearching
+    ? NAV.map((cat) => ({
+        ...cat,
+        items: cat.items.filter((item) =>
           item.label.toLowerCase().includes(query.toLowerCase())
         ),
       })).filter((g) => g.items.length > 0)
-    : NAV;
+    : null;
 
   return (
     <>
       {/* Search */}
-      <div className="px-3 pt-3 pb-2">
+      <div className="px-3 pt-3 pb-2 shrink-0">
         <div className="relative">
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
             <SearchIcon />
@@ -241,29 +438,73 @@ function SidebarContent({ pathname, query, onQueryChange }: {
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-2 px-3">
-        {filtered.map((group) => (
-          <div key={group.label} className="mb-4">
-            <p className="px-2 mb-1.5 text-xs font-semibold uppercase tracking-wider text-foreground-subtle">
-              {group.label}
+      <nav className="flex-1 overflow-y-auto py-1 px-3" aria-label="Bileşen navigasyonu">
+        {isSearching ? (
+          /* ── Search results: flat list grouped by category ── */
+          filteredGroups!.length > 0 ? (
+            filteredGroups!.map((group) => (
+              <div key={group.id} className="mb-3">
+                <p className={cn("px-2 mb-1 text-xs font-semibold uppercase tracking-wider", group.color)}>
+                  {group.label}
+                </p>
+                <ul className="space-y-0.5">
+                  {group.items.map((item) => (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        className={cn(
+                          "flex items-center gap-2 px-2 py-1.5 rounded-[var(--radius-md)] text-sm transition-colors duration-100",
+                          pathname === item.href
+                            ? "bg-primary-subtle text-primary font-medium"
+                            : "text-foreground-muted hover:bg-background-muted hover:text-foreground"
+                        )}
+                        aria-current={pathname === item.href ? "page" : undefined}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          ) : (
+            <p className="px-2 py-6 text-xs text-foreground-subtle text-center">
+              Sonuç bulunamadı.
             </p>
-            <ul className="space-y-0.5">
-              {group.items.map((item) => (
-                <NavItem
-                  key={item.href}
-                  href={item.href}
-                  label={item.label}
-                  active={pathname === item.href}
-                />
-              ))}
-            </ul>
-          </div>
-        ))}
+          )
+        ) : (
+          /* ── Normal: collapsible categories ── */
+          <>
+            {/* "Genel Bakış" — no toggle, always visible */}
+            <a
+              href="/showcase"
+              className={cn(
+                "flex items-center gap-2 px-2 py-1.5 mb-2 rounded-[var(--radius-md)] text-sm transition-colors duration-100",
+                pathname === "/showcase"
+                  ? "bg-primary-subtle text-primary font-medium"
+                  : "text-foreground-muted hover:bg-background-muted hover:text-foreground"
+              )}
+              aria-current={pathname === "/showcase" ? "page" : undefined}
+            >
+              <span className="text-foreground-muted">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Genel Bakış</span>
+            </a>
 
-        {filtered.length === 0 && (
-          <p className="px-2 py-4 text-xs text-foreground-subtle text-center">
-            Sonuç bulunamadı.
-          </p>
+            {/* Collapsible categories (skip "general") */}
+            {NAV.filter((c) => c.id !== "general").map((category) => (
+              <CategoryGroup
+                key={category.id}
+                category={category}
+                pathname={pathname}
+                isOpen={openCategories.has(category.id)}
+                onToggle={() => toggle(category.id)}
+              />
+            ))}
+          </>
         )}
       </nav>
     </>
@@ -303,14 +544,14 @@ export function ShowcaseSidebar() {
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="p-2 rounded-[var(--radius-md)] text-foreground-muted hover:text-foreground hover:bg-background-muted transition-colors"
-            aria-label="Menüyü aç"
+            aria-label={mobileOpen ? "Menüyü kapat" : "Menüyü aç"}
           >
             {mobileOpen ? <XIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile backdrop */}
       {mobileOpen && (
         <div
           className="lg:hidden fixed inset-0 z-30"
@@ -320,12 +561,15 @@ export function ShowcaseSidebar() {
           <div className="absolute inset-0 bg-black/40" />
         </div>
       )}
+
+      {/* Mobile drawer */}
       <aside
         className={cn(
           "lg:hidden fixed top-14 left-0 bottom-0 z-40 w-72 bg-surface border-r border-border flex flex-col",
           "transition-transform duration-300",
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
+        aria-hidden={!mobileOpen}
       >
         <SidebarContent pathname={pathname} query={query} onQueryChange={setQuery} />
       </aside>
