@@ -8,7 +8,7 @@ const phases = [
   { id: 4, label: "Feedback & Overlay",status: "done",  count: 6 },
   { id: 5, label: "Data Display",      status: "done",  count: 9 },
   { id: 6, label: "Showcase Sistemi",  status: "done",  count: null },
-  { id: 7, label: "Sayfa Şablonları",  status: "upcoming", count: 5 },
+  { id: 7, label: "Sayfa Şablonları",  status: "done",  count: 5 },
 ] as const;
 
 const QUICK_START = `import { Button } from "@/components/ui/button";

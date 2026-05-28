@@ -1,0 +1,1 @@
+export { AuthPagesTemplate } from "./AuthPagesTemplate";

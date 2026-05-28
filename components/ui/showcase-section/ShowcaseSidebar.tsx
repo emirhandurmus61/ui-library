@@ -73,6 +73,16 @@ const NAV = [
       { href: "/showcase/progress",   label: "Progress Bar" },
     ],
   },
+  {
+    label: "Faz 7 — Şablonlar",
+    items: [
+      { href: "/showcase/templates/dashboard", label: "Dashboard" },
+      { href: "/showcase/templates/landing",   label: "Landing Page" },
+      { href: "/showcase/templates/auth",      label: "Auth Sayfaları" },
+      { href: "/showcase/templates/settings",  label: "Settings" },
+      { href: "/showcase/templates/error",     label: "404 / Error" },
+    ],
+  },
 ] as const;
 
 /* ─── Search ─────────────────────────────────────────────────── */
