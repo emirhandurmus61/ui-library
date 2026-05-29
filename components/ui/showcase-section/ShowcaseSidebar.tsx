@@ -176,6 +176,7 @@ const NAV: NavCategory[] = [
       { href: "/showcase/shimmer-text",     label: "Shimmer Text" },
       { href: "/showcase/typewriter",       label: "Typewriter" },
       { href: "/showcase/confetti-button",  label: "Confetti Button" },
+      { href: "/showcase/bg-animation",     label: "Background Animation" },
     ],
   },
   {
