@@ -128,10 +128,18 @@ const NAV: NavCategory[] = [
       { href: "/showcase/pagination",    label: "Pagination" },
       { href: "/showcase/progress",      label: "Progress Bar" },
       { href: "/showcase/timeline",      label: "Timeline" },
-      { href: "/showcase/pricing-table", label: "Pricing Table" },
-      { href: "/showcase/faq-list",      label: "FAQ List" },
-      { href: "/showcase/feature-grid",  label: "Feature Grid" },
-      { href: "/showcase/logo-wall",     label: "Logo Wall" },
+      { href: "/showcase/pricing-table",     label: "Pricing Table" },
+      { href: "/showcase/faq-list",          label: "FAQ List" },
+      { href: "/showcase/feature-grid",      label: "Feature Grid" },
+      { href: "/showcase/logo-wall",         label: "Logo Wall" },
+      { href: "/showcase/testimonial",       label: "Testimonial" },
+      { href: "/showcase/banner",            label: "Banner" },
+      { href: "/showcase/countdown",         label: "Countdown" },
+      { href: "/showcase/comparison-table",  label: "Comparison Table" },
+      { href: "/showcase/kanban-board",      label: "Kanban Board" },
+      { href: "/showcase/tree-view",         label: "Tree View" },
+      { href: "/showcase/diff-viewer",       label: "Diff Viewer" },
+      { href: "/showcase/log-viewer",        label: "Log Viewer" },
     ],
   },
   {
@@ -377,7 +385,7 @@ function CategoryGroup({
       <div
         className={cn(
           "overflow-hidden transition-all duration-200",
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <ul className="py-1 space-y-0.5 relative">
@@ -494,7 +502,7 @@ export function ShowcaseSidebar() {
       <ShowcaseSearch />
 
       {/* Desktop sidebar */}
-      <aside className="w-64 shrink-0 border-r border-border bg-surface hidden lg:flex flex-col h-full overflow-hidden">
+      <aside className="w-64 shrink-0 border-r border-border bg-surface hidden lg:flex flex-col h-full overflow-y-auto">
         {/* Logo */}
         <div className="h-14 flex items-center justify-between px-4 border-b border-border shrink-0">
           <a href="/" className="flex items-center gap-2 group">

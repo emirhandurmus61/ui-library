@@ -15,8 +15,9 @@ export interface TimelineItem {
 export interface TimelineProps {
   items: TimelineItem[];
   /** "left": all items left-aligned (default + mobile fallback).
-   *  "alternate": items alternate sides at md+ breakpoint. */
-  variant?: "left" | "alternate";
+   *  "alternate": items alternate sides at md+ breakpoint.
+   *  "horizontal": horizontal scrollable timeline. */
+  variant?: "left" | "alternate" | "horizontal";
   className?: string;
 }
 
@@ -222,11 +223,51 @@ function AlternateTimeline({
   );
 }
 
+/* ─── Horizontal timeline ────────────────────────────────────── */
+
+function HorizontalTimeline({ items, className }: { items: TimelineItem[]; className?: string }) {
+  return (
+    <div className={cn("w-full overflow-x-auto pb-2", className)}>
+      <ol className="flex items-start min-w-max px-4" aria-label="Zaman çizelgesi">
+        {items.map((item, i) => (
+          <li key={i} className="relative flex flex-col items-center" style={{ minWidth: "140px" }}>
+            {/* Connector line */}
+            {i < items.length - 1 && (
+              <span
+                className="absolute top-4 left-1/2 w-full h-0.5 bg-border"
+                style={{ transform: "translateY(-50%)" }}
+                aria-hidden="true"
+              />
+            )}
+            {/* Dot */}
+            <span className="relative z-10">
+              <TimelineDot icon={item.icon} itemVariant={item.variant} />
+            </span>
+            {/* Content below */}
+            <div className="mt-3 text-center px-2 max-w-[130px]">
+              {item.date && (
+                <time className="text-[10px] text-foreground-subtle block mb-0.5">{item.date}</time>
+              )}
+              <p className="text-sm font-semibold text-foreground leading-snug">{item.title}</p>
+              {item.description && (
+                <p className="text-xs text-foreground-muted mt-1 leading-relaxed">{item.description}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 /* ─── Component ──────────────────────────────────────────────── */
 
 export function Timeline({ items, variant = "left", className }: TimelineProps) {
   if (variant === "alternate") {
     return <AlternateTimeline items={items} className={className} />;
+  }
+  if (variant === "horizontal") {
+    return <HorizontalTimeline items={items} className={className} />;
   }
   return <LeftTimeline items={items} className={className} />;
 }
