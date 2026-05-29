@@ -16,3 +16,23 @@ export interface NavbarBaseProps {
   links?: NavLink[];
   className?: string;
 }
+
+export interface NavCategory {
+  label: string;
+  href: string;
+  icon?: React.ReactNode;
+  children?: NavCategory[];
+}
+
+export interface NavBreadcrumb {
+  label: string;
+  href?: string;
+}
+
+export interface NavDropdownItem {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+  danger?: boolean;
+  divider?: boolean;
+}
