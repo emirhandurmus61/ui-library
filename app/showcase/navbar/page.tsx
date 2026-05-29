@@ -1,6 +1,9 @@
 "use client";
 
 import { NavbarMinimal, NavbarFull, NavbarSticky } from "@/components/ui/navbar";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { NavbarMinimal, NavbarFull, NavbarSticky } from "@/components/ui/navbar";`;
 
 const LINKS = [
   { label: "Ürün", href: "#" },
@@ -8,20 +11,6 @@ const LINKS = [
   { label: "Fiyatlandırma", href: "#" },
   { label: "Blog", href: "#" },
 ];
-
-function PreviewFrame({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
-  return (
-    <section className="flex flex-col gap-3">
-      <div>
-        <h2 className="text-base font-semibold text-foreground">{title}</h2>
-        <p className="text-sm text-foreground-muted">{description}</p>
-      </div>
-      <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden bg-background-subtle">
-        {children}
-      </div>
-    </section>
-  );
-}
 
 export default function NavbarShowcase() {
   return (
@@ -33,74 +22,112 @@ export default function NavbarShowcase() {
         </p>
       </div>
 
-      {/* 1 — Minimal */}
-      <PreviewFrame
+      <ShowcaseSection
         title="1. Minimal"
         description="Logo + nav linkleri. Sağa rightSlot ile ek eleman eklenebilir."
+        importLine={IMPORT}
+        code={`<NavbarMinimal
+  logoText="Minimal"
+  links={links}
+  rightSlot={
+    <a href="#" className="inline-flex items-center h-8 px-3 rounded-[var(--radius-md)] bg-primary text-primary-foreground text-sm font-medium">
+      Başla
+    </a>
+  }
+/>`}
+        previewClassName="p-0"
       >
-        <NavbarMinimal
-          logoText="Minimal"
-          links={LINKS}
-          rightSlot={
-            <a href="#" className="inline-flex items-center h-8 px-3 rounded-[var(--radius-md)] bg-primary text-primary-foreground text-sm font-medium hover:bg-primary-hover transition-colors">
-              Başla
-            </a>
-          }
-        />
-        <div className="px-6 py-8 text-sm text-foreground-muted text-center">
-          ↑ Ekranı küçülterek hamburger menüyü test edin
+        <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden">
+          <NavbarMinimal
+            logoText="Minimal"
+            links={LINKS}
+            rightSlot={
+              <a href="#" className="inline-flex items-center h-8 px-3 rounded-[var(--radius-md)] bg-primary text-primary-foreground text-sm font-medium hover:bg-primary-hover transition-colors">
+                Başla
+              </a>
+            }
+          />
+          <div className="px-6 py-8 text-sm text-foreground-muted text-center">
+            ↑ Ekranı küçülterek hamburger menüyü test edin
+          </div>
         </div>
-      </PreviewFrame>
+      </ShowcaseSection>
 
-      {/* 2 — Full */}
-      <PreviewFrame
+      <ShowcaseSection
         title="2. Full — Giriş yapmamış kullanıcı"
         description="Logo + orta nav + sağda CTA butonu."
+        importLine={IMPORT}
+        code={`<NavbarFull
+  logoText="MyApp"
+  links={links}
+  ctaLabel="Ücretsiz Dene"
+  ctaHref="#"
+/>`}
+        previewClassName="p-0"
       >
-        <NavbarFull
-          logoText="MyApp"
-          links={LINKS}
-          ctaLabel="Ücretsiz Dene"
-          ctaHref="#"
-        />
-        <div className="px-6 py-8 text-sm text-foreground-muted text-center">
-          CTA butonu görünür
+        <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden">
+          <NavbarFull
+            logoText="MyApp"
+            links={LINKS}
+            ctaLabel="Ücretsiz Dene"
+            ctaHref="#"
+          />
+          <div className="px-6 py-8 text-sm text-foreground-muted text-center">
+            CTA butonu görünür
+          </div>
         </div>
-      </PreviewFrame>
+      </ShowcaseSection>
 
-      {/* 3 — Full + User */}
-      <PreviewFrame
+      <ShowcaseSection
         title="3. Full — Giriş yapmış kullanıcı"
         description="CTA yerine avatar + dropdown menü gösterilir."
+        importLine={IMPORT}
+        code={`<NavbarFull
+  logoText="MyApp"
+  links={links}
+  user={{ name: "Emirhan Durmuş", email: "emirhan@example.com" }}
+  userMenuItems={[
+    { label: "Profil", href: "#" },
+    { label: "Ayarlar", href: "#" },
+    { label: "Çıkış Yap", onClick: logout, danger: true, divider: true },
+  ]}
+/>`}
+        previewClassName="p-0"
       >
-        <NavbarFull
-          logoText="MyApp"
-          links={LINKS}
-          user={{
-            name: "Emirhan Durmuş",
-            email: "emirhan@example.com",
-          }}
-          userMenuItems={[
-            { label: "Profil", href: "#" },
-            { label: "Ayarlar", href: "#" },
-            { label: "Yardım", href: "#" },
-            { label: "Çıkış Yap", onClick: () => alert("Çıkış"), danger: true, divider: true },
-          ]}
-        />
-        <div className="px-6 py-8 text-sm text-foreground-muted text-center">
-          Avatar'a tıklayarak dropdown'ı açın
+        <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden">
+          <NavbarFull
+            logoText="MyApp"
+            links={LINKS}
+            user={{
+              name: "Emirhan Durmuş",
+              email: "emirhan@example.com",
+            }}
+            userMenuItems={[
+              { label: "Profil", href: "#" },
+              { label: "Ayarlar", href: "#" },
+              { label: "Yardım", href: "#" },
+              { label: "Çıkış Yap", onClick: () => alert("Çıkış"), danger: true, divider: true },
+            ]}
+          />
+          <div className="px-6 py-8 text-sm text-foreground-muted text-center">
+            Avatar'a tıklayarak dropdown'ı açın
+          </div>
         </div>
-      </PreviewFrame>
+      </ShowcaseSection>
 
-      {/* 4 — Sticky blur */}
-      <section className="flex flex-col gap-3">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">4. Sticky + Blur</h2>
-          <p className="text-sm text-foreground-muted">
-            Sayfanın tepesine sabitlenir. Scroll'da arka plan blur + border belirir.
-            Rounded pill CTA butonu.
-          </p>
-        </div>
+      <ShowcaseSection
+        title="4. Sticky + Blur"
+        description="Sayfanın tepesine sabitlenir. Scroll'da arka plan blur + border belirir. Rounded pill CTA butonu."
+        importLine={IMPORT}
+        code={`// Layout'un en üstüne koy — scroll'da blur efekti tetiklenir
+<NavbarSticky
+  logoText="Launch"
+  links={links}
+  ctaLabel="Ücretsiz Başla"
+  secondaryLabel="Giriş Yap"
+/>`}
+        previewClassName="p-0"
+      >
         <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden bg-gradient-to-br from-primary-subtle to-background h-48 relative">
           <NavbarSticky
             logoText="Launch"
@@ -117,55 +144,7 @@ export default function NavbarShowcase() {
             Gerçek kullanımda <code className="text-xs bg-background-muted px-1 py-0.5 rounded">{"<NavbarSticky />"}</code> sayfanın en üstüne konur — scroll'da blur efekti tetiklenir
           </p>
         </div>
-      </section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import {
-  NavbarMinimal,
-  NavbarFull,
-  NavbarSticky,
-} from "@/components/ui/navbar";
-
-const links = [
-  { label: "Ürün", href: "/urun" },
-  { label: "Fiyat", href: "/fiyat", active: true },
-];
-
-// Minimal — rightSlot ile ek eleman
-<NavbarMinimal
-  logoText="Brand"
-  links={links}
-  rightSlot={<Button size="sm">Başla</Button>}
-/>
-
-// Full — oturum açmamış
-<NavbarFull logoText="MyApp" links={links} ctaLabel="Dene" />
-
-// Full — oturum açmış (avatar + dropdown)
-<NavbarFull
-  logoText="MyApp"
-  links={links}
-  user={{ name: "Ali Veli", email: "ali@example.com" }}
-  userMenuItems={[
-    { label: "Profil", href: "/profil" },
-    { label: "Çıkış", onClick: logout, danger: true, divider: true },
-  ]}
-/>
-
-// Sticky blur — layout'un en üstüne koy
-<NavbarSticky
-  logoText="SaaS"
-  links={links}
-  ctaLabel="Ücretsiz Başla"
-  secondaryLabel="Giriş Yap"
-/>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

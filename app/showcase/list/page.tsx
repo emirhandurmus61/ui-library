@@ -1,6 +1,9 @@
 import { List, ListItem } from "@/components/ui/list";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { List, ListItem } from "@/components/ui/list";`;
 
 function UserIcon() {
   return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
@@ -10,17 +13,6 @@ function FileIcon() {
 }
 function ChevronRightIcon() {
   return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>;
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
 }
 
 export default function ListShowcase() {
@@ -33,7 +25,19 @@ export default function ListShowcase() {
         </p>
       </div>
 
-      <Section title="Bordered (İkon + Trailing)">
+      <ShowcaseSection
+        title="Bordered (İkon + Trailing)"
+        description="bordered variant ile kenarlıklı liste; leading ikon ve trailing badge."
+        importLine={IMPORT}
+        code={`<List variant="bordered">
+  <ListItem
+    leading={<UserIcon />}
+    title="Emirhan Durmuş"
+    description="emirhan@example.com"
+    trailing={<Badge variant="primary" size="sm">Admin</Badge>}
+  />
+</List>`}
+      >
         <List variant="bordered">
           <ListItem
             leading={<UserIcon />}
@@ -54,11 +58,24 @@ export default function ListShowcase() {
             trailing={<Badge variant="secondary" size="sm">Viewer</Badge>}
           />
         </List>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Avatar ile">
+      <ShowcaseSection
+        title="Avatar ile"
+        description="leading slotunda Avatar kullanımı; tıklanabilir satırlar."
+        importLine={IMPORT}
+        code={`<List variant="bordered">
+  <ListItem
+    leading={<Avatar name={name} size="sm" />}
+    title={name}
+    description="kullanici@example.com"
+    trailing={<ChevronRightIcon />}
+    interactive
+  />
+</List>`}
+      >
         <List variant="bordered">
-          {["Zeynep Çelik", "Ali Öztürk", "Fatma Demir"].map((name, i) => (
+          {["Zeynep Çelik", "Ali Öztürk", "Fatma Demir"].map((name) => (
             <ListItem
               key={name}
               leading={<Avatar name={name} size="sm" />}
@@ -69,9 +86,22 @@ export default function ListShowcase() {
             />
           ))}
         </List>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Interactive + Selected">
+      <ShowcaseSection
+        title="Interactive + Selected"
+        description="interactive ve selected prop'ları ile aktif menü öğesi vurgulanır."
+        importLine={IMPORT}
+        code={`<List variant="bordered">
+  <ListItem
+    leading={<FileIcon />}
+    title="Kullanıcılar"
+    interactive
+    selected
+    trailing={<Badge variant="primary" size="sm">3</Badge>}
+  />
+</List>`}
+      >
         <List variant="bordered">
           {["Genel Bakış", "Kullanıcılar", "Ayarlar", "Raporlar"].map((item, i) => (
             <ListItem
@@ -84,9 +114,17 @@ export default function ListShowcase() {
             />
           ))}
         </List>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Flush (border yok)">
+      <ShowcaseSection
+        title="Flush (border yok)"
+        description="flush variant ile ayırıcı çizgisiz düz liste."
+        importLine={IMPORT}
+        code={`<List variant="flush">
+  <ListItem title="Profil Güncelle" interactive trailing={<ChevronRightIcon />} />
+  <ListItem title="Şifre Değiştir"  interactive trailing={<ChevronRightIcon />} />
+</List>`}
+      >
         <List variant="flush">
           {["Profil Güncelle", "Şifre Değiştir", "Bildirimler", "Gizlilik"].map((item) => (
             <ListItem
@@ -97,9 +135,16 @@ export default function ListShowcase() {
             />
           ))}
         </List>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Boyutlar">
+      <ShowcaseSection
+        title="Boyutlar"
+        description="sm, md ve lg boyut seçenekleriyle hücre dolgusu ölçeklenir."
+        importLine={IMPORT}
+        code={`<List variant="bordered">
+  <ListItem size="sm" title="Liste öğesi başlığı" description="Kısa açıklama metni." leading={<FileIcon />} />
+</List>`}
+      >
         <div className="space-y-4">
           {(["sm", "md", "lg"] as const).map((size) => (
             <div key={size}>
@@ -110,7 +155,7 @@ export default function ListShowcase() {
             </div>
           ))}
         </div>
-      </Section>
+      </ShowcaseSection>
     </div>
   );
 }

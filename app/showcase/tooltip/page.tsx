@@ -1,8 +1,9 @@
-"use client";
-
 import { Tooltip } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { Tooltip } from "@/components/ui/tooltip";`;
 
 const InfoIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
@@ -28,17 +29,6 @@ const EditIcon = () => (
   </svg>
 );
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      <div className="flex flex-wrap items-center gap-5">{children}</div>
-    </section>
-  );
-}
-
 export default function TooltipShowcase() {
   return (
     <div className="max-w-3xl space-y-10">
@@ -49,8 +39,24 @@ export default function TooltipShowcase() {
         </p>
       </div>
 
-      {/* Placement */}
-      <Section title="Placement (Yön)">
+      <ShowcaseSection
+        title="Placement (Yön)"
+        description="top, bottom, left ve right yönleriyle tooltip konumlandırma."
+        importLine={IMPORT}
+        code={`<Tooltip content="Üstte görünür" placement="top">
+  <Button variant="outline" size="sm">Top</Button>
+</Tooltip>
+<Tooltip content="Altta görünür" placement="bottom">
+  <Button variant="outline" size="sm">Bottom</Button>
+</Tooltip>
+<Tooltip content="Solda görünür" placement="left">
+  <Button variant="outline" size="sm">Left</Button>
+</Tooltip>
+<Tooltip content="Sağda görünür" placement="right">
+  <Button variant="outline" size="sm">Right</Button>
+</Tooltip>`}
+        previewClassName="flex flex-wrap items-center gap-5"
+      >
         <Tooltip content="Üstte görünür" placement="top">
           <Button variant="outline" size="sm">Top</Button>
         </Tooltip>
@@ -63,10 +69,29 @@ export default function TooltipShowcase() {
         <Tooltip content="Sağda görünür" placement="right">
           <Button variant="outline" size="sm">Right</Button>
         </Tooltip>
-      </Section>
+      </ShowcaseSection>
 
-      {/* Variants */}
-      <Section title="Variants">
+      <ShowcaseSection
+        title="Variants"
+        description="default, dark, light, danger ve info görsel çeşitleri."
+        importLine={IMPORT}
+        code={`<Tooltip content="Default tooltip" variant="default">
+  <Button variant="outline" size="sm">Default</Button>
+</Tooltip>
+<Tooltip content="Dark tooltip" variant="dark">
+  <Button variant="outline" size="sm">Dark</Button>
+</Tooltip>
+<Tooltip content="Light tooltip — border ile" variant="light">
+  <Button variant="outline" size="sm">Light</Button>
+</Tooltip>
+<Tooltip content="Tehlikeli işlem!" variant="danger">
+  <Button variant="outline" size="sm">Danger</Button>
+</Tooltip>
+<Tooltip content="Bilgilendirme mesajı" variant="info">
+  <Button variant="outline" size="sm">Info</Button>
+</Tooltip>`}
+        previewClassName="flex flex-wrap items-center gap-5"
+      >
         <Tooltip content="Default tooltip" variant="default">
           <Button variant="outline" size="sm">Default</Button>
         </Tooltip>
@@ -82,10 +107,23 @@ export default function TooltipShowcase() {
         <Tooltip content="Bilgilendirme mesajı" variant="info">
           <Button variant="outline" size="sm">Info</Button>
         </Tooltip>
-      </Section>
+      </ShowcaseSection>
 
-      {/* Delay */}
-      <Section title="Gecikme (Delay)">
+      <ShowcaseSection
+        title="Gecikme (Delay)"
+        description="delay prop ile tooltip görünme gecikmesi milisaniye cinsinden ayarlanır."
+        importLine={IMPORT}
+        code={`<Tooltip content="Gecikme yok (0ms)" delay={0}>
+  <Button variant="outline" size="sm">Anlık</Button>
+</Tooltip>
+<Tooltip content="150ms gecikme (varsayılan)" delay={150}>
+  <Button variant="outline" size="sm">150ms</Button>
+</Tooltip>
+<Tooltip content="500ms gecikme" delay={500}>
+  <Button variant="outline" size="sm">500ms</Button>
+</Tooltip>`}
+        previewClassName="flex flex-wrap items-center gap-5"
+      >
         <Tooltip content="Gecikme yok (0ms)" delay={0}>
           <Button variant="outline" size="sm">Anlık</Button>
         </Tooltip>
@@ -95,10 +133,27 @@ export default function TooltipShowcase() {
         <Tooltip content="500ms gecikme" delay={500}>
           <Button variant="outline" size="sm">500ms</Button>
         </Tooltip>
-      </Section>
+      </ShowcaseSection>
 
-      {/* Uzun içerik */}
-      <Section title="Uzun İçerik">
+      <ShowcaseSection
+        title="Uzun İçerik"
+        description="Uzun metin otomatik olarak max-w sınırına göre kaydırılır."
+        importLine={IMPORT}
+        code={`<Tooltip
+  content="Bu tooltip daha uzun bir açıklama içeriyor."
+  placement="bottom"
+>
+  <Button variant="outline" size="sm">Uzun metin</Button>
+</Tooltip>
+<Tooltip
+  content="Çok daha dar bir tooltip max-w-[160px] ile."
+  placement="top"
+  maxWidth="max-w-[160px]"
+>
+  <Button variant="outline" size="sm">Dar tooltip</Button>
+</Tooltip>`}
+        previewClassName="flex flex-wrap items-center gap-5"
+      >
         <Tooltip
           content="Bu tooltip daha uzun bir açıklama içeriyor. Birden fazla satıra yayılabilir ve max-w-xs ile sınırlandırılmıştır."
           placement="bottom"
@@ -112,22 +167,41 @@ export default function TooltipShowcase() {
         >
           <Button variant="outline" size="sm">Dar tooltip</Button>
         </Tooltip>
-      </Section>
+      </ShowcaseSection>
 
-      {/* Disabled */}
-      <Section title="Disabled">
+      <ShowcaseSection
+        title="Disabled"
+        description="disabled prop ile tooltip tamamen devre dışı bırakılır."
+        importLine={IMPORT}
+        code={`<Tooltip content="Bu görünmez" disabled>
+  <Button variant="outline" size="sm">Devre dışı tooltip</Button>
+</Tooltip>`}
+        previewClassName="flex flex-wrap items-center gap-5"
+      >
         <Tooltip content="Bu görünmez" disabled>
           <Button variant="outline" size="sm">Devre dışı tooltip</Button>
         </Tooltip>
-      </Section>
+      </ShowcaseSection>
 
-      {/* Gerçek kullanım örnekleri */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-          Örnek Kullanım
-        </h2>
+      <ShowcaseSection
+        title="Örnek Kullanım"
+        description="İkon araç çubuğu, bilgi ikonu ve avatar grubu ile gerçek kullanım örnekleri."
+        importLine={IMPORT}
+        code={`// İkon araç çubuğu
+<Tooltip content="Düzenle" placement="bottom">
+  <Button size="icon-sm" variant="ghost"><EditIcon /></Button>
+</Tooltip>
 
-        {/* Icon buton araç çubuğu */}
+// Bilgi ikonu
+<Tooltip content="Her aktif kullanıcı için aylık ücret alınır." variant="light">
+  <span className="cursor-help"><InfoIcon /></span>
+</Tooltip>
+
+// Avatar üzerinde isim
+<Tooltip content={user.name} placement="bottom">
+  <Avatar name={user.name} status={user.status} size="md" />
+</Tooltip>`}
+      >
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-1 border border-border rounded-[var(--radius-md)] p-1 w-fit bg-surface">
             <Tooltip content="Düzenle" placement="bottom">
@@ -141,7 +215,6 @@ export default function TooltipShowcase() {
             </Tooltip>
           </div>
 
-          {/* Bilgi ikonu */}
           <div className="flex items-center gap-2 text-sm text-foreground">
             <span>Kullanıcı başına fiyat</span>
             <Tooltip
@@ -154,7 +227,6 @@ export default function TooltipShowcase() {
             </Tooltip>
           </div>
 
-          {/* Avatar üzerinde isim */}
           <div className="flex gap-2">
             {[
               { name: "Emirhan Durmuş", status: "online" as const },
@@ -167,37 +239,7 @@ export default function TooltipShowcase() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import { Tooltip } from "@/components/ui/tooltip";
-
-// Temel
-<Tooltip content="Açıklama metni">
-  <Button>Hover et</Button>
-</Tooltip>
-
-// Yön + variant
-<Tooltip content="Tehlike!" placement="bottom" variant="danger">
-  <Button variant="danger">Sil</Button>
-</Tooltip>
-
-// Gecikme ayarı
-<Tooltip content="Hızlı" delay={0}>
-  <span>...</span>
-</Tooltip>
-
-// Devre dışı
-<Tooltip content="Görünmez" disabled>
-  <span>...</span>
-</Tooltip>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

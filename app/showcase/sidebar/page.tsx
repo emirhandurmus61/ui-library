@@ -2,8 +2,10 @@
 
 import { SidebarFull, SidebarCollapsible } from "@/components/ui/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-/* ─── İkonlar ────────────────────────────────────────────────── */
+const IMPORT = `import { SidebarFull, SidebarCollapsible } from "@/components/ui/sidebar";`;
+
 const HomeIcon     = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-full"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
 const LayoutIcon   = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-full"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>;
 const UsersIcon    = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-full"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
@@ -50,12 +52,18 @@ export default function SidebarShowcase() {
         </p>
       </div>
 
-      {/* 1 — Full */}
-      <section className="flex flex-col gap-3">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">1. Full Sidebar</h2>
-          <p className="text-sm text-foreground-muted">Bölümlü nav, badge, user footer, özelleştirilebilir genişlik.</p>
-        </div>
+      <ShowcaseSection
+        title="1. Full Sidebar"
+        description="Bölümlü nav, badge, user footer, özelleştirilebilir genişlik."
+        importLine={IMPORT}
+        code={`<SidebarFull
+  logoText="MyApp"
+  sections={sections}
+  user={{ name: "Ali Veli", email: "ali@example.com" }}
+  footer={<Badge variant="success" dot>Sistem aktif</Badge>}
+/>`}
+        previewClassName="p-0"
+      >
         <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden flex h-[420px]">
           <SidebarFull
             logoText="MyApp"
@@ -67,21 +75,24 @@ export default function SidebarShowcase() {
               </div>
             }
           />
-          {/* İçerik alanı */}
           <div className="flex-1 bg-background-subtle flex items-center justify-center">
             <p className="text-sm text-foreground-muted">Sayfa içeriği buraya gelir</p>
           </div>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* 2 — Collapsible */}
-      <section className="flex flex-col gap-3">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">2. Collapsible (Icon) Sidebar</h2>
-          <p className="text-sm text-foreground-muted">
-            Ok butonuyla daraltılır — sadece ikonlar kalır. Hover'da Tooltip ile etiket gösterilir.
-          </p>
-        </div>
+      <ShowcaseSection
+        title="2. Collapsible (Icon) Sidebar"
+        description="Ok butonuyla daraltılır — sadece ikonlar kalır. Hover'da Tooltip ile etiket gösterilir."
+        importLine={IMPORT}
+        code={`<SidebarCollapsible
+  logoText="MyApp"
+  sections={sections}
+  user={{ name: "Ali Veli" }}
+  defaultCollapsed={false}
+/>`}
+        previewClassName="p-0"
+      >
         <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden flex h-[420px]">
           <SidebarCollapsible
             logoText="MyApp"
@@ -92,16 +103,20 @@ export default function SidebarShowcase() {
             <p className="text-sm text-foreground-muted">← Ok butonuna tıklayın</p>
           </div>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* Başlangıçta collapsed */}
-      <section className="flex flex-col gap-3">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">2b. Başlangıçta Daraltılmış</h2>
-          <p className="text-sm text-foreground-muted">
-            <code className="text-xs bg-background-muted px-1 py-0.5 rounded">defaultCollapsed</code> prop'u ile başlangıç durumu ayarlanır.
-          </p>
-        </div>
+      <ShowcaseSection
+        title="2b. Başlangıçta Daraltılmış"
+        description="defaultCollapsed prop'u ile sidebar icon modunda başlar."
+        importLine={IMPORT}
+        code={`<SidebarCollapsible
+  logoText="MyApp"
+  sections={sections}
+  user={{ name: "Ali Veli" }}
+  defaultCollapsed
+/>`}
+        previewClassName="p-0"
+      >
         <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden flex h-[420px]">
           <SidebarCollapsible
             logoText="MyApp"
@@ -113,17 +128,20 @@ export default function SidebarShowcase() {
             <p className="text-sm text-foreground-muted">Icon modda başladı — genişletmek için oka tıklayın</p>
           </div>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* 3 — Responsive with mobile drawer */}
-      <section className="flex flex-col gap-3">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">3. Mobil Responsive — Drawer</h2>
-          <p className="text-sm text-foreground-muted">
-            <code className="text-xs bg-background-muted px-1 py-0.5 rounded">mobileDrawer</code> prop'u ile masaüstünde sidebar görünür,
-            mobilde gizlenir ve sol altta hamburger butonu ile açılır slide-over drawer haline gelir.
-          </p>
-        </div>
+      <ShowcaseSection
+        title="3. Mobil Responsive — Drawer"
+        description="mobileDrawer prop'u ile masaüstünde sidebar, mobilde hamburger butonu ile açılan slide-over."
+        importLine={IMPORT}
+        code={`<SidebarFull
+  logoText="MyApp"
+  sections={sections}
+  user={{ name: "Ali Veli" }}
+  mobileDrawer
+/>`}
+        previewClassName="p-0"
+      >
         <div className="border border-border rounded-[var(--radius-lg)] overflow-hidden relative h-[360px]">
           <div className="flex h-full">
             <SidebarFull
@@ -141,56 +159,7 @@ export default function SidebarShowcase() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import { SidebarFull, SidebarCollapsible } from "@/components/ui/sidebar";
-
-const sections = [
-  {
-    items: [
-      { label: "Dashboard", href: "/", icon: <HomeIcon />, active: true },
-    ],
-  },
-  {
-    label: "Yönetim",
-    items: [
-      { label: "Kullanıcılar", href: "/users", icon: <UsersIcon />, badge: 12 },
-      { label: "Ayarlar",      href: "/settings", icon: <SettingsIcon /> },
-    ],
-  },
-];
-
-// Tam genişlik
-<SidebarFull
-  logoText="MyApp"
-  sections={sections}
-  user={{ name: "Ali Veli", email: "ali@example.com" }}
-  footer={<Badge variant="success">Sistem aktif</Badge>}
-/>
-
-// Collapsible — ok butonu ile icon moduna geçer
-<SidebarCollapsible
-  logoText="MyApp"
-  sections={sections}
-  user={{ name: "Ali Veli" }}
-  defaultCollapsed={false}
-/>
-
-// Responsive — masaüstünde sidebar, mobilde drawer
-<SidebarFull
-  logoText="MyApp"
-  sections={sections}
-  user={{ name: "Ali Veli" }}
-  mobileDrawer
-/>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

@@ -1,4 +1,7 @@
 import { Accordion, type AccordionItemData } from "@/components/ui/accordion";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { Accordion, type AccordionItemData } from "@/components/ui/accordion";`;
 
 const faqItems: AccordionItemData[] = [
   {
@@ -29,17 +32,6 @@ const faqItems: AccordionItemData[] = [
   },
 ];
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
-
 export default function AccordionShowcase() {
   return (
     <div className="max-w-2xl space-y-10">
@@ -50,21 +42,41 @@ export default function AccordionShowcase() {
         </p>
       </div>
 
-      <Section title="Default (Tekli Açılma)">
+      <ShowcaseSection
+        title="Default (Tekli Açılma)"
+        description="Bir anda yalnızca bir madde açık kalır."
+        importLine={IMPORT}
+        code={`<Accordion items={faqItems.slice(0, 4)} />`}
+      >
         <Accordion items={faqItems.slice(0, 4)} />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Çoklu Açılma (multiple)">
+      <ShowcaseSection
+        title="Çoklu Açılma (multiple)"
+        description="multiple prop ile birden fazla madde aynı anda açık olabilir."
+        importLine={IMPORT}
+        code={`<Accordion items={faqItems.slice(0, 4)} multiple defaultOpen={["1", "3"]} />`}
+      >
         <Accordion items={faqItems.slice(0, 4)} multiple defaultOpen={["1", "3"]} />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Flush Variant">
+      <ShowcaseSection
+        title="Flush Variant"
+        description="Dış kenarlık olmadan, düz liste görünümü."
+        importLine={IMPORT}
+        code={`<Accordion items={faqItems.slice(0, 4)} variant="flush" />`}
+      >
         <Accordion items={faqItems.slice(0, 4)} variant="flush" />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Disabled Madde">
+      <ShowcaseSection
+        title="Disabled Madde"
+        description="disabled:true olan maddeler etkileşime kapalıdır."
+        importLine={IMPORT}
+        code={`<Accordion items={faqItems} />`}
+      >
         <Accordion items={faqItems} />
-      </Section>
+      </ShowcaseSection>
     </div>
   );
 }

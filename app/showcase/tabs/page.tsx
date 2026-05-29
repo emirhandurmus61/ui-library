@@ -1,7 +1,8 @@
-"use client";
-
 import { Tabs, type TabItem } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { Tabs, type TabItem } from "@/components/ui/tabs";`;
 
 function UserIcon() {
   return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
@@ -26,17 +27,6 @@ const iconItems: TabItem[] = [
   { id: "settings", label: "Ayarlar", icon: <SettingsIcon />, content: <p className="text-sm text-foreground-muted">Genel ayarlar burada.</p> },
 ];
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
-
 export default function TabsShowcase() {
   return (
     <div className="max-w-2xl space-y-10">
@@ -47,25 +37,50 @@ export default function TabsShowcase() {
         </p>
       </div>
 
-      <Section title="Line (Varsayılan)">
+      <ShowcaseSection
+        title="Line (Varsayılan)"
+        description="Alt çizgi ile aktif sekmeyi vurgular; varsayılan stil."
+        importLine={IMPORT}
+        code={`<Tabs items={basicItems} variant="line" />`}
+      >
         <Tabs items={basicItems} variant="line" />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Pill">
+      <ShowcaseSection
+        title="Pill"
+        description="Aktif sekme hap (pill) şeklinde arka planla vurgulanır."
+        importLine={IMPORT}
+        code={`<Tabs items={basicItems} variant="pill" />`}
+      >
         <Tabs items={basicItems} variant="pill" />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Boxed">
+      <ShowcaseSection
+        title="Boxed"
+        description="Tüm sekmeler kenarlıklı kutu içinde gösterilir."
+        importLine={IMPORT}
+        code={`<Tabs items={basicItems} variant="boxed" />`}
+      >
         <Tabs items={basicItems} variant="boxed" />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="İkon + Badge">
+      <ShowcaseSection
+        title="İkon + Badge"
+        description="Sekmelere ikon ve badge eklenebilir; line variant ile."
+        importLine={IMPORT}
+        code={`<Tabs items={iconItems} variant="line" />`}
+      >
         <Tabs items={iconItems} variant="line" />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="İkon + Pill">
+      <ShowcaseSection
+        title="İkon + Pill"
+        description="İkon ve badge'li sekmeler pill variant ile."
+        importLine={IMPORT}
+        code={`<Tabs items={iconItems} variant="pill" />`}
+      >
         <Tabs items={iconItems} variant="pill" />
-      </Section>
+      </ShowcaseSection>
     </div>
   );
 }

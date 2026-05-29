@@ -2,19 +2,10 @@
 
 import { useState } from "react";
 import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-        {title}
-      </h2>
-      <div className="flex flex-col gap-3">{children}</div>
-    </section>
-  );
-}
+const IMPORT = `import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox";`;
 
-/* Indeterminate demo */
 function IndeterminateDemo() {
   const items = ["JavaScript", "TypeScript", "Python"];
   const [selected, setSelected] = useState<string[]>(["JavaScript"]);
@@ -63,34 +54,85 @@ export default function CheckboxShowcase() {
         </p>
       </div>
 
-      {/* Temel */}
-      <Section title="Temel">
-        <Checkbox label="Beni hatırla" />
-        <Checkbox label="Varsayılan seçili" defaultChecked />
-        <Checkbox label="Hizmet şartlarını kabul ediyorum" description="Devam etmek için şartları kabul etmeniz gerekmektedir." />
-      </Section>
+      <ShowcaseSection
+        title="Temel"
+        description="Basit checkbox kullanımı; label, defaultChecked ve description prop'ları."
+        importLine={IMPORT}
+        code={`<Checkbox label="Beni hatırla" />
+<Checkbox label="Varsayılan seçili" defaultChecked />
+<Checkbox
+  label="Hizmet şartlarını kabul ediyorum"
+  description="Devam etmek için şartları kabul etmeniz gerekmektedir."
+/>`}
+      >
+        <div className="flex flex-col gap-3">
+          <Checkbox label="Beni hatırla" />
+          <Checkbox label="Varsayılan seçili" defaultChecked />
+          <Checkbox label="Hizmet şartlarını kabul ediyorum" description="Devam etmek için şartları kabul etmeniz gerekmektedir." />
+        </div>
+      </ShowcaseSection>
 
-      {/* Sizes */}
-      <Section title="Sizes">
-        <Checkbox size="sm" label="Small (sm)" defaultChecked />
-        <Checkbox size="md" label="Medium (md) — varsayılan" defaultChecked />
-        <Checkbox size="lg" label="Large (lg)" defaultChecked />
-      </Section>
+      <ShowcaseSection
+        title="Sizes"
+        description="sm, md (varsayılan) ve lg boyutları."
+        importLine={IMPORT}
+        code={`<Checkbox size="sm" label="Small (sm)" defaultChecked />
+<Checkbox size="md" label="Medium (md) — varsayılan" defaultChecked />
+<Checkbox size="lg" label="Large (lg)" defaultChecked />`}
+      >
+        <div className="flex flex-col gap-3">
+          <Checkbox size="sm" label="Small (sm)" defaultChecked />
+          <Checkbox size="md" label="Medium (md) — varsayılan" defaultChecked />
+          <Checkbox size="lg" label="Large (lg)" defaultChecked />
+        </div>
+      </ShowcaseSection>
 
-      {/* Indeterminate */}
-      <Section title="Indeterminate (Tümünü Seç)">
+      <ShowcaseSection
+        title="Indeterminate (Tümünü Seç)"
+        description="indeterminate prop ile kısmen seçili durumu gösterilir."
+        importLine={IMPORT}
+        code={`<Checkbox
+  label="Tümünü seç"
+  checked={allChecked}
+  indeterminate={someChecked}
+  onChange={toggleAll}
+/>`}
+      >
         <IndeterminateDemo />
-      </Section>
+      </ShowcaseSection>
 
-      {/* States */}
-      <Section title="States">
-        <Checkbox label="Hata durumu" errorText="Bu alanı işaretlemeniz zorunludur." />
-        <Checkbox label="Disabled" disabled />
-        <Checkbox label="Disabled seçili" disabled defaultChecked />
-      </Section>
+      <ShowcaseSection
+        title="States"
+        description="Hata, disabled ve disabled+seçili durumları."
+        importLine={IMPORT}
+        code={`<Checkbox label="Hata durumu" errorText="Bu alanı işaretlemeniz zorunludur." />
+<Checkbox label="Disabled" disabled />
+<Checkbox label="Disabled seçili" disabled defaultChecked />`}
+      >
+        <div className="flex flex-col gap-3">
+          <Checkbox label="Hata durumu" errorText="Bu alanı işaretlemeniz zorunludur." />
+          <Checkbox label="Disabled" disabled />
+          <Checkbox label="Disabled seçili" disabled defaultChecked />
+        </div>
+      </ShowcaseSection>
 
-      {/* CheckboxGroup */}
-      <Section title="CheckboxGroup">
+      <ShowcaseSection
+        title="CheckboxGroup"
+        description="Birden fazla checkbox'ı grup olarak yönetir; helperText ve disabled seçenek desteği."
+        importLine={IMPORT}
+        code={`<CheckboxGroup
+  label="İlgi alanları"
+  helperText="Birden fazla seçebilirsiniz."
+  defaultValue={["design"]}
+  options={[
+    { value: "frontend", label: "Frontend Geliştirme" },
+    { value: "backend", label: "Backend Geliştirme" },
+    { value: "design", label: "UI/UX Tasarım" },
+    { value: "devops", label: "DevOps" },
+    { value: "mobile", label: "Mobil", disabled: true },
+  ]}
+/>`}
+      >
         <CheckboxGroup
           label="İlgi alanları"
           helperText="Birden fazla seçebilirsiniz."
@@ -103,10 +145,24 @@ export default function CheckboxShowcase() {
             { value: "mobile", label: "Mobil", disabled: true },
           ]}
         />
-      </Section>
+      </ShowcaseSection>
 
-      {/* CheckboxGroup horizontal */}
-      <Section title="CheckboxGroup — Yatay">
+      <ShowcaseSection
+        title="CheckboxGroup — Yatay"
+        description="horizontal prop ile seçenekler yan yana dizilir."
+        importLine={IMPORT}
+        code={`<CheckboxGroup
+  label="Teknolojiler"
+  horizontal
+  defaultValue={["react", "ts"]}
+  options={[
+    { value: "react", label: "React" },
+    { value: "ts", label: "TypeScript" },
+    { value: "tailwind", label: "Tailwind" },
+    { value: "next", label: "Next.js" },
+  ]}
+/>`}
+      >
         <CheckboxGroup
           label="Teknolojiler"
           horizontal
@@ -118,39 +174,7 @@ export default function CheckboxShowcase() {
             { value: "next", label: "Next.js" },
           ]}
         />
-      </Section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox";
-
-// Temel
-<Checkbox label="Beni hatırla" />
-
-// Indeterminate
-<Checkbox
-  label="Tümünü seç"
-  checked={allChecked}
-  indeterminate={someChecked}
-  onChange={toggleAll}
-/>
-
-// CheckboxGroup
-<CheckboxGroup
-  label="İlgi alanları"
-  value={selected}
-  onChange={setSelected}
-  options={[
-    { value: "frontend", label: "Frontend" },
-    { value: "backend", label: "Backend" },
-  ]}
-/>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

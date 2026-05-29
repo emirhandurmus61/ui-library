@@ -2,17 +2,9 @@
 
 import { useState } from "react";
 import { RadioGroup } from "@/components/ui/radio";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-        {title}
-      </h2>
-      <div className="flex flex-col gap-4 max-w-sm">{children}</div>
-    </section>
-  );
-}
+const IMPORT = `import { RadioGroup } from "@/components/ui/radio";`;
 
 function ControlledDemo() {
   const [value, setValue] = useState("");
@@ -47,75 +39,150 @@ export default function RadioShowcase() {
         </p>
       </div>
 
-      {/* Temel */}
-      <Section title="Temel">
-        <RadioGroup
-          label="Cinsiyet"
-          defaultValue="male"
-          options={[
-            { value: "male", label: "Erkek" },
-            { value: "female", label: "Kadın" },
-            { value: "other", label: "Belirtmek istemiyorum" },
-          ]}
-        />
-      </Section>
+      <ShowcaseSection
+        title="Temel"
+        description="label, defaultValue ve options ile temel radio grubu."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Cinsiyet"
+  defaultValue="male"
+  options={[
+    { value: "male", label: "Erkek" },
+    { value: "female", label: "Kadın" },
+    { value: "other", label: "Belirtmek istemiyorum" },
+  ]}
+/>`}
+      >
+        <div className="max-w-sm">
+          <RadioGroup
+            label="Cinsiyet"
+            defaultValue="male"
+            options={[
+              { value: "male", label: "Erkek" },
+              { value: "female", label: "Kadın" },
+              { value: "other", label: "Belirtmek istemiyorum" },
+            ]}
+          />
+        </div>
+      </ShowcaseSection>
 
-      {/* Controlled */}
-      <Section title="Controlled + Description">
-        <ControlledDemo />
-      </Section>
+      <ShowcaseSection
+        title="Controlled + Description"
+        description="value/onChange ile dışarıdan yönetim; her seçenekte açıklama satırı."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Paket seçin"
+  value={value}
+  onChange={setValue}
+  options={[
+    { value: "free", label: "Ücretsiz", description: "Temel özellikler, 5 proje" },
+    { value: "pro",  label: "Pro — ₺99/ay", description: "Sınırsız proje, öncelikli destek" },
+  ]}
+/>`}
+      >
+        <div className="max-w-sm">
+          <ControlledDemo />
+        </div>
+      </ShowcaseSection>
 
-      {/* Sizes */}
-      <Section title="Sizes">
-        <RadioGroup
-          size="sm"
-          defaultValue="a"
-          options={[{ value: "a", label: "Small (sm)" }, { value: "b", label: "Seçenek B" }]}
-        />
-        <RadioGroup
-          size="md"
-          defaultValue="a"
-          options={[{ value: "a", label: "Medium (md) — varsayılan" }, { value: "b", label: "Seçenek B" }]}
-        />
-        <RadioGroup
-          size="lg"
-          defaultValue="a"
-          options={[{ value: "a", label: "Large (lg)" }, { value: "b", label: "Seçenek B" }]}
-        />
-      </Section>
+      <ShowcaseSection
+        title="Sizes"
+        description="sm, md (varsayılan) ve lg boyut seçenekleri."
+        importLine={IMPORT}
+        code={`<RadioGroup size="sm" defaultValue="a" options={[{ value: "a", label: "Small (sm)" }]} />
+<RadioGroup size="md" defaultValue="a" options={[{ value: "a", label: "Medium (md)" }]} />
+<RadioGroup size="lg" defaultValue="a" options={[{ value: "a", label: "Large (lg)" }]} />`}
+      >
+        <div className="flex flex-col gap-4 max-w-sm">
+          <RadioGroup
+            size="sm"
+            defaultValue="a"
+            options={[{ value: "a", label: "Small (sm)" }, { value: "b", label: "Seçenek B" }]}
+          />
+          <RadioGroup
+            size="md"
+            defaultValue="a"
+            options={[{ value: "a", label: "Medium (md) — varsayılan" }, { value: "b", label: "Seçenek B" }]}
+          />
+          <RadioGroup
+            size="lg"
+            defaultValue="a"
+            options={[{ value: "a", label: "Large (lg)" }, { value: "b", label: "Seçenek B" }]}
+          />
+        </div>
+      </ShowcaseSection>
 
-      {/* Yatay */}
-      <Section title="Yatay (Horizontal)">
-        <RadioGroup
-          label="Sıralama"
-          horizontal
-          defaultValue="asc"
-          options={[
-            { value: "asc", label: "A → Z" },
-            { value: "desc", label: "Z → A" },
-            { value: "new", label: "En yeni" },
-          ]}
-        />
-      </Section>
+      <ShowcaseSection
+        title="Yatay (Horizontal)"
+        description="horizontal prop ile seçenekler yan yana dizilir."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Sıralama"
+  horizontal
+  defaultValue="asc"
+  options={[
+    { value: "asc",  label: "A → Z" },
+    { value: "desc", label: "Z → A" },
+    { value: "new",  label: "En yeni" },
+  ]}
+/>`}
+      >
+        <div className="max-w-sm">
+          <RadioGroup
+            label="Sıralama"
+            horizontal
+            defaultValue="asc"
+            options={[
+              { value: "asc", label: "A → Z" },
+              { value: "desc", label: "Z → A" },
+              { value: "new", label: "En yeni" },
+            ]}
+          />
+        </div>
+      </ShowcaseSection>
 
-      {/* Error */}
-      <Section title="Error State">
-        <RadioGroup
-          label="Ödeme yöntemi"
-          errorText="Bir ödeme yöntemi seçmeniz zorunludur."
-          options={[
-            { value: "card", label: "Kredi Kartı" },
-            { value: "bank", label: "Banka Transferi" },
-            { value: "crypto", label: "Kripto", disabled: true },
-          ]}
-        />
-      </Section>
+      <ShowcaseSection
+        title="Error State"
+        description="errorText ile zorunlu alan hatası gösterilir."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Ödeme yöntemi"
+  errorText="Bir ödeme yöntemi seçmeniz zorunludur."
+  options={[
+    { value: "card",   label: "Kredi Kartı" },
+    { value: "bank",   label: "Banka Transferi" },
+    { value: "crypto", label: "Kripto", disabled: true },
+  ]}
+/>`}
+      >
+        <div className="max-w-sm">
+          <RadioGroup
+            label="Ödeme yöntemi"
+            errorText="Bir ödeme yöntemi seçmeniz zorunludur."
+            options={[
+              { value: "card", label: "Kredi Kartı" },
+              { value: "bank", label: "Banka Transferi" },
+              { value: "crypto", label: "Kripto", disabled: true },
+            ]}
+          />
+        </div>
+      </ShowcaseSection>
 
-      {/* Kart görünümü */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-          Kart Görünümü (card)
-        </h2>
+      <ShowcaseSection
+        title="Kart Görünümü (card)"
+        description="card prop ile her seçenek ayrı bir kart olarak gösterilir."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Plan seçin"
+  card
+  defaultValue="pro"
+  options={[
+    { value: "starter",    label: "Starter",    description: "Bireysel kullanım, 3 proje limiti." },
+    { value: "pro",        label: "Pro",         description: "Sınırsız proje, analitik paneli." },
+    { value: "enterprise", label: "Enterprise",  description: "Özel fiyatlandırma, SLA garantisi." },
+  ]}
+/>`}
+      >
         <div className="max-w-md">
           <RadioGroup
             label="Plan seçin"
@@ -140,13 +207,23 @@ export default function RadioShowcase() {
             ]}
           />
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* Kart yatay */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-          Kart Görünümü — Yatay
-        </h2>
+      <ShowcaseSection
+        title="Kart Görünümü — Yatay"
+        description="card ve horizontal kombinasyonu ile yatay kart seçimi."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Fatura dönemi"
+  card
+  horizontal
+  defaultValue="annual"
+  options={[
+    { value: "monthly", label: "Aylık",  description: "₺99/ay" },
+    { value: "annual",  label: "Yıllık", description: "₺79/ay · %20 indirim" },
+  ]}
+/>`}
+      >
         <RadioGroup
           label="Fatura dönemi"
           card
@@ -157,49 +234,34 @@ export default function RadioShowcase() {
             { value: "annual", label: "Yıllık", description: "₺79/ay · %20 indirim" },
           ]}
         />
-      </section>
+      </ShowcaseSection>
 
-      {/* Disabled */}
-      <Section title="Disabled">
-        <RadioGroup
-          label="Disabled grup"
-          disabled
-          defaultValue="a"
-          options={[
-            { value: "a", label: "Seçenek A" },
-            { value: "b", label: "Seçenek B" },
-          ]}
-        />
-      </Section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import { RadioGroup } from "@/components/ui/radio";
-
-// Temel
-<RadioGroup
-  label="Plan"
-  defaultValue="free"
+      <ShowcaseSection
+        title="Disabled"
+        description="disabled prop ile tüm grup etkileşime kapatılır."
+        importLine={IMPORT}
+        code={`<RadioGroup
+  label="Disabled grup"
+  disabled
+  defaultValue="a"
   options={[
-    { value: "free", label: "Ücretsiz" },
-    { value: "pro", label: "Pro" },
+    { value: "a", label: "Seçenek A" },
+    { value: "b", label: "Seçenek B" },
   ]}
-/>
-
-// Controlled
-<RadioGroup value={value} onChange={setValue} options={[...]} />
-
-// Kart görünümü
-<RadioGroup card options={[...]} />
-
-// Yatay
-<RadioGroup horizontal options={[...]} />`}
-        </pre>
-      </section>
+/>`}
+      >
+        <div className="max-w-sm">
+          <RadioGroup
+            label="Disabled grup"
+            disabled
+            defaultValue="a"
+            options={[
+              { value: "a", label: "Seçenek A" },
+              { value: "b", label: "Seçenek B" },
+            ]}
+          />
+        </div>
+      </ShowcaseSection>
     </div>
   );
 }

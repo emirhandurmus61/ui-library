@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Table, type TableColumn } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { Table, type TableColumn } from "@/components/ui/table";`;
 
 interface User {
   id: number;
@@ -30,63 +33,52 @@ const statusVariant = {
 
 const statusLabel = { active: "Aktif", inactive: "Pasif", pending: "Bekliyor" };
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
+const columns: TableColumn<User>[] = [
+  {
+    key: "name",
+    header: "Kullanıcı",
+    sortable: true,
+    accessor: (row) => (
+      <div className="flex items-center gap-2.5">
+        <Avatar name={row.name} size="sm" />
+        <div>
+          <p className="font-medium text-foreground">{row.name}</p>
+          <p className="text-xs text-foreground-muted">{row.email}</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    key: "role",
+    header: "Rol",
+    sortable: true,
+    accessor: (row) => <span className="text-foreground-muted">{row.role}</span>,
+  },
+  {
+    key: "status",
+    header: "Durum",
+    sortable: true,
+    accessor: (row) => (
+      <Badge variant={statusVariant[row.status]} size="sm" dot>
+        {statusLabel[row.status]}
+      </Badge>
+    ),
+  },
+  {
+    key: "joined",
+    header: "Katılım",
+    sortable: true,
+    align: "right",
+    accessor: (row) => (
+      <span className="text-foreground-muted tabular-nums">
+        {new Date(row.joined).toLocaleDateString("tr-TR")}
+      </span>
+    ),
+  },
+];
 
 export default function TableShowcase() {
   const [selected, setSelected] = useState<User | null>(null);
-
-  const columns: TableColumn<User>[] = [
-    {
-      key: "name",
-      header: "Kullanıcı",
-      sortable: true,
-      accessor: (row) => (
-        <div className="flex items-center gap-2.5">
-          <Avatar name={row.name} size="sm" />
-          <div>
-            <p className="font-medium text-foreground">{row.name}</p>
-            <p className="text-xs text-foreground-muted">{row.email}</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: "role",
-      header: "Rol",
-      sortable: true,
-      accessor: (row) => <span className="text-foreground-muted">{row.role}</span>,
-    },
-    {
-      key: "status",
-      header: "Durum",
-      sortable: true,
-      accessor: (row) => (
-        <Badge variant={statusVariant[row.status]} size="sm" dot>
-          {statusLabel[row.status]}
-        </Badge>
-      ),
-    },
-    {
-      key: "joined",
-      header: "Katılım",
-      sortable: true,
-      align: "right",
-      accessor: (row) => (
-        <span className="text-foreground-muted tabular-nums">
-          {new Date(row.joined).toLocaleDateString("tr-TR")}
-        </span>
-      ),
-    },
-  ];
 
   return (
     <div className="max-w-4xl space-y-10">
@@ -97,30 +89,63 @@ export default function TableShowcase() {
         </p>
       </div>
 
-      <Section title="Temel (Sortable)">
+      <ShowcaseSection
+        title="Temel (Sortable)"
+        description="Sütun başlıklarına tıklayarak sıralama yapılabilir."
+        importLine={IMPORT}
+        code={`<Table
+  columns={columns}
+  data={USERS}
+  keyExtractor={(r) => r.id}
+/>`}
+      >
         <Table
           columns={columns}
           data={USERS}
           keyExtractor={(r) => r.id}
         />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Striped + Row Click">
-        {selected && (
-          <p className="text-sm text-foreground-muted mb-3">
-            Seçilen: <strong className="text-foreground">{selected.name}</strong>
-          </p>
-        )}
-        <Table
-          columns={columns}
-          data={USERS}
-          keyExtractor={(r) => r.id}
-          striped
-          onRowClick={setSelected}
-        />
-      </Section>
+      <ShowcaseSection
+        title="Striped + Row Click"
+        description="striped ile alternatif satır rengi; onRowClick ile satır seçimi."
+        importLine={IMPORT}
+        code={`<Table
+  columns={columns}
+  data={USERS}
+  keyExtractor={(r) => r.id}
+  striped
+  onRowClick={setSelected}
+/>`}
+      >
+        <div>
+          {selected && (
+            <p className="text-sm text-foreground-muted mb-3">
+              Seçilen: <strong className="text-foreground">{selected.name}</strong>
+            </p>
+          )}
+          <Table
+            columns={columns}
+            data={USERS}
+            keyExtractor={(r) => r.id}
+            striped
+            onRowClick={setSelected}
+          />
+        </div>
+      </ShowcaseSection>
 
-      <Section title="Compact + Bordered">
+      <ShowcaseSection
+        title="Compact + Bordered"
+        description="compact ile hücre dolgusu azalır; bordered ile sütun ayırıcılar eklenir."
+        importLine={IMPORT}
+        code={`<Table
+  columns={columns.slice(0, 3)}
+  data={USERS}
+  keyExtractor={(r) => r.id}
+  compact
+  bordered
+/>`}
+      >
         <Table
           columns={columns.slice(0, 3)}
           data={USERS}
@@ -128,16 +153,26 @@ export default function TableShowcase() {
           compact
           bordered
         />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Boş Tablo">
+      <ShowcaseSection
+        title="Boş Tablo"
+        description="data boş diziyken emptyText gösterilir."
+        importLine={IMPORT}
+        code={`<Table
+  columns={columns}
+  data={[]}
+  keyExtractor={(r) => r.id}
+  emptyText="Henüz kullanıcı eklenmedi."
+/>`}
+      >
         <Table
           columns={columns}
           data={[]}
           keyExtractor={(r) => r.id}
           emptyText="Henüz kullanıcı eklenmedi."
         />
-      </Section>
+      </ShowcaseSection>
     </div>
   );
 }

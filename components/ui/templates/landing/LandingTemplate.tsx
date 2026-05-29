@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarGroup } from "@/components/ui/avatar";
+import { BackgroundPattern } from "@/components/ui/background-pattern";
 
 /* ─── Icons ──────────────────────────────────────────────────── */
 
@@ -148,6 +149,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
+    <BackgroundPattern pattern="dots" theme="minimal" opacity={0.5}>
     <section className="py-20 md:py-28 text-center px-4">
       <div className="max-w-3xl mx-auto">
         <Badge variant="primary" className="mb-5">
@@ -177,6 +179,7 @@ function HeroSection() {
         </div>
       </div>
     </section>
+    </BackgroundPattern>
   );
 }
 

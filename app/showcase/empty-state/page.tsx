@@ -1,18 +1,8 @@
-"use client";
-
 import { EmptyState } from "@/components/ui/empty-state";
 import { Button } from "@/components/ui/button";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
+const IMPORT = `import { EmptyState } from "@/components/ui/empty-state";`;
 
 function SearchIcon() {
   return (
@@ -48,16 +38,33 @@ export default function EmptyStateShowcase() {
         </p>
       </div>
 
-      <Section title="Temel Kullanım">
+      <ShowcaseSection
+        title="Temel Kullanım"
+        description="title ve description ile minimal boş durum gösterimi."
+        importLine={IMPORT}
+        code={`<EmptyState
+  title="Henüz Veri Yok"
+  description="Başlamak için yeni bir öğe ekleyin."
+/>`}
+      >
         <div className="border border-border rounded-[var(--radius-xl)] bg-surface">
           <EmptyState
             title="Henüz Veri Yok"
             description="Başlamak için yeni bir öğe ekleyin."
           />
         </div>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="CTA ile">
+      <ShowcaseSection
+        title="CTA ile"
+        description="action prop ile kullanıcıyı yönlendiren aksiyon butonu eklenir."
+        importLine={IMPORT}
+        code={`<EmptyState
+  title="Proje Bulunamadı"
+  description="Henüz hiç proje oluşturmadınız."
+  action={<Button>Proje Oluştur</Button>}
+/>`}
+      >
         <div className="border border-border rounded-[var(--radius-xl)] bg-surface">
           <EmptyState
             title="Proje Bulunamadı"
@@ -65,9 +72,16 @@ export default function EmptyStateShowcase() {
             action={<Button>Proje Oluştur</Button>}
           />
         </div>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Özel İkon">
+      <ShowcaseSection
+        title="Özel İkon"
+        description="icon prop ile bağlama uygun özel ikon kullanılır."
+        importLine={IMPORT}
+        code={`<EmptyState icon={<SearchIcon />} title="Sonuç Yok" description="Arama kriterlerinizi değiştirin." size="sm" />
+<EmptyState icon={<InboxIcon />} title="Gelen Kutusu Boş" description="Yeni mesajınız yok." size="sm" />
+<EmptyState icon={<FolderIcon />} title="Klasör Boş" description="Dosya yükleyin." size="sm" action={<Button size="sm" variant="outline">Yükle</Button>} />`}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="border border-border rounded-[var(--radius-xl)] bg-surface">
             <EmptyState
@@ -95,9 +109,16 @@ export default function EmptyStateShowcase() {
             />
           </div>
         </div>
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Boyutlar">
+      <ShowcaseSection
+        title="Boyutlar"
+        description="sm, md ve lg boyut seçenekleriyle iç dolgu ve tipografi ölçeklenir."
+        importLine={IMPORT}
+        code={`<EmptyState title="Küçük" description="sm boyutu." size="sm" />
+<EmptyState title="Orta"  description="md boyutu." size="md" />
+<EmptyState title="Büyük" description="lg boyutu." size="lg" />`}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="border border-border rounded-[var(--radius-xl)] bg-surface">
             <EmptyState title="Küçük" description="sm boyutu." size="sm" />
@@ -109,7 +130,7 @@ export default function EmptyStateShowcase() {
             <EmptyState title="Büyük" description="lg boyutu." size="lg" />
           </div>
         </div>
-      </Section>
+      </ShowcaseSection>
     </div>
   );
 }

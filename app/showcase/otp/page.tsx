@@ -2,15 +2,9 @@
 
 import { useState } from "react";
 import { OTPInput, OTPCard } from "@/components/ui/otp";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-function SectionHeader({ title, description }: { title: string; description?: string }) {
-  return (
-    <div>
-      <h2 className="text-base font-semibold text-foreground">{title}</h2>
-      {description && <p className="text-sm text-foreground-muted mt-0.5">{description}</p>}
-    </div>
-  );
-}
+const IMPORT = `import { OTPInput, OTPCard } from "@/components/ui/otp";`;
 
 function Demo({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -35,13 +29,23 @@ export default function OTPShowcase() {
         </p>
       </div>
 
-      {/* 1 — OTPInput temel kullanım */}
-      <section className="flex flex-col gap-6">
-        <SectionHeader
-          title="1. OTP Input — Temel"
-          description="Klavye ile ileri/geri geçiş, backspace, paste (Ctrl+V) ve otomatik ilerleme desteklenir."
-        />
-        <div className="p-8 bg-background-muted rounded-[var(--radius-xl)] border border-border flex flex-col gap-8">
+      <ShowcaseSection
+        title="1. OTP Input — Temel"
+        description="Klavye ile ileri/geri geçiş, backspace, paste (Ctrl+V) ve otomatik ilerleme desteklenir."
+        importLine={IMPORT}
+        code={`<OTPInput
+  length={6}
+  value={code}
+  onChange={setCode}
+  onComplete={(v) => verifyCode(v)}
+  label="Doğrulama Kodu"
+  helperText="E-posta adresinize gönderilen 6 haneli kodu girin."
+/>
+<OTPInput length={4} value={pin} onChange={setPin} label="PIN Kodu" />
+<OTPInput length={6} type="alphanumeric" label="Davet Kodu" />`}
+        previewClassName="bg-background-muted rounded-[var(--radius-xl)] border border-border"
+      >
+        <div className="p-8 flex flex-col gap-8">
           <Demo label="6 hane — numeric (varsayılan)">
             <OTPInput
               length={6}
@@ -74,12 +78,18 @@ export default function OTPShowcase() {
             />
           </Demo>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* 2 — Boyutlar */}
-      <section className="flex flex-col gap-6">
-        <SectionHeader title="2. Boyutlar" description="sm / md / lg" />
-        <div className="p-8 bg-background-muted rounded-[var(--radius-xl)] border border-border flex flex-col gap-8">
+      <ShowcaseSection
+        title="2. Boyutlar"
+        description="sm, md (varsayılan) ve lg boyut seçenekleri."
+        importLine={IMPORT}
+        code={`<OTPInput length={6} size="sm" label="Small" />
+<OTPInput length={6} size="md" label="Medium" />
+<OTPInput length={6} size="lg" label="Large" />`}
+        previewClassName="bg-background-muted rounded-[var(--radius-xl)] border border-border"
+      >
+        <div className="p-8 flex flex-col gap-8">
           <Demo label="sm">
             <OTPInput length={6} size="sm" label="Small" />
           </Demo>
@@ -90,12 +100,19 @@ export default function OTPShowcase() {
             <OTPInput length={6} size="lg" label="Large" />
           </Demo>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* 3 — Durumlar */}
-      <section className="flex flex-col gap-6">
-        <SectionHeader title="3. Durumlar" description="error · success · disabled · mask" />
-        <div className="p-8 bg-background-muted rounded-[var(--radius-xl)] border border-border flex flex-col gap-8">
+      <ShowcaseSection
+        title="3. Durumlar"
+        description="error, success, disabled ve mask (gizleme) durumları."
+        importLine={IMPORT}
+        code={`<OTPInput length={6} value="12" label="Hata durumu" errorText="Girdiğiniz kod hatalı." />
+<OTPInput length={6} value="847291" label="Başarı durumu" successText="Kod doğrulandı!" />
+<OTPInput length={6} value="123456" label="Devre dışı" disabled />
+<OTPInput length={6} mask label="PIN (gizli)" helperText="Karakterler gizlenir." />`}
+        previewClassName="bg-background-muted rounded-[var(--radius-xl)] border border-border"
+      >
+        <div className="p-8 flex flex-col gap-8">
           <Demo label="Hata">
             <OTPInput length={6} value="12" label="Hata durumu" errorText="Girdiğiniz kod hatalı. Tekrar deneyin." />
           </Demo>
@@ -109,15 +126,25 @@ export default function OTPShowcase() {
             <OTPInput length={6} mask label="PIN (gizli)" helperText="Karakterler gizlenir." />
           </Demo>
         </div>
-      </section>
+      </ShowcaseSection>
 
-      {/* 4 — OTPCard e-posta */}
-      <section className="flex flex-col gap-4">
-        <SectionHeader
-          title="4. OTP Card — E-posta doğrulama"
-          description="Kodu tamamladığında veya 'Kodu Doğrula' butonuna basıldığında onVerify tetiklenir. 60s tekrar gönder cooldown'u vardır."
-        />
-        <div className="flex justify-center py-10 bg-background-muted rounded-[var(--radius-xl)] border border-border">
+      <ShowcaseSection
+        title="4. OTP Card — E-posta doğrulama"
+        description="Kodu tamamladığında veya 'Kodu Doğrula' butonuna basıldığında onVerify tetiklenir. 60s tekrar gönder cooldown'u vardır."
+        importLine={IMPORT}
+        code={`<OTPCard
+  logoText="MyApp"
+  mode="email"
+  destination="e***@gmail.com"
+  onVerify={async (code) => {
+    await verifyCode(code); // throws on error
+  }}
+  onResend={async () => { await resendCode(); }}
+  backHref="/giris"
+/>`}
+        previewClassName="bg-background-muted rounded-[var(--radius-xl)] border border-border"
+      >
+        <div className="flex justify-center py-10">
           <OTPCard
             logoText="MyApp"
             mode="email"
@@ -131,18 +158,28 @@ export default function OTPShowcase() {
             backHref="#"
           />
         </div>
-        <p className="text-xs text-foreground-subtle text-center">
+        <p className="text-xs text-foreground-subtle text-center pb-4">
           Test için doğru kod: <span className="font-mono font-semibold text-foreground">123456</span>
         </p>
-      </section>
+      </ShowcaseSection>
 
-      {/* 5 — OTPCard telefon */}
-      <section className="flex flex-col gap-4">
-        <SectionHeader
-          title="5. OTP Card — SMS doğrulama"
-          description="mode=&quot;phone&quot; ile telefon doğrulama ikonu ve metni."
-        />
-        <div className="flex justify-center py-10 bg-background-muted rounded-[var(--radius-xl)] border border-border">
+      <ShowcaseSection
+        title="5. OTP Card — SMS doğrulama"
+        description='mode="phone" ile telefon doğrulama ikonu ve metni gösterilir.'
+        importLine={IMPORT}
+        code={`<OTPCard
+  logoText="MyApp"
+  title="Telefon doğrulama"
+  mode="phone"
+  destination="+90 5** *** **12"
+  length={4}
+  onVerify={async (code) => { await verifySMS(code); }}
+  onResend={async () => { await resendSMS(); }}
+  backHref="/giris"
+/>`}
+        previewClassName="bg-background-muted rounded-[var(--radius-xl)] border border-border"
+      >
+        <div className="flex justify-center py-10">
           <OTPCard
             logoText="MyApp"
             title="Telefon doğrulama"
@@ -158,51 +195,10 @@ export default function OTPShowcase() {
             backHref="#"
           />
         </div>
-        <p className="text-xs text-foreground-subtle text-center">
+        <p className="text-xs text-foreground-subtle text-center pb-4">
           Test için doğru kod: <span className="font-mono font-semibold text-foreground">4242</span>
         </p>
-      </section>
-
-      {/* Kullanım */}
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider">Kullanım</h2>
-        <pre className="bg-surface-raised border border-border rounded-[var(--radius-lg)] p-4 text-sm font-mono text-foreground overflow-x-auto whitespace-pre">
-{`import { OTPInput, OTPCard } from "@/components/ui/otp";
-
-// Temel input
-<OTPInput
-  length={6}
-  value={code}
-  onChange={setCode}
-  onComplete={(v) => verifyCode(v)}
-  label="Doğrulama Kodu"
-  helperText="E-posta adresinize gönderildi."
-/>
-
-// 4 haneli PIN, maskelenmiş
-<OTPInput length={4} mask type="numeric" />
-
-// Alphanumeric davet kodu
-<OTPInput length={6} type="alphanumeric" />
-
-// Hazır kart — e-posta doğrulama
-<OTPCard
-  mode="email"
-  destination="e***@gmail.com"
-  onVerify={async (code) => { await verifyCode(code); }}
-  onResend={async () => { await resendCode(); }}
-  backHref="/giris"
-/>
-
-// SMS — 4 hane
-<OTPCard
-  mode="phone"
-  length={4}
-  destination="+90 5** *** **12"
-  onVerify={async (code) => { await verifySMS(code); }}
-/>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

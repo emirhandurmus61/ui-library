@@ -1,4 +1,7 @@
 import { Avatar, AvatarGroup } from "@/components/ui/avatar";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
+
+const IMPORT = `import { Avatar, AvatarGroup } from "@/components/ui/avatar";`;
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="1em" height="1em">
@@ -12,17 +15,6 @@ const BotIcon = () => (
   </svg>
 );
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-        {title}
-      </h2>
-      <div className="flex flex-wrap items-end gap-4">{children}</div>
-    </section>
-  );
-}
-
 export default function AvatarShowcase() {
   return (
     <div className="max-w-3xl space-y-10">
@@ -33,42 +25,84 @@ export default function AvatarShowcase() {
         </p>
       </div>
 
-      {/* Görsel */}
-      <Section title="Görsel (src)">
+      <ShowcaseSection
+        title="Görsel (src)"
+        description="src prop verildiğinde resim yüklenir; yüklenemezse initials'a düşer."
+        importLine={IMPORT}
+        code={`<Avatar size="xs"  src="https://i.pravatar.cc/80?img=1" name="Ali Veli" />
+<Avatar size="sm"  src="https://i.pravatar.cc/80?img=2" name="Ayşe Kaya" />
+<Avatar size="md"  src="https://i.pravatar.cc/80?img=3" name="Mehmet Yıldız" />
+<Avatar size="lg"  src="https://i.pravatar.cc/80?img=4" name="Fatma Şahin" />
+<Avatar size="xl"  src="https://i.pravatar.cc/80?img=5" name="Hüseyin Demir" />
+<Avatar size="2xl" src="https://i.pravatar.cc/80?img=6" name="Zeynep Arslan" />`}
+        previewClassName="flex flex-wrap items-end gap-4"
+      >
         <Avatar size="xs"  src="https://i.pravatar.cc/80?img=1"  name="Ali Veli" />
         <Avatar size="sm"  src="https://i.pravatar.cc/80?img=2"  name="Ayşe Kaya" />
         <Avatar size="md"  src="https://i.pravatar.cc/80?img=3"  name="Mehmet Yıldız" />
         <Avatar size="lg"  src="https://i.pravatar.cc/80?img=4"  name="Fatma Şahin" />
         <Avatar size="xl"  src="https://i.pravatar.cc/80?img=5"  name="Hüseyin Demir" />
         <Avatar size="2xl" src="https://i.pravatar.cc/80?img=6"  name="Zeynep Arslan" />
-      </Section>
+      </ShowcaseSection>
 
-      {/* Initials (src yok) */}
-      <Section title="Initials (isimden otomatik renk)">
+      <ShowcaseSection
+        title="Initials (isimden otomatik renk)"
+        description="src yoksa name'den initials ve deterministik arka plan rengi üretilir."
+        importLine={IMPORT}
+        code={`<Avatar size="xs"  name="Ali Veli" />
+<Avatar size="sm"  name="Emirhan Durmuş" />
+<Avatar size="md"  name="Ayşe Kaya" />
+<Avatar size="lg"  name="Mehmet Yıldız" />
+<Avatar size="xl"  name="Fatma Şahin" />
+<Avatar size="2xl" name="Hüseyin Demir" />`}
+        previewClassName="flex flex-wrap items-end gap-4"
+      >
         <Avatar size="xs"  name="Ali Veli" />
         <Avatar size="sm"  name="Emirhan Durmuş" />
         <Avatar size="md"  name="Ayşe Kaya" />
         <Avatar size="lg"  name="Mehmet Yıldız" />
         <Avatar size="xl"  name="Fatma Şahin" />
         <Avatar size="2xl" name="Hüseyin Demir" />
-      </Section>
+      </ShowcaseSection>
 
-      {/* Fallback ikonlar */}
-      <Section title="Fallback (src yok, isim yok)">
+      <ShowcaseSection
+        title="Fallback (src yok, isim yok)"
+        description="Ne src ne name verilmezse varsayılan ikon veya özel fallbackIcon gösterilir."
+        importLine={IMPORT}
+        code={`<Avatar size="sm" />
+<Avatar size="md" />
+<Avatar size="lg" fallbackIcon={<UserIcon />} />
+<Avatar size="xl" fallbackIcon={<BotIcon />} />`}
+        previewClassName="flex flex-wrap items-end gap-4"
+      >
         <Avatar size="sm" />
         <Avatar size="md" />
         <Avatar size="lg" fallbackIcon={<UserIcon />} />
         <Avatar size="xl" fallbackIcon={<BotIcon />} />
-      </Section>
+      </ShowcaseSection>
 
-      {/* Hatalı src → initials'a düşer */}
-      <Section title="Bozuk src → Initials Fallback">
+      <ShowcaseSection
+        title="Bozuk src → Initials Fallback"
+        description="Geçersiz src verildiğinde bileşen otomatik olarak initials'a döner."
+        importLine={IMPORT}
+        code={`<Avatar size="md" src="https://hata.invalid/img.jpg" name="Emirhan Durmuş" />
+<Avatar size="lg" src="https://hata.invalid/img.jpg" name="Ayşe Kaya" />`}
+        previewClassName="flex flex-wrap items-end gap-4"
+      >
         <Avatar size="md" src="https://hata.invalid/img.jpg" name="Emirhan Durmuş" />
         <Avatar size="lg" src="https://hata.invalid/img.jpg" name="Ayşe Kaya" />
-      </Section>
+      </ShowcaseSection>
 
-      {/* Status */}
-      <Section title="Status Dot">
+      <ShowcaseSection
+        title="Status Dot"
+        description="status prop ile online/busy/away/offline göstergesi eklenir."
+        importLine={IMPORT}
+        code={`<Avatar size="md" name="Ali Veli" status="online" />
+<Avatar size="md" name="Ayşe Kaya" status="busy" />
+<Avatar size="md" name="Mehmet Yıldız" status="away" />
+<Avatar size="md" name="Fatma Şahin" status="offline" />`}
+        previewClassName="flex flex-wrap items-end gap-4"
+      >
         <div className="flex flex-col items-center gap-1">
           <Avatar size="md" name="Ali Veli" status="online" />
           <span className="text-xs text-foreground-muted">online</span>
@@ -87,13 +121,25 @@ export default function AvatarShowcase() {
         </div>
         <Avatar size="lg" src="https://i.pravatar.cc/80?img=7" name="Hüseyin" status="online" />
         <Avatar size="xl" src="https://i.pravatar.cc/80?img=8" name="Zeynep" status="busy" />
-      </Section>
+      </ShowcaseSection>
 
-      {/* AvatarGroup */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-4">
-          AvatarGroup
-        </h2>
+      <ShowcaseSection
+        title="AvatarGroup"
+        description="max prop ile aşılan avatarlar +N olarak gruplanır."
+        importLine={IMPORT}
+        code={`<AvatarGroup
+  size="sm"
+  max={4}
+  avatars={[
+    { name: "Emirhan Durmuş" },
+    { name: "Ayşe Kaya" },
+    { name: "Mehmet Yıldız" },
+    { name: "Fatma Şahin" },
+    { name: "Hüseyin Demir" },
+    { name: "Zeynep Arslan" },
+  ]}
+/>`}
+      >
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
             <p className="text-xs text-foreground-muted">sm · max 4</p>
@@ -141,36 +187,7 @@ export default function AvatarShowcase() {
             />
           </div>
         </div>
-      </section>
-
-      {/* Kullanım */}
-      <section>
-        <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-3">
-          Kullanım
-        </h2>
-        <pre className="bg-surface-raised border border-border rounded-lg p-4 text-sm font-mono text-foreground overflow-x-auto">
-{`import { Avatar, AvatarGroup } from "@/components/ui/avatar";
-
-// Görsel
-<Avatar src="/user.jpg" name="Ali Veli" size="lg" />
-
-// Initials (src yoksa otomatik)
-<Avatar name="Emirhan Durmuş" size="md" />
-
-// Status dot
-<Avatar name="Ayşe" status="online" />
-
-// AvatarGroup (max'ı aşanlar +N olarak gösterilir)
-<AvatarGroup
-  size="md"
-  max={4}
-  avatars={[
-    { name: "Ali Veli" },
-    { src: "/user.jpg", name: "Ayşe" },
-  ]}
-/>`}
-        </pre>
-      </section>
+      </ShowcaseSection>
     </div>
   );
 }

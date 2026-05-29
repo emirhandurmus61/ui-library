@@ -1,15 +1,7 @@
 import { Progress } from "@/components/ui/progress";
+import { ShowcaseSection } from "@/components/ui/showcase-section";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="text-sm font-semibold text-foreground-muted uppercase tracking-wider mb-5">
-        {title}
-      </h2>
-      <div className="space-y-4">{children}</div>
-    </section>
-  );
-}
+const IMPORT = `import { Progress } from "@/components/ui/progress";`;
 
 export default function ProgressShowcase() {
   return (
@@ -21,35 +13,78 @@ export default function ProgressShowcase() {
         </p>
       </div>
 
-      <Section title="Renkler">
-        <Progress value={70} color="primary" label="Primary" showValue />
-        <Progress value={85} color="success" label="Success" showValue />
-        <Progress value={45} color="danger"  label="Danger"  showValue />
-        <Progress value={60} color="warning" label="Warning" showValue />
-        <Progress value={55} color="info"    label="Info"    showValue />
-      </Section>
+      <ShowcaseSection
+        title="Renkler"
+        description="primary, success, danger, warning ve info renk seçenekleri."
+        importLine={IMPORT}
+        code={`<Progress value={70} color="primary" label="Primary" showValue />
+<Progress value={85} color="success" label="Success" showValue />
+<Progress value={45} color="danger"  label="Danger"  showValue />
+<Progress value={60} color="warning" label="Warning" showValue />
+<Progress value={55} color="info"    label="Info"    showValue />`}
+      >
+        <div className="space-y-4">
+          <Progress value={70} color="primary" label="Primary" showValue />
+          <Progress value={85} color="success" label="Success" showValue />
+          <Progress value={45} color="danger"  label="Danger"  showValue />
+          <Progress value={60} color="warning" label="Warning" showValue />
+          <Progress value={55} color="info"    label="Info"    showValue />
+        </div>
+      </ShowcaseSection>
 
-      <Section title="Boyutlar">
-        <Progress value={60} size="xs" color="primary" label="xs" />
-        <Progress value={60} size="sm" color="primary" label="sm" />
-        <Progress value={60} size="md" color="primary" label="md" />
-        <Progress value={60} size="lg" color="primary" label="lg" />
-      </Section>
+      <ShowcaseSection
+        title="Boyutlar"
+        description="xs, sm, md ve lg yükseklik seçenekleri."
+        importLine={IMPORT}
+        code={`<Progress value={60} size="xs" color="primary" label="xs" />
+<Progress value={60} size="sm" color="primary" label="sm" />
+<Progress value={60} size="md" color="primary" label="md" />
+<Progress value={60} size="lg" color="primary" label="lg" />`}
+      >
+        <div className="space-y-4">
+          <Progress value={60} size="xs" color="primary" label="xs" />
+          <Progress value={60} size="sm" color="primary" label="sm" />
+          <Progress value={60} size="md" color="primary" label="md" />
+          <Progress value={60} size="lg" color="primary" label="lg" />
+        </div>
+      </ShowcaseSection>
 
-      <Section title="Striped">
-        <Progress value={75} color="primary" label="Yükleniyor..." showValue striped />
-        <Progress value={50} color="success" striped />
-      </Section>
+      <ShowcaseSection
+        title="Striped"
+        description="striped prop ile çizgili desen eklenir."
+        importLine={IMPORT}
+        code={`<Progress value={75} color="primary" label="Yükleniyor..." showValue striped />
+<Progress value={50} color="success" striped />`}
+      >
+        <div className="space-y-4">
+          <Progress value={75} color="primary" label="Yükleniyor..." showValue striped />
+          <Progress value={50} color="success" striped />
+        </div>
+      </ShowcaseSection>
 
-      <Section title="Animasyonlu (indeterminate tarzı)">
+      <ShowcaseSection
+        title="Animasyonlu (indeterminate tarzı)"
+        description="animated prop ile dolum animasyonu sürekli oynatılır."
+        importLine={IMPORT}
+        code={`<Progress value={65} color="info" label="Senkronize ediliyor" animated />`}
+      >
         <Progress value={65} color="info" label="Senkronize ediliyor" animated />
-      </Section>
+      </ShowcaseSection>
 
-      <Section title="Çeşitli Değerler">
-        {[10, 25, 50, 75, 90, 100].map((v) => (
-          <Progress key={v} value={v} showValue color={v === 100 ? "success" : "primary"} />
-        ))}
-      </Section>
+      <ShowcaseSection
+        title="Çeşitli Değerler"
+        description="0-100 aralığında farklı değerler ve tamamlandığında success rengi."
+        importLine={IMPORT}
+        code={`{[10, 25, 50, 75, 90, 100].map((v) => (
+  <Progress key={v} value={v} showValue color={v === 100 ? "success" : "primary"} />
+))}`}
+      >
+        <div className="space-y-4">
+          {[10, 25, 50, 75, 90, 100].map((v) => (
+            <Progress key={v} value={v} showValue color={v === 100 ? "success" : "primary"} />
+          ))}
+        </div>
+      </ShowcaseSection>
     </div>
   );
 }
