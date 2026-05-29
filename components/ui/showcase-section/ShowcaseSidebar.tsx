@@ -136,6 +136,10 @@ const NAV: NavCategory[] = [
       { href: "/showcase/banner",            label: "Banner" },
       { href: "/showcase/countdown",         label: "Countdown" },
       { href: "/showcase/comparison-table",  label: "Comparison Table" },
+      { href: "/showcase/tour",               label: "Tour / Onboarding" },
+      { href: "/showcase/notification-center", label: "Notification Center" },
+      { href: "/showcase/cookie-consent",    label: "Cookie Consent" },
+      { href: "/showcase/kbd",               label: "Keyboard Shortcut" },
       { href: "/showcase/kanban-board",      label: "Kanban Board" },
       { href: "/showcase/tree-view",         label: "Tree View" },
       { href: "/showcase/diff-viewer",       label: "Diff Viewer" },
@@ -247,6 +251,22 @@ const NAV: NavCategory[] = [
       { href: "/showcase/templates/landing-blog",     label: "Landing — Blog/Medya" },
       { href: "/showcase/templates/landing-app",      label: "Landing — Mobil App" },
       { href: "/showcase/templates/landing-event",    label: "Landing — Etkinlik" },
+    ],
+  },
+  {
+    id: "utility",
+    label: "Utility",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+    color: "text-lime-500",
+    items: [
+      { href: "/showcase/scroll-progress", label: "Scroll Progress" },
+      { href: "/showcase/reading-time",    label: "Reading Time" },
+      { href: "/showcase/share-button",    label: "Share Button" },
+      { href: "/showcase/print-button",    label: "Print Button" },
     ],
   },
   {
