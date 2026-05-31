@@ -314,7 +314,9 @@ export default function Home() {
         {/* Falling component columns */}
         <FallingColumns />
 
-        {/* Central glow */}
+        {/* Central glow + text readability layer */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[900px] sm:h-[700px] rounded-full pointer-events-none z-10"
+          style={{ background: "radial-gradient(ellipse at center,var(--background) 0%,var(--background) 20%,transparent 70%)" }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle,rgba(99,102,241,.14) 0%,rgba(168,85,247,.07) 40%,transparent 70%)", filter: "blur(40px)", animation: "pulse-soft 6s ease-in-out infinite" }} />
 
