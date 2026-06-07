@@ -12,7 +12,7 @@ export default function BreadcrumbShowcase() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Breadcrumb</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           chevron · slash · özel separator · icon · maxItems ile collapse · a11y (nav, aria-current)
         </p>
       </div>

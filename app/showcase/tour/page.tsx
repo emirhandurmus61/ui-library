@@ -22,10 +22,10 @@ export default function TourShowcase() {
   const [open2, setOpen2] = useState(false);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Tour / Onboarding</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Tour / Onboarding</h1>
+        <p className="text-sm text-foreground-muted">
           Adım adım kullanıcı yönlendirme. SVG spotlight cutout, tooltip yerleşimi ve ilerleme göstergesi.
         </p>
       </div>

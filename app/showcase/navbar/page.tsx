@@ -78,7 +78,7 @@ export default function NavbarShowcase() {
     <div className="max-w-4xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Navbar</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           10 farklı tasarım · e-ticaret · rezervasyon · dashboard · glass · lüks · sosyal · centered · minimal · full · sticky
         </p>
       </div>

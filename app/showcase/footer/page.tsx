@@ -111,7 +111,7 @@ export default function FooterShowcase() {
     <div className="max-w-4xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Footer</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           10 farklı footer tipi · minimal · multi-column · centered · dark · newsletter · split · gradient · app store · mega · stacked
         </p>
       </div>

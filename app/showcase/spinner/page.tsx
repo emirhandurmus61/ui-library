@@ -708,7 +708,7 @@ export default function SpinnerShowcase() {
 
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Spinner</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           5 variant · 5 size · 7 renk · erişilebilir (role=status, sr-only label)
         </p>
       </div>

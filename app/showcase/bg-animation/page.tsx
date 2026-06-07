@@ -943,7 +943,7 @@ export default function BgAnimationShowcase() {
     <div className="max-w-4xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Background Animation</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           12 animasyon · 15 gerçek kullanım senaryosu · İnteraktif önizleme · SaaS · Fintech · Eğitim · Emlak · Web3 · ve daha fazlası
         </p>
       </div>

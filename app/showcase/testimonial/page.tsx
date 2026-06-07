@@ -56,10 +56,10 @@ const EXTRA: TestimonialItem[] = [
 
 export default function TestimonialShowcase() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Testimonial</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Testimonial</h1>
+        <p className="text-sm text-foreground-muted">
           Müşteri yorumları için 6 farklı layout. Grid, carousel, masonry, list, spotlight ve wall.
         </p>
       </div>

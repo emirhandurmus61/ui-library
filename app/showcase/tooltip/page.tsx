@@ -34,7 +34,7 @@ export default function TooltipShowcase() {
     <div className="max-w-3xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Tooltip</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           4 yön · 5 variant · gecikme ayarı · ok işareti · a11y (role=tooltip, aria-describedby)
         </p>
       </div>

@@ -34,7 +34,7 @@ export default function RadioShowcase() {
     <div className="max-w-3xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Radio / RadioGroup</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           3 size · description · error state · yatay · kart görünümü
         </p>
       </div>

@@ -5,10 +5,10 @@ import { Banner } from "@/components/ui/banner";
 
 export default function BannerShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Banner</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Banner</h1>
+        <p className="text-sm text-foreground-muted">
           Sayfa içi veya fixed konumlu duyuru şeritleri. 7 varyant, aksiyonlu ve dismissible.
         </p>
       </div>

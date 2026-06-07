@@ -5,10 +5,10 @@ import { Kbd, KbdShortcut, KbdGroup } from "@/components/ui/kbd";
 
 export default function KbdShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Keyboard Shortcut (Kbd)</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Keyboard Shortcut (Kbd)</h1>
+        <p className="text-sm text-foreground-muted">
           ⌘K, ⇧⌘P gibi kısayol gösterme badge'leri. Sembol dönüşümü, 5 varyant, 4 boyut.
         </p>
       </div>

@@ -21,7 +21,7 @@ export default function StatCardShowcase() {
     <div className="max-w-4xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Stat Card</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           trend (up/down/neutral) · 5 ikon rengi · dashboard istatistik kartı
         </p>
       </div>

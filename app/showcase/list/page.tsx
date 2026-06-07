@@ -20,7 +20,7 @@ export default function ListShowcase() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">List / List Item</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           default · bordered · flush · ghost · leading/trailing slot · interactive · selected
         </p>
       </div>

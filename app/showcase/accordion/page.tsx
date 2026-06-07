@@ -37,7 +37,7 @@ export default function AccordionShowcase() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Accordion / Collapse</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           tekli/çoklu açılma · bordered · flush · disabled · a11y (aria-expanded, aria-controls)
         </p>
       </div>

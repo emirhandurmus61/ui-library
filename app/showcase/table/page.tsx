@@ -84,7 +84,7 @@ export default function TableShowcase() {
     <div className="max-w-4xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Table</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           sortable headers · striped · hoverable · bordered · compact · row click · responsive scroll
         </p>
       </div>

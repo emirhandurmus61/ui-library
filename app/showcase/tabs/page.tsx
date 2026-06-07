@@ -32,7 +32,7 @@ export default function TabsShowcase() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Tabs</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           line · pill · boxed · ikon · badge · disabled · a11y (role=tab, aria-selected)
         </p>
       </div>

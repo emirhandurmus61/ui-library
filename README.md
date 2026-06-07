@@ -22,7 +22,7 @@
 
 ## What is this?
 
-UI Library is a curated collection of **90+ handcrafted UI components** and **19 full-page templates** — built for speed, consistency, and real-world use. Every component is live-demoed in an interactive showcase. No external UI framework dependencies. Just Next.js, Tailwind CSS v4, and clean TypeScript.
+UI Library is a curated collection of **100+ handcrafted UI components** and **19 full-page templates** — built for speed, consistency, and real-world use. Every component is live-demoed in an interactive showcase with code preview, viewport toggling, and copy support. No external UI framework dependencies. Just Next.js, Tailwind CSS v4, and clean TypeScript.
 
 ---
 
@@ -52,13 +52,13 @@ UI Library is a curated collection of **90+ handcrafted UI components** and **19
 `Card` · `Table` · `DataTable` · `Pagination` · `Timeline` · `EmptyState` · `StatCard` · `LogoWall` · `Testimonial` · `List` · `TreeView`
 
 ### Forms & Inputs
-`ColorPicker` · `DatePicker` · `FileUpload` · `OTP` · `TagInput` · `RatingInput` · `PhoneInput` · `Combobox` · `MultiStepForm` · `Stepper`
+`ColorPicker` · `DatePicker` · `FileUpload` · `OTP` · `TagInput` · `RatingInput` · `PhoneInput` · `Combobox` · `MultiStepForm` · `Stepper` · `Slider`
 
 ### Feedback & Overlays
 `Modal` · `Drawer` · `Toast` · `Alert` · `Banner` · `NotificationCenter` · `CookieConsent` · `Countdown`
 
 ### Charts & Visualization
-`AreaChart` · `DonutChart` · `GaugeChart` · `HeatMap` · `MiniBarChart` · `Sparkline`
+`AreaChart` · `BarChart` · `LineChart` · `RadarChart` · `DonutChart` · `GaugeChart` · `ProgressRing` · `HeatMap` · `MiniBarChart` · `Sparkline`
 
 ### Animation & Motion
 `Marquee` · `Typewriter` · `ShimmerText` · `Reveal` · `NumberFlow` · `AnimatedCounter` · `MagneticButton` · `ConfettiButton` · `BgAnimation` · `BackgroundPattern` · `ScrollProgress`
@@ -71,6 +71,48 @@ UI Library is a curated collection of **90+ handcrafted UI components** and **19
 
 ### Misc
 `ThemeToggle` · `ThemeSwitcher` · `ShareButton` · `PrintButton` · `KanbanBoard` · `Skeleton` · `Progress` · `PricingTable` · `ComparisonTable` · `FaqList` · `FeatureGrid`
+
+---
+
+## Charts
+
+10 fully custom SVG/Canvas charts — zero external chart libraries:
+
+| Component | Type | Features |
+|---|---|---|
+| `BarChart` | SVG | Grouped datasets · horizontal mode · negative values · hover tooltip |
+| `LineChart` | SVG | Smooth bezier curves · null gap support · filled area · multi-dataset |
+| `AreaChart` | SVG | Stacked areas · gradient fill · smooth interpolation |
+| `RadarChart` | SVG | Multi-dataset · polar grid · hover highlight |
+| `DonutChart` | SVG | Segments · center label · legend · animation |
+| `GaugeChart` | SVG | Arc gauge · color zones · animated needle |
+| `ProgressRing` | SVG | Mount animation · `prefers-reduced-motion` · custom center slot |
+| `HeatMap` | SVG | GitHub-style · seeded random · hover tooltip · color intensity |
+| `MiniBarChart` | SVG | Inline sparkbar · compact |
+| `Sparkline` | SVG | Trend line · minimal footprint |
+
+---
+
+## Background Animations
+
+12 animation types — pure CSS or Canvas, no external dependencies:
+
+| Type | Render | Best For |
+|---|---|---|
+| `aurora` | CSS | SaaS hero · AI product · Education |
+| `particles` | CSS | Startup · pitch decks |
+| `grid-pulse` | CSS | Developer tools · Fintech |
+| `wave` | CSS | Music · audio platforms |
+| `gradient-shift` | CSS | E-commerce · lifestyle brands |
+| `bubbles` | CSS | Health · wellness apps |
+| `meteor` | CSS | Gaming · speed-themed products |
+| `noise-drift` | CSS | Creative · Real estate · NFT |
+| `beam` | CSS | Cyber security · sci-fi |
+| `matrix` | Canvas | Web3 · crypto · terminal |
+| `circuit` | Canvas | IoT · hardware · global infra |
+| `confetti-rain` | CSS | Success screens · onboarding |
+
+15 real-world scenario demos included (SaaS, Fintech, Gaming, Music, E-commerce, API Docs, Success, Health, AI, Startup, CDN, Fintech, Education, Real Estate, Web3).
 
 ---
 
@@ -145,7 +187,7 @@ ui-library/
 │   ├── page.tsx              # Interactive landing page
 │   ├── globals.css           # Design tokens & global styles
 │   ├── layout.tsx            # Root layout with theme provider
-│   └── showcase/             # 90+ live component demos
+│   └── showcase/             # 100+ live component demos
 │       └── templates/        # 19 full-page template demos
 ├── components/
 │   └── ui/                   # All UI components (source of truth)
@@ -184,8 +226,8 @@ All components are written in TypeScript, use CVA for variants, and follow acces
 Every component has a dedicated showcase page with:
 - Live interactive examples
 - Multiple variants and states (disabled, loading, error, etc.)
-- Responsive previews
-- Usage examples
+- Responsive viewport previews (Desktop · Tablet · Mobile)
+- Copy-ready code snippets (JSX only or with imports)
 
 Navigate to `/showcase` to explore all components in action.
 

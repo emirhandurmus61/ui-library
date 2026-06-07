@@ -74,10 +74,10 @@ const SIMPLE_FEATURES: ComparisonFeature[] = [
 
 export default function ComparisonTableShowcase() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Comparison Table</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Comparison Table</h1>
+        <p className="text-sm text-foreground-muted">
           Ürün ve plan karşılaştırma tablosu. Boolean, string ve custom ReactNode değer desteği. 4 varyant.
         </p>
       </div>

@@ -5,10 +5,10 @@ import { PrintButton } from "@/components/ui/print-button";
 
 export default function PrintButtonShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Print Button</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Print Button</h1>
+        <p className="text-sm text-foreground-muted">
           Tüm sayfa veya belirli bir elementi yazdıran buton. CSS stilleri iframe üzerinden aktarılır.
         </p>
       </div>

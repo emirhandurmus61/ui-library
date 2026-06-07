@@ -36,10 +36,10 @@ const BUILD_LOGS: LogEntry[] = [
 
 export default function LogViewerShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Log Viewer</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Log Viewer</h1>
+        <p className="text-sm text-foreground-muted">
           Terminal tarzı log akışı. Seviye filtresi, arama, timestamp, kaynak ve 3 tema.
         </p>
       </div>

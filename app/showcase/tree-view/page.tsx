@@ -89,10 +89,10 @@ const SIMPLE_TREE: TreeNode[] = [
 
 export default function TreeViewShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Tree View</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Tree View</h1>
+        <p className="text-sm text-foreground-muted">
           Hiyerarşik veri görüntüleme. Dosya gezgini, navigasyon ve kategori ağaçları için.
         </p>
       </div>

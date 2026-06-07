@@ -30,7 +30,9 @@ export default function ShowcaseLayout({
 
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto p-6 pt-20 lg:pt-6 lg:p-10">
-          {children}
+          <div className="max-w-5xl mx-auto">
+            {children}
+          </div>
         </div>
       </main>
     </div>

@@ -9,10 +9,10 @@ const LONG_TEXT   = Array.from({ length: 200 }, () => "lorem ipsum dolor sit ame
 
 export default function ReadingTimeShowcase() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Reading Time</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Reading Time</h1>
+        <p className="text-sm text-foreground-muted">
           Blog yazıları için tahmini okuma süresi badge'i. İçerik metni veya kelime sayısından hesaplar.
         </p>
       </div>

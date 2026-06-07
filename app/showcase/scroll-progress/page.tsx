@@ -27,13 +27,13 @@ export default function ScrollProgressShowcase() {
   const ref3 = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
+    <div className="space-y-10">
       {/* Fixed bar-top on this page */}
       <ScrollProgress variant="bar-top" fixed thickness={3} />
 
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Scroll Progress</h1>
-        <p className="text-foreground-muted">
+        <h1 className="text-2xl font-bold text-foreground mb-1">Scroll Progress</h1>
+        <p className="text-sm text-foreground-muted">
           Sayfa veya container okuma ilerleme göstergesi. 5 varyant — bu sayfanın üstündeki ince çubuk da bu bileşenden!
         </p>
       </div>

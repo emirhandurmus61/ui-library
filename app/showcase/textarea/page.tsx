@@ -41,7 +41,7 @@ export default function TextareaShowcase() {
     <div className="max-w-3xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Textarea</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           Auto-grow · karakter sayacı · error / success state · label · helper text
         </p>
       </div>

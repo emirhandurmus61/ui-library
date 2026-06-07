@@ -13,7 +13,7 @@ export default function ToastShowcase() {
     <div className="max-w-3xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Toast / Notification</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           success · error · warning · info · default · action butonu · otomatik kapanma · stack
         </p>
       </div>

@@ -16,7 +16,7 @@ export default function PaginationShowcase() {
     <div className="max-w-2xl space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Pagination</h1>
-        <p className="text-foreground-muted">
+        <p className="text-sm text-foreground-muted">
           ellipsis · first/last butonları · sm/md boyut · a11y (nav, aria-label, aria-current)
         </p>
       </div>
