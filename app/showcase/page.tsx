@@ -1,15 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import { CodeBlock } from "@/components/ui/code-block";
 
-const phases = [
-  { id: 0, label: "Altyapı",          status: "done",  count: null },
-  { id: 1, label: "Primitive",         status: "done",  count: 11 },
-  { id: 2, label: "Layout",            status: "done",  count: 6 },
-  { id: 3, label: "Auth",              status: "done",  count: 4 },
-  { id: 4, label: "Feedback & Overlay",status: "done",  count: 6 },
-  { id: 5, label: "Data Display",      status: "done",  count: 9 },
-  { id: 6, label: "Showcase Sistemi",  status: "done",  count: null },
-  { id: 7, label: "Sayfa Şablonları",  status: "done",  count: 5 },
-] as const;
+/* ─── Data ───────────────────────────────────────────────────── */
 
 const QUICK_START = `import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,8 +24,10 @@ export default function Example() {
 type ComponentItem = { href: string; label: string };
 type ComponentCategory = {
   label: string;
-  color: string;    // dot bg class
-  border: string;   // card border class
+  color: string;
+  bg: string;
+  text: string;
+  icon: string;
   items: ComponentItem[];
 };
 
@@ -39,7 +35,9 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   {
     label: "Primitives",
     color: "bg-violet-500",
-    border: "border-violet-500/20",
+    bg: "bg-violet-500/8 dark:bg-violet-500/10",
+    text: "text-violet-600 dark:text-violet-400",
+    icon: "⬡",
     items: [
       { href: "/showcase/button",   label: "Button" },
       { href: "/showcase/input",    label: "Input" },
@@ -52,12 +50,15 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
       { href: "/showcase/avatar",   label: "Avatar" },
       { href: "/showcase/spinner",  label: "Spinner" },
       { href: "/showcase/tooltip",  label: "Tooltip" },
+      { href: "/showcase/kbd",      label: "Keyboard Shortcut" },
     ],
   },
   {
     label: "Layout",
     color: "bg-blue-500",
-    border: "border-blue-500/20",
+    bg: "bg-blue-500/8 dark:bg-blue-500/10",
+    text: "text-blue-600 dark:text-blue-400",
+    icon: "▦",
     items: [
       { href: "/showcase/navbar",             label: "Navbar" },
       { href: "/showcase/sidebar",            label: "Sidebar" },
@@ -72,7 +73,9 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   {
     label: "Auth",
     color: "bg-emerald-500",
-    border: "border-emerald-500/20",
+    bg: "bg-emerald-500/8 dark:bg-emerald-500/10",
+    text: "text-emerald-600 dark:text-emerald-400",
+    icon: "◉",
     items: [
       { href: "/showcase/login",           label: "Login Form" },
       { href: "/showcase/register",        label: "Register Form" },
@@ -83,53 +86,59 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   {
     label: "Feedback & Overlay",
     color: "bg-amber-500",
-    border: "border-amber-500/20",
+    bg: "bg-amber-500/8 dark:bg-amber-500/10",
+    text: "text-amber-600 dark:text-amber-400",
+    icon: "◎",
     items: [
-      { href: "/showcase/modal",       label: "Modal" },
-      { href: "/showcase/drawer",      label: "Drawer" },
-      { href: "/showcase/toast",       label: "Toast" },
-      { href: "/showcase/alert",       label: "Alert" },
-      { href: "/showcase/skeleton",    label: "Skeleton" },
-      { href: "/showcase/empty-state", label: "Empty State" },
+      { href: "/showcase/modal",                label: "Modal" },
+      { href: "/showcase/drawer",               label: "Drawer" },
+      { href: "/showcase/toast",                label: "Toast" },
+      { href: "/showcase/alert",                label: "Alert" },
+      { href: "/showcase/banner",               label: "Banner" },
+      { href: "/showcase/skeleton",             label: "Skeleton" },
+      { href: "/showcase/empty-state",          label: "Empty State" },
+      { href: "/showcase/notification-center",  label: "Notification Center" },
+      { href: "/showcase/cookie-consent",       label: "Cookie Consent" },
+      { href: "/showcase/countdown",            label: "Countdown" },
+      { href: "/showcase/tour",                 label: "Tour / Onboarding" },
     ],
   },
   {
     label: "Data Display",
     color: "bg-cyan-500",
-    border: "border-cyan-500/20",
+    bg: "bg-cyan-500/8 dark:bg-cyan-500/10",
+    text: "text-cyan-600 dark:text-cyan-400",
+    icon: "◈",
     items: [
-      { href: "/showcase/card",               label: "Card" },
-      { href: "/showcase/table",              label: "Table" },
-      { href: "/showcase/stat-card",          label: "Stat Card" },
-      { href: "/showcase/list",               label: "List" },
-      { href: "/showcase/accordion",          label: "Accordion" },
-      { href: "/showcase/tabs",               label: "Tabs" },
-      { href: "/showcase/breadcrumb",         label: "Breadcrumb" },
-      { href: "/showcase/pagination",         label: "Pagination" },
-      { href: "/showcase/progress",           label: "Progress Bar" },
-      { href: "/showcase/timeline",           label: "Timeline" },
-      { href: "/showcase/pricing-table",      label: "Pricing Table" },
-      { href: "/showcase/faq-list",           label: "FAQ List" },
-      { href: "/showcase/feature-grid",       label: "Feature Grid" },
-      { href: "/showcase/logo-wall",          label: "Logo Wall" },
-      { href: "/showcase/testimonial",        label: "Testimonial" },
-      { href: "/showcase/banner",             label: "Banner" },
-      { href: "/showcase/countdown",          label: "Countdown" },
-      { href: "/showcase/comparison-table",   label: "Comparison Table" },
-      { href: "/showcase/tour",               label: "Tour / Onboarding" },
-      { href: "/showcase/notification-center",label: "Notification Center" },
-      { href: "/showcase/cookie-consent",     label: "Cookie Consent" },
-      { href: "/showcase/kbd",                label: "Keyboard Shortcut" },
-      { href: "/showcase/kanban-board",       label: "Kanban Board" },
-      { href: "/showcase/tree-view",          label: "Tree View" },
-      { href: "/showcase/diff-viewer",        label: "Diff Viewer" },
-      { href: "/showcase/log-viewer",         label: "Log Viewer" },
+      { href: "/showcase/card",             label: "Card" },
+      { href: "/showcase/table",            label: "Table" },
+      { href: "/showcase/data-table",       label: "Data Table" },
+      { href: "/showcase/stat-card",        label: "Stat Card" },
+      { href: "/showcase/list",             label: "List" },
+      { href: "/showcase/accordion",        label: "Accordion" },
+      { href: "/showcase/tabs",             label: "Tabs" },
+      { href: "/showcase/breadcrumb",       label: "Breadcrumb" },
+      { href: "/showcase/pagination",       label: "Pagination" },
+      { href: "/showcase/progress",         label: "Progress Bar" },
+      { href: "/showcase/timeline",         label: "Timeline" },
+      { href: "/showcase/pricing-table",    label: "Pricing Table" },
+      { href: "/showcase/faq-list",         label: "FAQ List" },
+      { href: "/showcase/feature-grid",     label: "Feature Grid" },
+      { href: "/showcase/logo-wall",        label: "Logo Wall" },
+      { href: "/showcase/testimonial",      label: "Testimonial" },
+      { href: "/showcase/comparison-table", label: "Comparison Table" },
+      { href: "/showcase/kanban-board",     label: "Kanban Board" },
+      { href: "/showcase/tree-view",        label: "Tree View" },
+      { href: "/showcase/diff-viewer",      label: "Diff Viewer" },
+      { href: "/showcase/log-viewer",       label: "Log Viewer" },
     ],
   },
   {
     label: "Interactive",
     color: "bg-pink-500",
-    border: "border-pink-500/20",
+    bg: "bg-pink-500/8 dark:bg-pink-500/10",
+    text: "text-pink-600 dark:text-pink-400",
+    icon: "◇",
     items: [
       { href: "/showcase/combobox",        label: "Combobox" },
       { href: "/showcase/date-picker",     label: "Date Picker" },
@@ -148,7 +157,9 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   {
     label: "Animation",
     color: "bg-orange-500",
-    border: "border-orange-500/20",
+    bg: "bg-orange-500/8 dark:bg-orange-500/10",
+    text: "text-orange-600 dark:text-orange-400",
+    icon: "◈",
     items: [
       { href: "/showcase/animated-counter", label: "Animated Counter" },
       { href: "/showcase/number-flow",      label: "Number Flow" },
@@ -164,7 +175,9 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   {
     label: "Charts",
     color: "bg-teal-500",
-    border: "border-teal-500/20",
+    bg: "bg-teal-500/8 dark:bg-teal-500/10",
+    text: "text-teal-600 dark:text-teal-400",
+    icon: "◉",
     items: [
       { href: "/showcase/sparkline",      label: "Sparkline" },
       { href: "/showcase/mini-bar-chart", label: "Mini Bar Chart" },
@@ -179,138 +192,254 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
     ],
   },
   {
-    label: "Data Table",
-    color: "bg-indigo-500",
-    border: "border-indigo-500/20",
-    items: [
-      { href: "/showcase/data-table", label: "Data Table" },
-    ],
-  },
-  {
     label: "Utility",
     color: "bg-lime-500",
-    border: "border-lime-500/20",
+    bg: "bg-lime-500/8 dark:bg-lime-500/10",
+    text: "text-lime-600 dark:text-lime-400",
+    icon: "◌",
     items: [
       { href: "/showcase/scroll-progress", label: "Scroll Progress" },
       { href: "/showcase/reading-time",    label: "Reading Time" },
       { href: "/showcase/share-button",    label: "Share Button" },
       { href: "/showcase/print-button",    label: "Print Button" },
-    ],
-  },
-  {
-    label: "Sistem",
-    color: "bg-slate-500",
-    border: "border-slate-500/20",
-    items: [
-      { href: "/showcase/theme-switcher", label: "Theme Switcher" },
-      { href: "/showcase/accessibility",  label: "A11Y Audit" },
+      { href: "/showcase/accessibility",   label: "A11Y Audit" },
+      { href: "/showcase/theme-switcher",  label: "Theme Switcher" },
     ],
   },
   {
     label: "Templates",
     color: "bg-rose-500",
-    border: "border-rose-500/20",
+    bg: "bg-rose-500/8 dark:bg-rose-500/10",
+    text: "text-rose-600 dark:text-rose-400",
+    icon: "▣",
     items: [
-      { href: "/showcase/templates/dashboard",          label: "Dashboard" },
-      { href: "/showcase/templates/analytics",          label: "Analytics" },
-      { href: "/showcase/templates/inbox",              label: "Inbox" },
-      { href: "/showcase/templates/settings",           label: "Settings" },
-      { href: "/showcase/templates/profile",            label: "Profil" },
-      { href: "/showcase/templates/kanban",             label: "Kanban Board" },
-      { href: "/showcase/templates/pricing",            label: "Pricing" },
-      { href: "/showcase/templates/blog",               label: "Blog" },
-      { href: "/showcase/templates/auth",               label: "Auth Sayfaları" },
-      { href: "/showcase/templates/error",              label: "404 / Error" },
-      { href: "/showcase/templates/landing",            label: "Landing — Genel" },
-      { href: "/showcase/templates/landing-saas",       label: "Landing — SaaS" },
-      { href: "/showcase/templates/landing-startup",    label: "Landing — Startup" },
-      { href: "/showcase/templates/landing-portfolio",  label: "Landing — Portfolyo" },
-      { href: "/showcase/templates/landing-ecommerce",  label: "Landing — E-Ticaret" },
-      { href: "/showcase/templates/landing-agency",     label: "Landing — Ajans" },
-      { href: "/showcase/templates/landing-blog",       label: "Landing — Blog/Medya" },
-      { href: "/showcase/templates/landing-app",        label: "Landing — Mobil App" },
-      { href: "/showcase/templates/landing-event",      label: "Landing — Etkinlik" },
+      { href: "/showcase/templates/dashboard",         label: "Dashboard" },
+      { href: "/showcase/templates/analytics",         label: "Analytics" },
+      { href: "/showcase/templates/inbox",             label: "Inbox" },
+      { href: "/showcase/templates/settings",          label: "Settings" },
+      { href: "/showcase/templates/profile",           label: "Profil" },
+      { href: "/showcase/templates/kanban",            label: "Kanban Board" },
+      { href: "/showcase/templates/pricing",           label: "Pricing" },
+      { href: "/showcase/templates/blog",              label: "Blog" },
+      { href: "/showcase/templates/auth",              label: "Auth Sayfaları" },
+      { href: "/showcase/templates/error",             label: "404 / Error" },
+      { href: "/showcase/templates/landing",           label: "Landing — Genel" },
+      { href: "/showcase/templates/landing-saas",      label: "Landing — SaaS" },
+      { href: "/showcase/templates/landing-startup",   label: "Landing — Startup" },
+      { href: "/showcase/templates/landing-portfolio", label: "Landing — Portfolyo" },
+      { href: "/showcase/templates/landing-ecommerce", label: "Landing — E-Ticaret" },
+      { href: "/showcase/templates/landing-agency",    label: "Landing — Ajans" },
+      { href: "/showcase/templates/landing-blog",      label: "Landing — Blog/Medya" },
+      { href: "/showcase/templates/landing-app",       label: "Landing — Mobil App" },
+      { href: "/showcase/templates/landing-event",     label: "Landing — Etkinlik" },
     ],
   },
 ];
 
 const totalComponents = COMPONENT_CATEGORIES.reduce((s, c) => s + c.items.length, 0);
 
+/* ─── Tech stack badges ──────────────────────────────────────── */
+
+const TECH = [
+  { label: "Next.js 16.2",   color: "bg-foreground text-background" },
+  { label: "React 19",       color: "bg-[#61DAFB]/15 text-[#0ea5e9]" },
+  { label: "TypeScript 5",   color: "bg-[#3178C6]/15 text-[#3b82f6]" },
+  { label: "Tailwind v4",    color: "bg-[#06B6D4]/15 text-[#06b6d4]" },
+  { label: "CVA",            color: "bg-violet-500/15 text-violet-500" },
+];
+
+/* ─── Design tokens ──────────────────────────────────────────── */
+
+const TOKENS = [
+  { label: "primary",    cls: "bg-primary" },
+  { label: "success",    cls: "bg-success" },
+  { label: "warning",    cls: "bg-warning" },
+  { label: "danger",     cls: "bg-danger" },
+  { label: "info",       cls: "bg-info" },
+  { label: "foreground", cls: "bg-foreground" },
+  { label: "muted",      cls: "bg-foreground-muted" },
+  { label: "surface",    cls: "bg-surface border border-border" },
+  { label: "border",     cls: "bg-border" },
+];
+
+/* ─── Featured highlights ────────────────────────────────────── */
+
+const HIGHLIGHTS = [
+  {
+    title: "10 Chart",
+    desc: "SVG/Canvas · sıfır harici bağımlılık",
+    color: "from-teal-500/20 to-teal-500/5",
+    dot: "bg-teal-500",
+    href: "/showcase/bar-chart",
+  },
+  {
+    title: "12 Animasyon",
+    desc: "BgAnimation · CSS & Canvas efektleri",
+    color: "from-orange-500/20 to-orange-500/5",
+    dot: "bg-orange-500",
+    href: "/showcase/bg-animation",
+  },
+  {
+    title: "19 Template",
+    desc: "Dashboard · Landing · Auth sayfaları",
+    color: "from-rose-500/20 to-rose-500/5",
+    dot: "bg-rose-500",
+    href: "/showcase/templates/dashboard",
+  },
+  {
+    title: "Dark Mode",
+    desc: "Her tokenda tam destek · sistem teması",
+    color: "from-indigo-500/20 to-indigo-500/5",
+    dot: "bg-indigo-500",
+    href: "/showcase/theme-switcher",
+  },
+];
+
+/* ─── Component ──────────────────────────────────────────────── */
+
 export default function ShowcasePage() {
-  const done  = phases.filter((p) => p.status === "done").length;
-  const total = phases.length;
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const displayed = activeCategory
+    ? COMPONENT_CATEGORIES.filter((c) => c.label === activeCategory)
+    : COMPONENT_CATEGORIES;
 
   return (
-    <div className="max-w-3xl space-y-12">
-      {/* Hero */}
-      <div>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-8 h-8 rounded-[var(--radius-lg)] bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">U</span>
-          <span className="text-xs font-semibold text-foreground-muted uppercase tracking-wider">UI Library</span>
-        </div>
-        <h1 className="text-3xl font-bold text-foreground mb-2 leading-tight">
-          Kişisel UI Bileşen Kütüphanesi
-        </h1>
-        <p className="text-foreground-muted text-base leading-relaxed">
-          Next.js 16 · React 19 · Tailwind CSS v4 · TypeScript · CVA
-        </p>
+    <div className="space-y-14">
 
-        {/* Stats row */}
-        <div className="mt-5 flex flex-wrap gap-4">
-          {[
-            { value: String(totalComponents), label: "bileşen" },
-            { value: "19", label: "template" },
-            { value: String(COMPONENT_CATEGORIES.length), label: "kategori" },
-          ].map(({ value, label }) => (
-            <div key={label} className="flex items-baseline gap-1.5">
-              <span className="text-2xl font-bold text-foreground">{value}</span>
-              <span className="text-sm text-foreground-muted">{label}</span>
-            </div>
+      {/* ══════════════════════════ HERO ══════════════════════════ */}
+      <div className="space-y-6">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/8 text-primary text-xs font-semibold tracking-wide">
+          <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+          Kişisel UI Bileşen Kütüphanesi
+        </div>
+
+        {/* Heading */}
+        <div className="space-y-3">
+          <h1 className="text-4xl font-bold text-foreground leading-tight tracking-tight">
+            Showcase
+          </h1>
+          <p className="text-base text-foreground-muted leading-relaxed max-w-xl">
+            Üretim kalitesinde bileşenler, tam sayfa şablonlar ve gerçek kullanım senaryoları. Canlı önizleme, kod görüntüleme ve viewport testi ile birlikte.
+          </p>
+        </div>
+
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-2">
+          {TECH.map((t) => (
+            <span
+              key={t.label}
+              className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${t.color}`}
+            >
+              {t.label}
+            </span>
           ))}
         </div>
 
-        {/* Progress bar */}
-        <div className="mt-5 space-y-2">
-          <div className="flex items-center justify-between text-xs text-foreground-muted">
-            <span>{done} / {total} faz tamamlandı</span>
-            <span className="font-semibold text-foreground">{Math.round((done / total) * 100)}%</span>
-          </div>
-          <div className="h-2 rounded-full bg-background-muted overflow-hidden">
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-3 max-w-sm">
+          {[
+            { value: String(totalComponents), label: "Bileşen" },
+            { value: "19",                    label: "Template" },
+            { value: String(COMPONENT_CATEGORIES.length), label: "Kategori" },
+          ].map(({ value, label }) => (
             <div
-              className="h-full bg-primary rounded-full transition-all duration-500"
-              style={{ width: `${(done / total) * 100}%` }}
-            />
-          </div>
+              key={label}
+              className="rounded-[var(--radius-xl)] border border-border bg-surface p-3 text-center"
+            >
+              <p className="text-2xl font-bold text-foreground">{value}</p>
+              <p className="text-xs text-foreground-muted mt-0.5">{label}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Component categories */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Bileşenler</h2>
-        <div className="space-y-4">
-          {COMPONENT_CATEGORIES.map((cat) => (
+      {/* ══════════════════════ HIGHLIGHTS ════════════════════════ */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {HIGHLIGHTS.map((h) => (
+          <a
+            key={h.title}
+            href={h.href}
+            className={`group relative rounded-[var(--radius-xl)] border border-border bg-gradient-to-br ${h.color} p-5 hover:border-primary/30 transition-all duration-200`}
+          >
+            <div className="flex items-start gap-3">
+              <span className={`mt-1 size-2 rounded-full shrink-0 ${h.dot}`} />
+              <div>
+                <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {h.title}
+                </p>
+                <p className="text-xs text-foreground-muted mt-0.5">{h.desc}</p>
+              </div>
+            </div>
+            <svg
+              className="absolute right-4 top-1/2 -translate-y-1/2 size-4 text-foreground-subtle opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+
+      {/* ══════════════════════ COMPONENTS ════════════════════════ */}
+      <div className="space-y-5">
+        {/* Section header + filter tabs */}
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <h2 className="text-lg font-semibold text-foreground">Bileşenler</h2>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className={`px-2.5 py-1 rounded-[var(--radius-md)] text-xs font-medium transition-colors ${
+                activeCategory === null
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
+              }`}
+            >
+              Tümü
+            </button>
+            {COMPONENT_CATEGORIES.map((cat) => (
+              <button
+                key={cat.label}
+                onClick={() => setActiveCategory(activeCategory === cat.label ? null : cat.label)}
+                className={`px-2.5 py-1 rounded-[var(--radius-md)] text-xs font-medium transition-colors ${
+                  activeCategory === cat.label
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground-muted hover:text-foreground hover:bg-background-muted"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Category cards */}
+        <div className="space-y-3">
+          {displayed.map((cat) => (
             <div
               key={cat.label}
-              className={`rounded-[var(--radius-xl)] border ${cat.border} bg-surface p-4`}
+              className="rounded-[var(--radius-xl)] border border-border bg-surface overflow-hidden"
             >
-              {/* Category header */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className={`w-2 h-2 rounded-full shrink-0 ${cat.color}`} />
-                <span className="text-xs font-semibold uppercase tracking-wider text-foreground">
+              {/* Header */}
+              <div className={`flex items-center gap-2.5 px-4 py-3 border-b border-border ${cat.bg}`}>
+                <span className={`size-2 rounded-full shrink-0 ${cat.color}`} />
+                <span className={`text-xs font-bold uppercase tracking-wider ${cat.text}`}>
                   {cat.label}
                 </span>
-                <span className="text-xs text-foreground-subtle ml-auto">
-                  {cat.items.length} bileşen
+                <span className="ml-auto text-[11px] text-foreground-subtle font-medium">
+                  {cat.items.length}
                 </span>
               </div>
 
-              {/* Item chips */}
-              <div className="flex flex-wrap gap-2">
+              {/* Chips */}
+              <div className="flex flex-wrap gap-1.5 p-4">
                 {cat.items.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="inline-flex items-center px-2.5 py-1 rounded-[var(--radius-md)] text-xs font-medium text-foreground-muted bg-background-muted hover:bg-background-subtle hover:text-foreground border border-transparent hover:border-border transition-colors duration-100"
+                    className="inline-flex items-center px-2.5 py-1.5 rounded-[var(--radius-md)] text-xs font-medium text-foreground-muted bg-background-muted hover:bg-primary hover:text-primary-foreground border border-transparent hover:border-primary/20 transition-all duration-150"
                   >
                     {item.label}
                   </a>
@@ -321,84 +450,140 @@ export default function ShowcasePage() {
         </div>
       </div>
 
-      {/* Phase grid */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Fazlar</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {phases.map((phase) => (
-            <div
-              key={phase.id}
-              className={`rounded-[var(--radius-xl)] border p-4 flex items-start gap-3 transition-colors ${
-                phase.status === "done"
-                  ? "border-success/20 bg-success-subtle/50"
-                  : "border-border bg-surface"
+      {/* ══════════════════════ DESIGN SYSTEM ═════════════════════ */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-semibold text-foreground">Tasarım Sistemi</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Color tokens */}
+          <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-5 space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">Renk Tokenları</p>
+            <div className="grid grid-cols-3 gap-3">
+              {TOKENS.map(({ label, cls }) => (
+                <div key={label} className="flex flex-col items-center gap-1.5">
+                  <span className={`size-8 rounded-[var(--radius-md)] ${cls}`} />
+                  <span className="text-[10px] text-foreground-subtle font-mono text-center leading-tight">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Typography */}
+          <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-5 space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">Tipografi Skalası</p>
+            <div className="space-y-2">
+              <p className="text-2xl font-bold text-foreground leading-none">Heading 1</p>
+              <p className="text-xl font-semibold text-foreground leading-none">Heading 2</p>
+              <p className="text-base font-medium text-foreground leading-none">Heading 3</p>
+              <div className="h-px bg-border my-1" />
+              <p className="text-sm text-foreground">Body text — normal paragraf metni.</p>
+              <p className="text-xs text-foreground-muted">Small · muted metin buraya gelir.</p>
+              <p className="text-xs text-foreground-subtle font-mono">const x = 42; // mono</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Button variants */}
+        <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-5 space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">Buton Varyantları</p>
+          <div className="flex flex-wrap gap-2.5 items-center">
+            {[
+              { label: "Primary",   cls: "bg-primary text-primary-foreground hover:bg-primary-hover" },
+              { label: "Secondary", cls: "bg-surface-raised text-foreground border border-border hover:bg-background-muted" },
+              { label: "Outline",   cls: "border border-primary text-primary hover:bg-primary/8" },
+              { label: "Ghost",     cls: "text-foreground hover:bg-background-muted" },
+              { label: "Danger",    cls: "bg-danger text-white hover:opacity-90" },
+            ].map((v) => (
+              <button key={v.label} className={`px-3.5 py-1.5 rounded-[var(--radius-md)] text-sm font-medium transition-all ${v.cls}`}>
+                {v.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 pt-1 border-t border-border">
+            <p className="w-full text-[10px] text-foreground-subtle font-semibold uppercase tracking-wider mb-1">Style Presets</p>
+            {[
+              { label: "Brutal",   cls: "bg-yellow-400 text-black border-2 border-black shadow-[3px_3px_0_#000] hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_#000]" },
+              { label: "Neon",     cls: "bg-transparent border border-fuchsia-500 text-fuchsia-400 shadow-[0_0_8px_#d946ef60] hover:shadow-[0_0_16px_#d946ef80]" },
+              { label: "Glass",    cls: "bg-white/10 backdrop-blur border border-white/20 text-foreground hover:bg-white/15" },
+              { label: "Gradient", cls: "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90" },
+              { label: "Soft",     cls: "bg-primary/15 text-primary hover:bg-primary/20" },
+            ].map((v) => (
+              <button key={v.label} className={`px-3.5 py-1.5 rounded-[var(--radius-md)] text-sm font-medium transition-all ${v.cls}`}>
+                {v.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Radius & shadow tokens */}
+        <div className="rounded-[var(--radius-xl)] border border-border bg-surface p-5 space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-muted">Köşe Yarıçapı</p>
+          <div className="flex flex-wrap items-end gap-4">
+            {[
+              { label: "sm",  cls: "rounded-[var(--radius-sm)]",  size: "size-8" },
+              { label: "md",  cls: "rounded-[var(--radius-md)]",  size: "size-10" },
+              { label: "lg",  cls: "rounded-[var(--radius-lg)]",  size: "size-12" },
+              { label: "xl",  cls: "rounded-[var(--radius-xl)]",  size: "size-14" },
+              { label: "2xl", cls: "rounded-[var(--radius-2xl)]", size: "size-16" },
+              { label: "full", cls: "rounded-full",               size: "size-12" },
+            ].map((r) => (
+              <div key={r.label} className="flex flex-col items-center gap-1.5">
+                <div className={`${r.size} ${r.cls} bg-primary/20 border border-primary/30`} />
+                <span className="text-[10px] text-foreground-subtle font-mono">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ══════════════════════ QUICK START ═══════════════════════ */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-foreground">Hızlı Başlangıç</h2>
+          <a
+            href="https://github.com/emirhandurmus61/ui-library"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-foreground-muted hover:text-foreground transition-colors"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            GitHub'da İncele
+          </a>
+        </div>
+
+        <div className="rounded-[var(--radius-xl)] border border-border overflow-hidden">
+          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-background-muted">
+            <div className="size-2.5 rounded-full bg-red-400/70" />
+            <div className="size-2.5 rounded-full bg-yellow-400/70" />
+            <div className="size-2.5 rounded-full bg-green-400/70" />
+            <span className="ml-2 text-xs text-foreground-subtle font-mono">app/page.tsx</span>
+          </div>
+          <CodeBlock code={QUICK_START} lang="tsx" />
+        </div>
+
+        <div className="flex flex-wrap gap-2 pt-1">
+          {[
+            { label: "Bileşenlere Gözat →", href: "/showcase/button", primary: true },
+            { label: "Chartları Gör →",     href: "/showcase/bar-chart", primary: false },
+            { label: "Şablonları Gör →",    href: "/showcase/templates/dashboard", primary: false },
+          ].map((btn) => (
+            <a
+              key={btn.label}
+              href={btn.href}
+              className={`px-4 py-2 rounded-[var(--radius-md)] text-sm font-medium transition-colors ${
+                btn.primary
+                  ? "bg-primary text-primary-foreground hover:bg-primary-hover"
+                  : "border border-border text-foreground-muted hover:text-foreground hover:bg-background-muted"
               }`}
             >
-              <span
-                className={`mt-0.5 w-2.5 h-2.5 rounded-full shrink-0 ${
-                  phase.status === "done" ? "bg-success" : "bg-border"
-                }`}
-              />
-              <div>
-                <p className="text-sm font-medium text-foreground">
-                  Faz {phase.id} — {phase.label}
-                </p>
-                <p className="text-xs text-foreground-subtle mt-0.5">
-                  {phase.status === "done"
-                    ? phase.count
-                      ? `${phase.count} bileşen · Tamamlandı ✓`
-                      : "Tamamlandı ✓"
-                    : phase.count
-                    ? `${phase.count} bileşen planlandı`
-                    : "Planlandı"}
-                </p>
-              </div>
-            </div>
+              {btn.label}
+            </a>
           ))}
         </div>
       </div>
 
-      {/* Quick start */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Hızlı Başlangıç</h2>
-        <CodeBlock code={QUICK_START} lang="tsx" filename="app/page.tsx" />
-      </div>
-
-      {/* Token preview */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Renk Tokenları</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {[
-            { label: "primary",          bg: "bg-primary" },
-            { label: "danger",           bg: "bg-danger" },
-            { label: "success",          bg: "bg-success" },
-            { label: "warning",          bg: "bg-warning" },
-            { label: "info",             bg: "bg-info" },
-            { label: "foreground",       bg: "bg-foreground" },
-            { label: "surface",          bg: "bg-surface border border-border" },
-            { label: "background-muted", bg: "bg-background-muted" },
-            { label: "border",           bg: "bg-border" },
-          ].map(({ label, bg }) => (
-            <div key={label} className="flex items-center gap-2.5">
-              <span className={`w-6 h-6 rounded-[var(--radius-md)] shrink-0 ${bg}`} />
-              <span className="text-xs text-foreground-muted font-mono">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Typography */}
-      <div>
-        <h2 className="text-lg font-semibold text-foreground mb-4">Tipografi</h2>
-        <div className="space-y-3 border border-border rounded-[var(--radius-xl)] p-5 bg-surface">
-          <p className="text-3xl font-bold text-foreground">Heading 1</p>
-          <p className="text-2xl font-semibold text-foreground">Heading 2</p>
-          <p className="text-xl font-semibold text-foreground">Heading 3</p>
-          <p className="text-base text-foreground">Body text — normal paragraf metni burada görünür.</p>
-          <p className="text-sm text-foreground-muted">Small / muted metin buraya gelir.</p>
-          <p className="text-xs text-foreground-subtle font-mono">Mono / kod metni: const x = 42;</p>
-        </div>
-      </div>
     </div>
   );
 }
