@@ -22,6 +22,10 @@ const MusicIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColo
 const HeartIcon = () => <svg viewBox="0 0 24 24" fill="currentColor" className="size-5 text-red-400"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>;
 const CpuIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/></svg>;
 const GlobeIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
+const TrendingUpIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>;
+const BookOpenIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
+const HomeIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
+const HexagonIcon = () => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5"><polygon points="11 2 22 8.5 22 15.5 11 22 2 15.5 2 8.5"/></svg>;
 
 /* ════════════════════════════════════════════════════════════════
    Tüm animasyon tipleri (galeri için)
@@ -71,7 +75,7 @@ function AnimationGallery() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-foreground-muted">12 animasyon · saf CSS/Canvas · harici bağımlılık yok</p>
+        <p className="text-sm text-foreground-muted">12 animasyon · saf CSS/Canvas · harici bağımlılık yok · duraklat/oynat</p>
         <button
           onClick={() => setPaused(p => !p)}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-md)] border border-border text-sm text-foreground-muted hover:bg-background-muted transition-colors"
@@ -618,6 +622,318 @@ function GlobalHero() {
   );
 }
 
+/* ── 12. Fintech / Yatırım Platformu ─────────────────────────── */
+function FintechHero() {
+  return (
+    <BgAnimation type="grid-pulse" className="rounded-2xl bg-[#020c18] min-h-[320px]">
+      <div className="flex flex-col sm:flex-row items-center min-h-[320px] px-8 py-10 gap-8">
+        {/* Sol */}
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="size-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <TrendingUpIcon />
+            </div>
+            <span className="text-emerald-400 text-xs font-medium tracking-widest uppercase">TradeFlow Pro</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white leading-snug">
+            Portföyünüzü<br />
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              akıllıca büyütün
+            </span>
+          </h2>
+          <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+            Yapay zeka destekli analiz, otomatik yeniden dengeleme ve gerçek zamanlı piyasa verileriyle yatırımlarınızı optimize edin.
+          </p>
+          <div className="flex gap-2">
+            <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium transition-colors">
+              Hesap Aç <ArrowRightIcon />
+            </button>
+            <button className="px-4 py-2 rounded-lg bg-white/5 text-white/60 text-sm border border-white/10 hover:bg-white/10 transition-colors">
+              Demo Gör
+            </button>
+          </div>
+        </div>
+        {/* Sağ — mini grafik */}
+        <div className="shrink-0 space-y-3">
+          {/* Fake sparkline */}
+          <GlassCard className="p-4 space-y-2 min-w-[180px]">
+            <div className="flex items-center justify-between">
+              <span className="text-white/60 text-xs">BIST 100</span>
+              <span className="text-emerald-400 text-xs font-medium">+2.34%</span>
+            </div>
+            <svg viewBox="0 0 160 40" className="w-full h-10">
+              <polyline
+                points="0,35 20,28 40,30 60,18 80,22 100,12 120,8 140,14 160,6"
+                fill="none"
+                stroke="#34d399"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <linearGradient id="fintechGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#34d399" stopOpacity="0.3"/>
+                <stop offset="100%" stopColor="#34d399" stopOpacity="0"/>
+              </linearGradient>
+              <polygon points="0,35 20,28 40,30 60,18 80,22 100,12 120,8 140,14 160,6 160,40 0,40" fill="url(#fintechGrad)"/>
+            </svg>
+            <p className="text-white font-bold text-lg">₺8.647,50</p>
+          </GlassCard>
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { label: "Günlük K/Z", val: "+₺1.240", up: true },
+              { label: "Toplam", val: "+%18.4", up: true },
+            ].map(s => (
+              <GlassCard key={s.label} className="p-2.5 text-center">
+                <p className={`font-bold text-sm ${s.up ? "text-emerald-400" : "text-red-400"}`}>{s.val}</p>
+                <p className="text-white/40 text-[10px] leading-tight">{s.label}</p>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+      </div>
+    </BgAnimation>
+  );
+}
+
+/* ── 13. Eğitim / Online Kurs Platformu ─────────────────────── */
+function EducationHero() {
+  return (
+    <BgAnimation type="aurora" className="rounded-2xl bg-[#0a0520] min-h-[320px]">
+      <div className="flex flex-col sm:flex-row items-center min-h-[320px] px-8 py-10 gap-8">
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="size-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center text-violet-400">
+              <BookOpenIcon />
+            </div>
+            <span className="text-violet-400 text-xs font-medium tracking-widest uppercase">LearnPath</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white leading-snug">
+            Kariyerinizi
+            <span className="block bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              bir sonraki seviyeye taşıyın
+            </span>
+          </h2>
+          <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+            Uzman eğitmenler, sertifikalı programlar ve esnek öğrenme planları. 500.000+ öğrenci topluluğuna katılın.
+          </p>
+          {/* Popüler kurslar */}
+          <div className="space-y-1.5">
+            {[
+              { name: "Full-Stack Web Geliştirme", students: "24.8K", rating: "4.9" },
+              { name: "Makine Öğrenmesi",          students: "18.2K", rating: "4.8" },
+              { name: "UI/UX Tasarım",             students: "31.5K", rating: "4.9" },
+            ].map(c => (
+              <div key={c.name} className="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+                <div className="size-7 rounded-md bg-violet-500/20 flex items-center justify-center text-xs text-violet-400 font-bold shrink-0">
+                  {c.name[0]}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-white/80 text-xs font-medium truncate">{c.name}</p>
+                  <p className="text-white/30 text-[10px]">{c.students} öğrenci</p>
+                </div>
+                <span className="text-yellow-400 text-xs font-medium shrink-0">★ {c.rating}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Sağ — ilerleme kartı */}
+        <div className="shrink-0 space-y-3">
+          <GlassCard className="p-4 w-48 space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="size-9 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white text-sm font-bold">AY</div>
+              <div>
+                <p className="text-white/80 text-xs font-medium">Ayşe Yılmaz</p>
+                <p className="text-white/40 text-[10px]">Pro Üye</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-[10px] text-white/50">
+                <span>Haftalık İlerleme</span>
+                <span className="text-violet-400 font-medium">%74</span>
+              </div>
+              <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-full w-[74%] bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full" />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-1 text-center">
+              {[{ val: "12", label: "Ders" }, { val: "4", label: "Sertifika" }, { val: "🔥 7", label: "Gün" }].map(s => (
+                <div key={s.label}>
+                  <p className="text-white font-bold text-xs">{s.val}</p>
+                  <p className="text-white/30 text-[9px]">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </GlassCard>
+        </div>
+      </div>
+    </BgAnimation>
+  );
+}
+
+/* ── 14. Gayrimenkul / Emlak ──────────────────────────────────── */
+function RealEstateHero() {
+  return (
+    <BgAnimation type="noise-drift" className="rounded-2xl bg-[#0a0800] min-h-[320px]">
+      <div className="flex flex-col items-center justify-center min-h-[320px] px-8 py-12 text-center gap-5">
+        <div className="flex items-center gap-2">
+          <div className="size-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <HomeIcon />
+          </div>
+          <span className="text-amber-400 text-xs font-medium tracking-widest uppercase">PrimEstate</span>
+        </div>
+        <h2 className="text-3xl font-bold text-white leading-snug max-w-md">
+          Hayalinizdeki evi<br />
+          <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+            3 dakikada bulun
+          </span>
+        </h2>
+        <p className="text-white/50 text-sm max-w-sm leading-relaxed">
+          Yapay zeka destekli eşleştirme, sanal tur ve 3D plan görüntüleme. İstanbul'da 28.000+ ilan.
+        </p>
+        {/* Arama kutusu */}
+        <div className="flex w-full max-w-md gap-2 mt-1">
+          <div className="flex-1 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" className="size-4 shrink-0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span className="text-white/30 text-sm">Konum, ilçe veya proje adı…</span>
+          </div>
+          <button className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-medium transition-colors shrink-0">
+            Ara
+          </button>
+        </div>
+        {/* Hızlı filtreler */}
+        <div className="flex flex-wrap gap-2 justify-center">
+          {["Satılık Daire","Kiralık","Villa","Yazlık","Yeni Proje"].map(f => (
+            <button key={f} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs hover:bg-white/10 hover:text-white/80 transition-colors">
+              {f}
+            </button>
+          ))}
+        </div>
+        {/* Stats */}
+        <div className="flex gap-6 text-center">
+          {[["28K+","Aktif İlan"], ["4.8★","Müşteri Puanı"], ["15K","Satılan"]].map(([val, label]) => (
+            <div key={label}>
+              <p className="text-amber-400 font-bold text-base">{val}</p>
+              <p className="text-white/40 text-[10px]">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </BgAnimation>
+  );
+}
+
+/* ── 15. Kripto / Web3 ────────────────────────────────────────── */
+function Web3Hero() {
+  return (
+    <BgAnimation type="matrix" className="rounded-2xl bg-black min-h-[320px]">
+      <div className="flex flex-col sm:flex-row items-center min-h-[320px] px-8 py-10 gap-8">
+        {/* Sol */}
+        <div className="flex-1 space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="size-8 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400">
+              <HexagonIcon />
+            </div>
+            <span className="text-green-400 text-xs font-mono tracking-widest uppercase">ChainVault</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white leading-snug">
+            DeFi portföyünüzü
+            <span className="block text-green-400 font-mono">
+              tek panelde yönetin
+            </span>
+          </h2>
+          <p className="text-white/50 text-sm leading-relaxed max-w-xs font-mono">
+            50+ zincir desteği · CEX/DEX entegrasyonu · gerçek zamanlı gas tracker · NFT portföy takibi
+          </p>
+          <div className="flex gap-2">
+            <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-green-500/20 hover:bg-green-500/30 text-green-300 text-sm font-mono border border-green-500/30 transition-colors">
+              Cüzdanı Bağla <ArrowRightIcon />
+            </button>
+          </div>
+        </div>
+        {/* Sağ — token listesi */}
+        <div className="shrink-0 w-48 space-y-1.5">
+          <p className="text-white/30 text-[10px] font-mono uppercase mb-2">Portföy · $42.816</p>
+          {[
+            { sym: "BTC",  name: "Bitcoin",  val: "$28.400",  change: "+3.2%" },
+            { sym: "ETH",  name: "Ethereum", val: "$9.120",   change: "+1.8%" },
+            { sym: "SOL",  name: "Solana",   val: "$3.640",   change: "-0.9%" },
+            { sym: "AVAX", name: "Avalanche",val: "$1.656",   change: "+5.1%" },
+          ].map(t => (
+            <div key={t.sym} className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+              <div className="size-6 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center text-[9px] font-mono font-bold text-green-400 shrink-0">
+                {t.sym[0]}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-white/80 text-[11px] font-mono font-medium">{t.sym}</p>
+                <p className="text-white/30 text-[9px] font-mono">{t.val}</p>
+              </div>
+              <span className={`text-[10px] font-mono font-medium ${t.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>
+                {t.change}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </BgAnimation>
+  );
+}
+
+/* ── İnteraktif Geçiş Demo ───────────────────────────────────── */
+function InteractiveSwitcher() {
+  const [selected, setSelected] = useState<BgAnimationType>("aurora");
+
+  const options: { type: BgAnimationType; label: string; bg: string }[] = [
+    { type: "aurora",        label: "Aurora",         bg: "bg-[#0d0d1a]" },
+    { type: "particles",     label: "Particles",      bg: "bg-[#0f0a1e]" },
+    { type: "grid-pulse",    label: "Grid Pulse",     bg: "bg-[#030712]" },
+    { type: "wave",          label: "Wave",           bg: "bg-[#0a0a1a]" },
+    { type: "gradient-shift",label: "Gradient Shift", bg: "transparent" },
+    { type: "bubbles",       label: "Bubbles",        bg: "bg-[#06071a]" },
+    { type: "meteor",        label: "Meteor",         bg: "bg-[#020817]" },
+    { type: "noise-drift",   label: "Noise Drift",    bg: "bg-[#05050f]" },
+    { type: "beam",          label: "Beam",           bg: "bg-[#030712]" },
+    { type: "matrix",        label: "Matrix",         bg: "bg-black" },
+    { type: "circuit",       label: "Circuit",        bg: "bg-[#020a14]" },
+    { type: "confetti-rain", label: "Confetti",       bg: "bg-[#1a0a2e]" },
+  ];
+
+  const current = options.find(o => o.type === selected)!;
+
+  return (
+    <div className="space-y-4">
+      {/* Buton grid */}
+      <div className="flex flex-wrap gap-2">
+        {options.map(o => (
+          <button
+            key={o.type}
+            onClick={() => setSelected(o.type)}
+            className={`px-3 py-1.5 rounded-[var(--radius-md)] text-xs font-medium transition-colors border ${
+              selected === o.type
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-background border-border text-foreground-muted hover:bg-background-muted"
+            }`}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+      {/* Canlı önizleme */}
+      <BgAnimation
+        type={selected}
+        className={`rounded-[var(--radius-xl)] min-h-[240px] transition-all ${current.bg}`}
+      >
+        <div className="flex flex-col items-center justify-center min-h-[240px] gap-3 px-6 text-center">
+          <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-white/60 text-xs backdrop-blur-sm border border-white/10 font-mono">
+            type=&quot;{selected}&quot;
+          </span>
+          <h3 className="text-2xl font-bold text-white drop-shadow">{current.label}</h3>
+          <p className="text-white/40 text-sm">Animasyon seçmek için yukarıdaki butonları kullanın</p>
+        </div>
+      </BgAnimation>
+    </div>
+  );
+}
+
 /* ════════════════════════════════════════════════════════════════
    ANA SAYFA
 ════════════════════════════════════════════════════════════════ */
@@ -628,7 +944,7 @@ export default function BgAnimationShowcase() {
       <div>
         <h1 className="text-2xl font-bold text-foreground mb-1">Background Animation</h1>
         <p className="text-foreground-muted">
-          12 animasyon · 11 gerçek kullanım senaryosu · SaaS · Oyun · Müzik · E-ticaret · AI · Sağlık · Startup · ve daha fazlası
+          12 animasyon · 15 gerçek kullanım senaryosu · İnteraktif önizleme · SaaS · Fintech · Eğitim · Emlak · Web3 · ve daha fazlası
         </p>
       </div>
 
@@ -830,6 +1146,80 @@ export default function BgAnimationShowcase() {
         </div>
       </ShowcaseSection>
 
+      {/* ── Senaryo 12: Fintech ── */}
+      <ShowcaseSection
+        title="Senaryo 12 — Fintech / Yatırım Platformu"
+        description="Grid pulse + sahte sparkline grafik. Hisse senedi, kripto ve yatırım takip platformları için."
+        importLine={IMPORT}
+        code={`<BgAnimation type="grid-pulse" className="rounded-2xl bg-[#020c18] min-h-[320px]">
+  {/* Sol: başlık + CTA  ·  Sağ: portföy kartı + sparkline */}
+</BgAnimation>`}
+        previewClassName="p-0"
+      >
+        <div className="rounded-[var(--radius-xl)] overflow-hidden">
+          <FintechHero />
+        </div>
+      </ShowcaseSection>
+
+      {/* ── Senaryo 13: Eğitim ── */}
+      <ShowcaseSection
+        title="Senaryo 13 — Eğitim / Online Kurs Platformu"
+        description="Aurora blob + kurs listesi + ilerleme kartı. Online öğrenme platformları ve sertifika programları için."
+        importLine={IMPORT}
+        code={`<BgAnimation type="aurora" className="rounded-2xl bg-[#0a0520] min-h-[320px]">
+  {/* Sol: kurs listesi + CTA  ·  Sağ: öğrenci ilerleme kartı */}
+</BgAnimation>`}
+        previewClassName="p-0"
+      >
+        <div className="rounded-[var(--radius-xl)] overflow-hidden">
+          <EducationHero />
+        </div>
+      </ShowcaseSection>
+
+      {/* ── Senaryo 14: Emlak ── */}
+      <ShowcaseSection
+        title="Senaryo 14 — Gayrimenkul / Emlak"
+        description="Noise drift + arama kutusu + hızlı filtreler. Emlak platformları ve proje tanıtım sayfaları için."
+        importLine={IMPORT}
+        code={`<BgAnimation type="noise-drift" className="rounded-2xl bg-[#0a0800] min-h-[320px]">
+  {/* Arama kutusu + filtre butonları + istatistikler */}
+</BgAnimation>`}
+        previewClassName="p-0"
+      >
+        <div className="rounded-[var(--radius-xl)] overflow-hidden">
+          <RealEstateHero />
+        </div>
+      </ShowcaseSection>
+
+      {/* ── Senaryo 15: Web3 ── */}
+      <ShowcaseSection
+        title="Senaryo 15 — Kripto / Web3"
+        description="Matrix + token portföy listesi. DeFi uygulamaları, kripto borsaları ve NFT platformları için."
+        importLine={IMPORT}
+        code={`<BgAnimation type="matrix" className="rounded-2xl bg-black min-h-[320px]">
+  {/* Sol: başlık + cüzdan bağla  ·  Sağ: token listesi */}
+</BgAnimation>`}
+        previewClassName="p-0"
+      >
+        <div className="rounded-[var(--radius-xl)] overflow-hidden">
+          <Web3Hero />
+        </div>
+      </ShowcaseSection>
+
+      {/* ── İnteraktif Geçiş ── */}
+      <ShowcaseSection
+        title="İnteraktif Animasyon Seçici"
+        description="Tüm 12 animasyon türünü tek panelde karşılaştırın. Butona tıklayarak canlı geçiş yapın."
+        importLine={IMPORT}
+        code={`const [type, setType] = useState<BgAnimationType>("aurora");
+
+<BgAnimation type={type} className="rounded-2xl bg-[#0d0d1a] min-h-[240px]">
+  {/* içerik */}
+</BgAnimation>`}
+      >
+        <InteractiveSwitcher />
+      </ShowcaseSection>
+
       {/* ── Props tablosu ── */}
       <ShowcaseSection
         title="Props"
@@ -866,18 +1256,18 @@ paused?: boolean     // animasyonu durdur`}
             </thead>
             <tbody>
               {[
-                ["aurora",          "CSS",    "SaaS, AI — Senaryo 1, 9"],
+                ["aurora",          "CSS",    "SaaS, AI, Eğitim — Senaryo 1, 9, 13"],
                 ["beam",            "CSS",    "Siber Güvenlik — Senaryo 2"],
                 ["meteor",          "CSS",    "Gaming — Senaryo 3"],
                 ["wave",            "CSS",    "Müzik — Senaryo 4"],
                 ["gradient-shift",  "CSS",    "E-Ticaret — Senaryo 5"],
-                ["grid-pulse",      "CSS",    "API/Geliştirici — Senaryo 6"],
+                ["grid-pulse",      "CSS",    "API/Geliştirici, Fintech — Senaryo 6, 12"],
                 ["confetti-rain",   "CSS",    "Başarı Ekranı — Senaryo 7"],
                 ["bubbles",         "CSS",    "Sağlık/Wellness — Senaryo 8"],
                 ["particles",       "CSS",    "Startup — Senaryo 10"],
                 ["circuit",         "Canvas", "Global Altyapı — Senaryo 11"],
-                ["matrix",          "Canvas", "Terminal, Hacker"],
-                ["noise-drift",     "CSS",    "Sanat, NFT, Yaratıcı"],
+                ["matrix",          "Canvas", "Web3/Kripto — Senaryo 15"],
+                ["noise-drift",     "CSS",    "Emlak, Sanat, NFT — Senaryo 14"],
               ].map(([type, render, usage]) => (
                 <tr key={type} className="border-b border-border last:border-0 hover:bg-background-muted/50 transition-colors">
                   <td className="px-4 py-3 font-mono text-xs text-primary">{type}</td>
