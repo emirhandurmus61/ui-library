@@ -203,10 +203,14 @@ const NAV: NavCategory[] = [
     items: [
       { href: "/showcase/sparkline",       label: "Sparkline" },
       { href: "/showcase/mini-bar-chart",  label: "Mini Bar Chart" },
+      { href: "/showcase/progress-ring",   label: "Progress Ring" },
       { href: "/showcase/donut-chart",     label: "Donut Chart" },
-      { href: "/showcase/heat-map",        label: "Heat Map" },
+      { href: "/showcase/bar-chart",       label: "Bar Chart" },
+      { href: "/showcase/line-chart",      label: "Line Chart" },
       { href: "/showcase/area-chart",      label: "Area Chart" },
+      { href: "/showcase/radar-chart",     label: "Radar Chart" },
       { href: "/showcase/gauge-chart",     label: "Gauge Chart" },
+      { href: "/showcase/heat-map",        label: "Heat Map" },
     ],
   },
   {
