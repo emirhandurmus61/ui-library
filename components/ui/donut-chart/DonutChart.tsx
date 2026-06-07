@@ -43,8 +43,9 @@ const PALETTE = [
 
 function describeArc(cx: number, cy: number, r: number, startAngle: number, endAngle: number) {
   const toRad = (deg: number) => (deg - 90) * (Math.PI / 180);
-  const start = { x: cx + r * Math.cos(toRad(startAngle)), y: cy + r * Math.sin(toRad(startAngle)) };
-  const end   = { x: cx + r * Math.cos(toRad(endAngle)),   y: cy + r * Math.sin(toRad(endAngle)) };
+  const fmt = (n: number) => Math.round(n * 1e6) / 1e6;
+  const start = { x: fmt(cx + r * Math.cos(toRad(startAngle))), y: fmt(cy + r * Math.sin(toRad(startAngle))) };
+  const end   = { x: fmt(cx + r * Math.cos(toRad(endAngle))),   y: fmt(cy + r * Math.sin(toRad(endAngle))) };
   const large = endAngle - startAngle > 180 ? 1 : 0;
   return `M ${start.x} ${start.y} A ${r} ${r} 0 ${large} 1 ${end.x} ${end.y}`;
 }
